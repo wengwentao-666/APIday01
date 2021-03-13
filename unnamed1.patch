@@ -1,0 +1,4206 @@
+Index: src/WinterVacationHomework/PrimeFacter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/PrimeFacter.java	(date 1611826653022)
++++ src/WinterVacationHomework/PrimeFacter.java	(date 1611826653022)
+@@ -0,0 +1,31 @@
++package WinterVacationHomework;
++
++import java.util.Scanner;
++
++public class PrimeFacter {
++    public static void main(String[] args) {
++      /*  题目：将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5。   
++        程序分析：对n进行分解质因数，应先找到一个最小的质数k，然后按下述步骤完成：   
++        (1)如果这个质数恰等于n，则说明分解质因数的过程已经结束，打印出即可。   
++        (2)如果n <> k，但n能被k整除，则应打印出k的值，并用n除以k的商,作为新的正整数你n,重复执行第一步。   
++        (3)如果n不能被k整除，则用k+1作为k的值,重复执行第一步。  */
++        int n = 0;
++        Scanner Number = new Scanner(System.in);
++        int Number01 = Number.nextInt();
++        for(int i = 1; i <= Number01; i++){
++            if(Number01%i == 0){
++                System.out.print(i + " ");
++                n++;
++            }
++        }
++        if(n>2){
++
++
++        }else{
++            String str = String.valueOf(Number01);
++            System.out.println( );
++            System.out.println(str +"="+ "1"+"*"+str);
++        }
++
++    }
++}
+Index: src/WinterVacationHomework/NarcissisticNumber.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/NarcissisticNumber.java	(date 1611755026988)
++++ src/WinterVacationHomework/NarcissisticNumber.java	(date 1611755026988)
+@@ -0,0 +1,18 @@
++package WinterVacationHomework;
++
++public class NarcissisticNumber {
++    public static void main(String[] args) {
++        /*题目：打印出所有的 "水仙花数 "，所谓 "水仙花数 "是指一个三位数，其各位数字立方和等于该数本身。
++        例如：153是一个 "水仙花数 "，因为153=1的三次方＋5的三次方＋3的三次方。*/
++        for(int i = 100; i < 1000; i ++){
++            int a = i % 10;
++            int b = (i / 10)%10;
++            int c = i/100;
++            int d = a*a*a + b*b*b+c*c*c;
++          //  System.out.print(d + " ");
++            if(d == i){
++               System.out.print(i + " ");
++            }
++        }
++    }
++}
+Index: src/day21313/toString.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day21313/toString.java	(date 1615617866765)
++++ src/day21313/toString.java	(date 1615617866765)
+@@ -0,0 +1,16 @@
++package day21313;
++
++import java.util.Calendar;
++
++public class toString {
++    public static void main(String[] args) {
++
++       Calendar cal = Calendar.getInstance();
++       cal.set(2021,2,13);
++       cal.add(Calendar.DATE,48);
++       cal.add(Calendar.DATE,-7);
++       cal.set(Calendar.DAY_OF_WEEK,5);
++        System.out.println(cal.getTime());
++
++    }
++}
+Index: src/FileTry/writeDataByStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/writeDataByStream.java	(date 1615031862345)
++++ src/FileTry/writeDataByStream.java	(date 1615031862345)
+@@ -0,0 +1,23 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class writeDataByStream {
++    public static void main(String[] args) {
++     try{
++         File f = new File("F:\\java学习\\test\\Stream.txt");
++         File dir = f.getParentFile();  //获取文件所在目录
++         if(!dir.exists()){
++             dir.mkdirs();  //将不存在的目录创建
++         }
++        byte[] data = {60,89,101};
++         FileOutputStream fos = new FileOutputStream(f); //输出字节流文件
++         fos.write(data);
++         fos.close();
++        } catch (IOException e){
++         e.printStackTrace();
++       }
++    }
++}
+Index: src/FileTry/encodeFile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/encodeFile.java	(date 1615100276094)
++++ src/FileTry/encodeFile.java	(date 1615100276094)
+@@ -0,0 +1,53 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.io.IOException;
++// 简单的数据加密
++public class encodeFile {
++
++    public static void encodeFiles(File encodingFile, File encodedFile){
++        try{
++            //将要转换的文件encodingFIle转换为字节流，引用对象为fis
++            FileInputStream fis = new FileInputStream(encodingFile);
++            //创建一个byte类型的数组，长度为文件长度
++            byte[] all = new byte[(int)encodingFile.length()];
++            //以字节流的形式读取所有内容
++            fis.read(all);
++            //遍历所有的数据
++            for(int i = 0; i < encodingFile.length(); i++){
++                if(all[i] >= 48 && all[i]<=57){
++                    if(all[i] == 57){
++                        all[i] = 48;
++                    }else{
++                        all[i]++;
++                    }
++                }else if(all[i] >= 65 && all[i] <= 90){
++                    if(all[i] == 90){
++                        all[i] = 65;
++                    }else{
++                        all[i]++;
++                    }
++                }else{
++                    all[i] = all[i];
++                }
++
++            }
++           //将加密数据写入新的文件当中
++            FileOutputStream fos = new FileOutputStream(encodedFile);
++            fos.write(all);
++            fis.close();
++            fos.close();
++
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++
++    }
++    public static void main(String[] args) {
++             File f = new File("F:\\java学习\\Stream.txt");
++             File f01 = new File("F:\\java学习\\Stream01.txt");
++             encodeFiles(f,f01);
++    }
++}
+Index: src/FileTry/fileStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/fileStream.java	(date 1615018980036)
++++ src/FileTry/fileStream.java	(date 1615018980036)
+@@ -0,0 +1,18 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class fileStream {
++    public static void main(String[] args) {
++        try{
++            File f = new File("F:\\java学习\\mysql学习.docx");
++            FileOutputStream fis = new FileOutputStream(f);
++
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++    }
++}
++
+Index: src/FileTry/streamWrite.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/streamWrite.java	(date 1615029360762)
++++ src/FileTry/streamWrite.java	(date 1615029360762)
+@@ -0,0 +1,23 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class streamWrite{
++    public static void main(String[] args) {
++        try {
++            File f = new File("F:\\java学习\\Stream.txt");
++            FileOutputStream fos = new FileOutputStream(f);
++            //创建一个ASCII，字节码的数组
++            byte[] all = {65,58,96};
++            //写入ASCII码文件
++            fos.write(all);
++            //关闭输出流
++            fos.close();
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++    }
++}
+Index: src/FileTry/FileTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/FileTest.java	(date 1615000176896)
++++ src/FileTry/FileTest.java	(date 1615000176896)
+@@ -0,0 +1,34 @@
++package FileTry;
++
++import java.io.File;
++
++public class FileTest {
++    public static void main(String[] args) {
++
++        File f = new File("C:\\Windows");
++        File[] fs = f.listFiles();
++        if(fs == null){
++            return;
++        }
++        long maxSize = 0;
++        long minSize = Integer.MAX_VALUE;
++        File minFile = null;
++        File maxFile = null;
++       for (File file:fs)  {
++           if(file.isDirectory())
++               continue;
++           if(file.length()>maxSize){
++               maxSize = file.length();
++               maxFile = file;
++           }
++           if(file.length()!=0 && file.length()<minSize){
++               minSize = file.length();
++               minFile = file;
++           }
++       }
++        System.out.printf("最大的文件是%s，其大小是%,d字节%n",maxFile.getAbsoluteFile(),maxFile.length());
++        System.out.printf("最小的文件是%s，其大小是%,d字节%n",minFile.getAbsoluteFile(),minFile.length());
++
++
++    }
++}
+Index: src/ThreadTry/Hero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ThreadTry/Hero.java	(date 1614398269834)
++++ src/ThreadTry/Hero.java	(date 1614398269834)
+@@ -0,0 +1,11 @@
++package ThreadTry;
++
++public class Hero {
++    String name;
++    float hp;
++    int damage;
++    public Hero(String name,float hp){
++        this.name = name;
++        this.hp = hp;
++    }
++}
+Index: src/FileTry/fileTest02.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/FileTry/fileTest02.java	(date 1615016955439)
++++ src/FileTry/fileTest02.java	(date 1615016955439)
+@@ -0,0 +1,41 @@
++package FileTry;
++
++import java.io.File;
++
++public class fileTest02 {
++    static long minSize = Integer.MAX_VALUE;
++    static long maxSize = 0;
++    static File minFile = null;
++    static File maxFile = null;
++   //遍历文件夹的方法
++    public static void listFiles(File file){
++        if(file.isFile()){
++            if(file.length()>maxSize){
++                maxSize = file.length();
++                maxFile = file;
++            }
++            if(file.length() != 0 && file.length() < minSize){
++              minSize = file.length();
++              minFile = file;
++            }
++            return;
++        }
++
++        if(file.isDirectory()){
++            File[] fs = file.listFiles();
++            if( null != fs){
++                for(File each : fs){
++                    listFiles(each);
++                }
++            }
++        }
++
++    }
++   //主方法
++    public static void main(String[] args) {
++        File f = new File("C:\\Windows");
++        listFiles(f);
++        System.out.println("最大的文件是%s，其大小是%,d字节%n"+maxFile.getAbsolutePath()+maxFile.length());
++        System.out.println("最小的文件是%s,其大小是%d字节%n"+minFile.getAbsolutePath()+minFile.length());
++    }
++}
+\ No newline at end of file
+Index: src/Frame/MyFrame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Frame/MyFrame.java	(date 1614324868843)
++++ src/Frame/MyFrame.java	(date 1614324868843)
+@@ -0,0 +1,32 @@
++package Frame;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class MyFrame {
++    public static void main(String[] args) {
++        EventQueue.invokeLater(() ->
++                {
++                    SimpleFrame TestFrame = new SimpleFrame();
++                    TestFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++                    TestFrame.setVisible(true);
++                });
++
++        Toolkit kit = Toolkit.getDefaultToolkit();
++        Dimension screenSize = kit.getScreenSize();
++        int screenHight = screenSize.height;
++        int screenWidth = screenSize.width;
++        System.out.println(screenHight + " " +screenWidth);
++    }
++}
++class SimpleFrame extends JFrame{
++    private static final int DEFAULT_WIDTH = 300;
++    private static final int DEFAULT_HEIGHT = 200;
++
++    public SimpleFrame(){
++        setSize(DEFAULT_WIDTH,DEFAULT_HEIGHT);
++        setLocation(600,300);
++        setTitle("第一次尝试！");
++    }
++
++}
+\ No newline at end of file
+Index: src/WinterVacationHomework/Number5.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/Number5.java	(date 1611835200090)
++++ src/WinterVacationHomework/Number5.java	(date 1611835200090)
+@@ -0,0 +1,19 @@
++package WinterVacationHomework;
++
++import java.util.Scanner;
++
++public class Number5 {
++    public static void main(String[] args) {
++        /*题目：利用条件运算符的嵌套来完成此题：学习成绩> =90分的同学用A表示，60-89分之间的用B表示，60分以下的用C表示。*/
++        System.out.println("请输入成绩：");
++        Scanner Number = new Scanner(System.in);
++        int Score = Number.nextInt();
++      if((Score >= 90)&&(Score <= 100)){
++          System.out.println("该学生的成绩为A");
++      }else if((Score >= 60)&&(Score <= 89)){
++          System.out.println("该学生的成绩为B");
++      }else{
++          System.out.println("该学生的成绩为C");
++      }
++    }
++}
+Index: src/WinterVacationHomework/Number6.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/Number6.java	(date 1611888317809)
++++ src/WinterVacationHomework/Number6.java	(date 1611888317809)
+@@ -0,0 +1,39 @@
++package WinterVacationHomework;
++
++import java.util.Scanner;
++
++public class Number6 {
++    public static void main(String[] args) {
++        /*题目：输入两个正整数m和n，求其最大公约数和最小公倍数。   
++        在循环中，只要除数不等于0，用较大数除以较小的数，将小的一个数作为下一轮循环的大数，取得的余数作为下一轮循环的较小的数，
++        如此循环直到较小的数的值为0，返回较大的数，
++        此数即为最大公约数，最小公倍数为两数之积除以最大公约数*/
++        double a = 0.0;
++        Scanner Number = new Scanner(System.in);
++        int m = Number.nextInt();
++        int n = Number.nextInt();
++       // System.out.println(m+" "+n);
++        for(int i = 1; i <= m; i++){
++            if(m%i == 0){
++                if(n%(m/i) == 0){
++                    if(a <= (m/i)){
++                        a = m/i;
++                    }
++                }
++            }
++        }
++
++      loop: for(int i = n; i >= 1; i--){
++          if(m%i == 0){
++              if(m/(a*(m/i)) != 0){
++                  if(n/(a*(m/i)) != 0){
++                      System.out.println("m和n的最大公倍数为："+a*(m/i));
++                      break;
++                  }
++              }
++          }
++
++       }
++        System.out.print("m和n两个数的最大公约数为："+a);
++    }
++}
+Index: src/MySelf/Stack.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/Stack.java	(date 1614249137047)
++++ src/MySelf/Stack.java	(date 1614249137047)
+@@ -0,0 +1,7 @@
++package MySelf;
++
++public interface Stack {
++    public void push(Hero h);
++    public Hero pull();
++    public Hero peek();
++}
+Index: src/MySelf/MyStack.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/MyStack.java	(date 1614255285862)
++++ src/MySelf/MyStack.java	(date 1614255285862)
+@@ -0,0 +1,36 @@
++package MySelf;
++
++import java.util.LinkedList;
++
++public  class MyStack implements Stack {
++    LinkedList<Hero> heros = new LinkedList<>();
++
++    @Override
++    public void push(Hero h) {
++        heros.addLast(h);
++    }
++
++    @Override
++    public Hero pull() {
++        return heros.removeLast();
++    }
++
++    @Override
++    public Hero peek() {
++        return heros.getLast();
++    }
++
++    public static void main(String[] args) {
++        MyStack herosStack = new MyStack();
++        for(int i = 0; i < 5; i++){
++            Hero h = new Hero("hero name"+i);
++            System.out.println("压入 hero："+h);
++            herosStack.push(h);
++        }
++        for(int i = 0; i < 5; i++){
++            Hero h = herosStack.pull();
++            System.out.println("弹出hero"+h);
++        }
++    }
++}
++
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/uiDesigner.xml	(date 1612233613436)
++++ .idea/uiDesigner.xml	(date 1612233613436)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.png" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/InBook/Day210202.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/InBook/Day210202.java	(date 1612345230096)
++++ src/InBook/Day210202.java	(date 1612345230096)
+@@ -0,0 +1,55 @@
++package InBook;
++
++import org.w3c.dom.ls.LSOutput;
++
++import java.util.ArrayList;
++
++public class Day210202 {
++    public static void main(String[] args) {
++        Employee people01 = new Employee(23,"王五");
++        Employee people02 = new Employee(10,"赵四");
++        Object people03 = new Employee(2,"lk");
++        Employee people04 = new Employee(23,"王五");
++        Employee people05 = people01;
++        /*System.out.println(people01 == people04);
++        System.out.println(people01 == people05);
++        System.out.println(people01.equals(people04));
++        System.out.println(people01.equals(people05));
++        System.out.println(people01);
++        System.out.println(people01.toString());
++        System.out.println("people01.hashCode():"+people01.hashCode());*/
++
++        ArrayList<Employee> Array = new ArrayList<>(100);
++        Array.add(new Employee(2,"甲"));
++        Array.add(2,people01);
++        
++
++        System.out.println("当前数组长度为：" + Array.size());
++        /*System.out.println(people01.Getname()+" "+people01.Getage());
++        System.out.println();
++        people02.RaiseAge();
++        System.out.println(people02.Getname()+" "+people02.Getage());*/
++       // System.out.println(people03.);
++    }
++}
++class Employee{
++  //实例字段
++  private int age;
++  private String name;
++  //有参构造方法
++    public Employee(int a,String n){
++        this.age = a;
++        this.name = n;
++    }
++
++    public String Getname(){
++        return this.name;
++    }
++
++    public int Getage(){
++        return this.age;
++    }
++    public void RaiseAge(){
++        this.age+=6;
++    }
++}
+\ No newline at end of file
+Index: src/InBook/Day210201.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/InBook/Day210201.java	(date 1612233611654)
++++ src/InBook/Day210201.java	(date 1612233611654)
+@@ -0,0 +1,52 @@
++package InBook;
++
++import java.time.LocalDate;
++
++public class Day210201 {
++    public static void main(String[] args) {
++        int[] a = {2,52,62,54,23};
++        for(int each : a)  System.out.print(each+" ");
++        human ren01 = new human();
++        ren01.eat();
++        LocalDate data = LocalDate.now();
++        LocalDate hireday = LocalDate.of(2012, 12, 20);
++        System.out.println();
++        System.out.println(hireday.getYear());
++    }
++
++}
++class human{
++     public void eat(){
++    System.out.println("用筷子吃！");
++     }
++
++}
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+Index: src/day01/Demo2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day01/Demo2.java	(date 1607784128143)
++++ src/day01/Demo2.java	(date 1607784128143)
+@@ -0,0 +1,4 @@
++package day01;
++
++public class Demo2 {
++}
+Index: src/day01/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day01/Demo1.java	(date 1607690797658)
++++ src/day01/Demo1.java	(date 1607690797658)
+@@ -0,0 +1,30 @@
++package day01;
++
++import java.util.Scanner;
++
++public class Demo1 {
++    public static void main(String[] args) {
++        int score = 0;
++        System.out.println("HelloWord !");
++        Scanner constant = new Scanner(System.in);  // 创建一个输入数字对象
++        for (int i = 0; i < 10; i++) {
++
++            int a = (int) (Math.random() * 100);  //产生两个随机数
++            int b = (int) (Math.random() * 100);
++            int ab = a + b;
++            System.out.println(a + "+" + b + "=" + "?");
++            int Constant1 = constant.nextInt();  // 将输入的数字大小给Constant1
++
++            if (Constant1 == ab) {
++                System.out.println("回答正确");
++                score += 10;
++            }
++            else{
++                    System.out.println("回答错误");
++                }
++            }
++        System.out.println(score);
++        }
++
++
++    }
+\ No newline at end of file
+Index: src/day02/primenumber.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day02/primenumber.java	(date 1607780098813)
++++ src/day02/primenumber.java	(date 1607780098813)
+@@ -0,0 +1,24 @@
++package day02;
++
++public class primenumber {
++    public static void main(String[] args) {
++      int d = 0;
++      int e = 0;
++      for (int i = 101; i <=200; i++){
++
++           for(int r = 1; r <= i; r++){
++               int c = i % r;
++               if(c == 0){
++                  d ++;
++               }
++           }
++          if(d <=2){
++              e++;
++              System.out.print(i + " ");
++          }
++          d = 0;
++      }
++      System.out.println();
++      System.out.println("素数的数量" + e);
++    }
++}
+Index: src/day02/rabbit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day02/rabbit.java	(date 1607777216257)
++++ src/day02/rabbit.java	(date 1607777216257)
+@@ -0,0 +1,15 @@
++package day02;
++
++import java.util.Scanner;
++
++public class rabbit {
++    public static void main(String[] args) {
++        int shuliang = 0;
++        Scanner month = new Scanner(System.in);
++        int number = month.nextInt();
++        int b = number / 3;
++        int a = b + 1;
++        shuliang = (int) Math.pow(2, a);
++        System.out.println(number + "个月的兔子总数为" + shuliang);
++    }
++}
+Index: YiBenHuTuZhang/YiBenHuTuZhang.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- YiBenHuTuZhang/YiBenHuTuZhang.iml	(date 1611927009176)
++++ YiBenHuTuZhang/YiBenHuTuZhang.iml	(date 1611927009176)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: src/day03/Deom3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Deom3.java	(date 1607839225563)
++++ src/day03/Deom3.java	(date 1607839225563)
+@@ -0,0 +1,26 @@
++package day03;   //比较字符串 a.equals(s1)
++
++public class Deom3 {
++    public static void main(String[] args) {
++
++     method1();
++     System.out.println(method2(6,5));
++     System.out.println(method3('a',6));
++    }
++    //自定义一个没有返回值的方法  加return方法结束
++    public static void method1(){
++
++        System.out.println("我爱中国");
++       // return;                          //本方法该return可加可不加
++    }
++    //定义一个有返回值为int的方法
++    public static int method2(int a,int b){
++        return (a+b);
++    }
++
++    public static int method3(char a, int b){
++        int sum = a + b;
++        return (sum);
++    }
++
++}
+Index: YiBenHuTuZhang/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- YiBenHuTuZhang/.idea/misc.xml	(date 1611927009248)
++++ YiBenHuTuZhang/.idea/misc.xml	(date 1611927009248)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="true" project-jdk-name="9" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/day03/Deom2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Deom2.java	(date 1607826816482)
++++ src/day03/Deom2.java	(date 1607826816482)
+@@ -0,0 +1,15 @@
++package day03;
++
++public class Deom2 {
++    public static void main(String[] args) {
++
++        for(int i = 1; i < 10; i++){
++            for(int j = 1; j <= i; j++){
++
++                System.out.print(j+"*"+i+"="+ i * j +"\t");
++
++            }
++            System.out.println();
++        }
++    }
++}
+Index: YiBenHuTuZhang/.idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- YiBenHuTuZhang/.idea/.gitignore	(date 1611927013962)
++++ YiBenHuTuZhang/.idea/.gitignore	(date 1611927013962)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
++# Editor-based HTTP Client requests
++/httpRequests/
+Index: src/day03/HomeWork1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/HomeWork1.java	(date 1608104273152)
++++ src/day03/HomeWork1.java	(date 1608104273152)
+@@ -0,0 +1,61 @@
++package day03;
++
++import java.util.Arrays;
++import java.util.Scanner;
++
++public class HomeWork1 {
++    public static void main(String[] args) {
++        // 创建一个char类型随机数组，字符串长度为5
++        int Same = 0;
++        int Same1 = 0;
++        boolean yes = true;
++        int k = 0;
++        char [] bye =  {'b','y','e','b','y','e'} ;
++        char[] c1 = new char[5];
++        System.out.println(Arrays.toString(bye));
++        for(int i = 0; i < 5; i++){
++            int asc = (int)(Math.random()*25 + 97 );
++            char c = (char) asc;
++            c1[i] = c;
++            System.out.print(c + " ");
++        }
++       while (yes) {
++           Scanner number = new Scanner(System.in);       //读取控制台输入的字符串
++           String cs = number.next();
++           char[] chs = cs.toCharArray();                 //将控制台输入的字符串cs  转变成数组  chs[]
++           System.out.println(Arrays.toString(chs));
++           //控制台输入的数组，和随机产生的数组已经生成，接下来就是判别过程
++           System.out.println(cs);
++           for (int i = 0; i < chs.length; i++){
++              if (bye[i] == chs[i]){
++                  k ++;
++              }
++              if(k == 5){
++                 yes = false;
++              }
++           }
++           k = 0;
++           for (int i = 0; i < 5; i++) {
++               for (int j = 0; j < 5; j++) {
++                   if (c1[i] == chs[j]) {
++                       Same++;
++                   }
++                   if(Same >= 5){
++                       Same = 5;
++                   }
++               }
++           }
++           for (int i = 0; i < 5; i++) {
++               if (c1[i] == chs[i]) {
++                   Same1++;
++               }
++           }
++           System.out.println(Same + "个字母正确" + "," + "其中位置正确有" + Same1 + "个");
++           Same = 0;
++           Same1 = 0;
++       }
++    }
++           public static void Guess(){
++
++           }
++}
+Index: src/day03/Demo6.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Demo6.java	(date 1607850875863)
++++ src/day03/Demo6.java	(date 1607850875863)
+@@ -0,0 +1,23 @@
++package day03;
++
++import java.util.Arrays;
++
++public class Demo6 {
++    public static void main(String[] args) {
++        int [] red = new int[5];
++
++        for(int i = 0; i < 5; i++ ){
++            int a = (int)(Math.random()*32) + 1;
++            red[i] = a;
++        }
++
++        Arrays.sort(red);int a = (int)(Math.random()*32) + 1;
++        System.out.println(Arrays.toString(red));
++
++        int b = (int)(Math.random()*16) + 1;
++        red =  Arrays.copyOf(red , red.length + 1 );
++        red[red.length - 1] = b;
++        System.out.println(Arrays.toString(red));
++
++    }
++}
+Index: YiBenHuTuZhang/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- YiBenHuTuZhang/.idea/modules.xml	(date 1611927009298)
++++ YiBenHuTuZhang/.idea/modules.xml	(date 1611927009298)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/YiBenHuTuZhang.iml" filepath="$PROJECT_DIR$/YiBenHuTuZhang.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/day03/Demo5.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Demo5.java	(date 1608099436898)
++++ src/day03/Demo5.java	(date 1608099436898)
+@@ -0,0 +1,27 @@
++package day03; // Arrays.toString(数组)  打印数组
++               // Arrays.copOf(要复制的数组，新数组的长度）  不改变源数组
++               // Arrays.sort(数组）  没有返回值直接在源数组上修改
++               // s.equals(byebye)   判断数组是否相等
++
++import java.util.Arrays;
++
++public class Demo5 {
++    public static void main(String[] args) {
++        int [] array = new int [10];
++        int [] array1 = {1,2,3,8,9};
++        int [] array2 = new int[]{6,9,8,5};
++        for(int i = 0;i < 10; i++){
++            System.out.print(array[i] + " ");
++        }
++        System.out.println();
++        System.out.println(array.length);
++
++        for(int i = 0; i < 5; i++){
++            array1[i] = ++array1[i] ;
++            System.out.print(array1[i]+" ");
++        }
++        System.out.println();
++        Arrays.sort(array1);
++        System.out.println(Arrays.toString(array1));
++    }
++}
+Index: src/day03/Demo4.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Demo4.java	(date 1607840776912)
++++ src/day03/Demo4.java	(date 1607840776912)
+@@ -0,0 +1,21 @@
++package day03;
++
++public class Demo4 {
++    public static void main(String[] args) {
++
++       int e = print(4,7);
++       System.out.println(e);
++        print("jlop");
++        print('i');
++    }
++
++    public static int print(int x,int y) {
++        return (x + y);
++    }
++    public static void print(String h){
++        System.out.println(h);
++    }
++    public static void print(char x){
++        System.out.println(x);
++    }
++}
+\ No newline at end of file
+Index: src/day03/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day03/Demo1.java	(date 1607824637186)
++++ src/day03/Demo1.java	(date 1607824637186)
+@@ -0,0 +1,21 @@
++package day03;
++
++import java.util.Scanner;  //do-while 先do，再判断。无论如何都会先做一遍   continue: 结束本次循环，继续下次循环
++
++public class Demo1 {
++    public static void main(String[] args) {
++        Scanner number = new Scanner(System.in);  //  输入对象
++        int num = (int)(Math.random()*200 + 1);   //  产生0~200的随机数
++        int n = -1;
++        while( n != num){                         //死循环要求输入的数n和num不相等时循环继续
++            n = number.nextInt();
++
++            if(n < num){
++                System.out.println("太小了");
++            }else if(n > num){
++                System.out.println("太大了");
++            }
++        }
++        System.out.println("你猜对了");
++    }
++}
+Index: src/day04/Demo2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day04/Demo2.java	(date 1608111040827)
++++ src/day04/Demo2.java	(date 1608111040827)
+@@ -0,0 +1,16 @@
++package day04;
++
++public class Demo2 {
++    public static void main(String[] args) {
++        // 成员方法不加static  例如public void sleep()
++        // 构造方法   无参构造方法
++        // 构造方法关键字this  表示当前对象  this.name = name  成员变量和局部变量不相同是this可以省略
++        /*
++        this(参数选填)  调用自己的其他构造器
++        必须放在构造方法的第一行，this不能省略
++        */
++
++
++
++    }
++}
+Index: src/day04/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day04/Demo1.java	(date 1608106474897)
++++ src/day04/Demo1.java	(date 1608106474897)
+@@ -0,0 +1,26 @@
++package day04;
++
++import java.util.Arrays;
++
++public class Demo1 {
++    public static void main(String[] args) {
++       int [] arr1 = {6,6,9,5,8,2};
++       arr1 = Maopao(arr1);
++        System.out.println(Arrays.toString(arr1));
++
++    }
++
++    public static int[] Maopao(int[] arr){
++        for (int i = 0; i < arr.length - 1; i++ ){
++            for (int j = 0; j < arr.length - i -1; j++){
++                if(arr[j] > arr[j+1]){
++                    int temp = arr[j];
++                    arr[j] = arr[j + 1];
++                    arr[j+1] = temp;
++                }
++            }
++        }
++        return arr;
++    }
++
++}
+Index: src/day04/Cricle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day04/Cricle.java	(date 1608345373387)
++++ src/day04/Cricle.java	(date 1608345373387)
+@@ -0,0 +1,30 @@
++package day04;
++
++public class Cricle {
++    int r;
++    public static void main(String[] args) {
++      Cricle C1 = new Cricle(6);
++      double Area1 = Area(C1.r);
++      double Length = Length(C1.r);
++      System.out.println("面积 = " + Area1);
++      System.out.println("周长 = " +Length);
++
++      Cricle[] a = new Cricle[10];     // 创建十个圆的数组对象
++      for(int i = 1; i < 10; i++){
++         a[i] = new Cricle((int)(Math.random()*15 + 5));
++         System.out.println(Area(a[i].r));
++      }
++
++    }
++    public  Cricle(int r1 ){
++        this.r = r1;
++    }
++    public static double Area(double r){
++        double S = 3.14 * (Math.pow(r,2));
++        return S;
++    }
++    public static double Length(double r){
++        double L = 3.14 * 2 * r;
++        return L;
++    }
++}
+Index: src/day05/animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/animal.java	(date 1608367907780)
++++ src/day05/animal.java	(date 1608367907780)
+@@ -0,0 +1,11 @@
++package day05;
++
++public class animal {
++    String name;
++    public animal(String name){
++        this.name = name;
++    }
++    public void sleep(){
++        System.out.println("你猜");
++    }
++}
+Index: src/day05/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/Demo1.java	(date 1612167864486)
++++ src/day05/Demo1.java	(date 1612167864486)
+@@ -0,0 +1,31 @@
++package day05; // 引用类型数组int[][]  其中int[]为引用数组
++
++import javafx.scene.shape.Path;
++
++import java.io.IOException;
++import java.nio.charset.StandardCharsets;
++import java.util.Scanner;
++
++public class Demo1 {
++    public static void main(String[] args) throws IOException {
++        System.out.println("HelloWord!");
++        int [][] a = {new int[2], new int[6], {1,5,2,3}, new int[9], new int[6]};
++        int [][] b = {new int[3], new int[3], new int[3], {3,8,4}};
++        int [][] c = {{10,10,10,10}, {10,10,10,10}, {10,10,10,10}};
++
++        int[][] d = new int[5][];
++        d[1] = new int[6];
++
++     read_data:   for(int i = 0; i < 3; i++){
++            System.out.println();
++            for(int j = 0; j < 3; j++){
++                System.out.print(c[i][j] + " ");
++                break read_data;
++            }
++        }
++        int foueth = (6 & (1 << 3)) >> 3;
++        System.out.println("位运算符："+foueth);
++        //String message = String.format("Hello, %s.Next year,you'll be %d",name,age);
++      //  Scanner in = new Scanner(Path.of("E:\\新建文本文档.txt"), StandardCharsets.UTF_8);
++    }
++}
+Index: src/MySelf/LambdaTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/LambdaTest.java	(date 1613877682360)
++++ src/MySelf/LambdaTest.java	(date 1613877682360)
+@@ -0,0 +1,27 @@
++package MySelf;
++
++import javax.swing.*;
++import java.util.Arrays;
++import java.util.Date;
++
++public class LambdaTest {
++    public static void main(String[] args) {
++        String[] planets = new String[]{"Mercury","Venus","Earth",
++        "Mars","Jupiter","Saturn","Uranus","Neptune"};
++        System.out.println(Arrays.toString(planets));
++        System.out.println("Sorted in dictionary order:");
++        Arrays.sort(planets);
++        System.out.println(Arrays.toString(planets));
++        System.out.println("sorted by length:");
++        Arrays.sort(planets,(first,second)->first.length()-second.length());
++        System.out.println(Arrays.toString(planets));
++
++        Timer timer = new Timer(1000,event ->
++                System.out.println("The time is "+ new Date()));
++        timer.start();
++
++        JOptionPane.showMessageDialog(null,"Quit program?");
++        System.exit(0);
++
++    }
++}
+Index: src/day05/bird.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/bird.java	(date 1608367797512)
++++ src/day05/bird.java	(date 1608367797512)
+@@ -0,0 +1,11 @@
++package day05;
++
++public class bird extends animal{
++
++    public bird(String name) {
++        super(name);
++    }
++    public  void sleep(){
++        System.out.println("站着睡");
++    }
++}
+Index: src/day05/pig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/pig.java	(date 1608367797613)
++++ src/day05/pig.java	(date 1608367797613)
+@@ -0,0 +1,10 @@
++package day05;
++
++public class pig extends animal{
++    public pig(String name) {
++        super(name);
++    }
++    public void sleep(){
++        System.out.println("躺着睡");
++    }
++}
+Index: src/day05/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/Person.java	(date 1608349613600)
++++ src/day05/Person.java	(date 1608349613600)
+@@ -0,0 +1,18 @@
++package day05;
++
++public class Person {
++    int age;
++    String name;
++    public Person(String name){
++        this.name = name;
++    }
++
++    public Person() {
++
++    }
++
++    public static void sleep(){
++        System.out.println("舒服");
++    }
++}
++
+Index: src/day05/Student.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/Student.java	(date 1608350841039)
++++ src/day05/Student.java	(date 1608350841039)
+@@ -0,0 +1,20 @@
++package day05;   // 不同包不是父子       可用public
++                 // 不同包但是是父子关系  可用 public   protected
++                 // 同包不是父子         可用 public   protected default
++                 // 同包是父子          可用 public  protected default  private
++
++public class Student extends Person {
++    int score;
++    public Student(String name){
++        super(name);
++    }
++    public Student(){
++        super("志向");   // 给父类写方法
++    }
++
++    public static void main(String[] args) {
++        Student a1 = new Student();
++        System.out.println(a1.name);
++        a1.sleep();
++    }
++}
+Index: src/day05/Demo2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/Demo2.java	(date 1608346111868)
++++ src/day05/Demo2.java	(date 1608346111868)
+@@ -0,0 +1,5 @@
++package day05; //继承只能继承父类的方法和变量  不可以继承构造方法，只能调用
++
++public class Demo2 {
++
++}
+Index: src/day05/animaltest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day05/animaltest.java	(date 1608367797562)
++++ src/day05/animaltest.java	(date 1608367797562)
+@@ -0,0 +1,9 @@
++package day05;
++
++public class animaltest {
++    public static void main(String[] args) {
++        bird bird1 = new bird("黄鹂");
++        System.out.println(bird1.name);
++        bird1.sleep();
++    }
++}
+Index: src/day06/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day06/Demo1.java	(date 1609039397670)
++++ src/day06/Demo1.java	(date 1609039397670)
+@@ -0,0 +1,14 @@
++package day06;  //静态成员变量  static int money = 1000；  静态类属于类，普通成员方法属于对象
++
++                //静态代码块   进入程序之前加载好，属于类，各类的静态成员初始化，
++                //代码块      属于对象，创建多少次对象代码块执行多少次在构造方法使用前执行，给成员变量初始化，
++public class Demo1 {
++
++     public static void main(String[] args) {
++       sleep();
++     }
++     static void sleep(){
++        System.out.println(" 我很快乐！");
++     }
++
++}
+Index: src/day06/Animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day06/Animal.java	(date 1609039824063)
++++ src/day06/Animal.java	(date 1609039824063)
+@@ -0,0 +1,20 @@
++package day06;
++
++public class Animal {
++    String name;
++    public Animal(){
++
++    }
++    public Animal(String name){
++        this.name = name;
++    }
++
++    static {
++        System.out.println("父类静态代码块");
++    }
++
++    {
++        System.out.println("父类代码块");
++    }
++}
++
+Index: src/day06/Bird.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/day06/Bird.java	(date 1609040047300)
++++ src/day06/Bird.java	(date 1609040047300)
+@@ -0,0 +1,14 @@
++package day06;
++
++public class Bird extends Animal{
++    public Bird(String name){
++        super(name);
++    }
++    public Bird(){
++
++    }
++    public static void main(String[] args) {
++        Bird YellowBird = new Bird();
++        Bird YellowBird01 = new Bird("黄");
++    }
++}
+Index: src/MySelf/Demo1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/Demo1.java	(date 1608302277991)
++++ src/MySelf/Demo1.java	(date 1608302277991)
+@@ -0,0 +1,25 @@
++package MySelf;   /*
++                  contains， 用于判断对象
++                  ArrayList 中 remove(可以为元素数组中的数字位置例如0,1,2,3   也可以直接是数组英雄元素)
++                  set（位置信息，对象）用于替换位置信息上面的对象
++                  数组对象.size() 用于获取ArrayList的大小
++                  addAll 将一个ArrayList 数组加到另一个  ArrayList中
++                  */
++import java.util.ArrayList;
++import java.util.Arrays;
++
++public class Demo1 {
++    public static void main(String[] args) {
++        //有限制长度的英雄对象
++       Hero heros[] = new Hero[10];
++       heros[1] = new Hero("吕布");
++       heros[2] = new Hero(7);
++        System.out.println(Arrays.toString(heros));
++
++        //使用ArrayList()方法可以无限增加数组长度
++        ArrayList hero1 = new ArrayList();
++        hero1.add(new Hero("张飞"));
++        hero1.add(new Hero(3));
++        System.out.println(hero1.size());
++    }
++}
+Index: src/MySelf/BinaryTree.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/BinaryTree.java	(date 1608557996246)
++++ src/MySelf/BinaryTree.java	(date 1608557996246)
+@@ -0,0 +1,8 @@
++package MySelf;
++
++public class BinaryTree {
++    public BinaryTree leftNode;
++    public static void main(String[] args) {
++
++    }
++}
+Index: src/MySelf/Node.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/Node.java	(date 1608560789772)
++++ src/MySelf/Node.java	(date 1608560789772)
+@@ -0,0 +1,57 @@
++package MySelf;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class Node {
++    public Node leftNode;
++    public Node rightNode;
++    public Object value;
++
++    public void add(Object v){
++
++        if(null == value){
++            value = v;
++        }else {
++
++            if((int)v - ((int)value) <= 0){
++                if(null == leftNode){
++                    leftNode = new Node();
++                    leftNode.add(v);
++                }
++            }else {
++                if(null == rightNode){
++                    rightNode = new Node();
++                    rightNode.add(v);
++                }
++            }
++        }
++
++    }
++    public List<Object> values() {
++        List<Object> values = new ArrayList<>();
++
++        // 左节点的遍历结果
++        if (null != leftNode)
++            values.addAll(leftNode.values());
++
++        // 当前节点
++        values.add(value);
++
++        // 右节点的遍历结果
++        if (null != rightNode)
++
++            values.addAll(rightNode.values());
++
++        return values;
++    }
++    public static void main(String[] args) {
++        int[] random = {1,9,25,36,54,63};
++        Node roots = new Node();
++        for(int number : random){
++            roots.add(number);
++        }
++        System.out.println(roots.value);
++    }
++
++}
+Index: src/MySelf/Hero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MySelf/Hero.java	(date 1614255285853)
++++ src/MySelf/Hero.java	(date 1614255285853)
+@@ -0,0 +1,16 @@
++package MySelf;
++
++public class Hero {
++    public String name;
++    public float hp;
++
++    public Hero(String name){
++        this.name = name;
++    }
++
++    public Hero(float hp){
++        this.hp = hp;
++    }
++
++
++}
+Index: src/System2/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System2/Room.java	(date 1608384149042)
++++ src/System2/Room.java	(date 1608384149042)
+@@ -0,0 +1,15 @@
++package System2;
++
++public class Room {
++    int number;
++    Person persons = new Person(null);
++    public Room(){
++
++    }
++    public Room(int number,String name){
++
++        this.number = number;
++        this.persons.name = name;
++
++    }
++}
+Index: src/System2/Hotel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System2/Hotel.java	(date 1608381486268)
++++ src/System2/Hotel.java	(date 1608381486268)
+@@ -0,0 +1,38 @@
++package System2;
++
++public class Hotel {
++
++    Room[][] Room1 = new Room[5][8];
++    public Hotel(){
++        for(int i = 0; i < Room1.length; i++){
++             for(int j = 0; j < Room1[i].length; j++){
++                 int number = (i + 1) * 1000 + j + 1;
++                 Room1[i][j] = new Room(number,null);
++             }
++        }
++    }
++
++    public void Show(){                             // 展示房间每个房间的情况
++      for(int i = 0; i < Room1.length; i++){
++          System.out.println();
++          for(int j = 0; j < Room1[i].length; j++){
++              System.out.print(Room1[i][j].number + " " + Room1[i][j].persons.name + "   ");
++          }
++      }
++    }
++
++    public void In(int number,String name){      // 输入房间号和入住人的信息
++        int a = number / 1000 - 1;
++        int b = number % 1000 - 1;
++        Room1[a][b].number = number;
++        Room1[a][b].persons.name = name;
++    }
++
++    public void Out(int number){                 // 删除退房人的名字并欢迎下次再来
++        int a = number / 1000 - 1;
++        int b = number % 1000 - 1;
++        System.out.println("退房成功，欢迎" + Room1[a][b].persons.name + " 再来！" );
++        Room1[a][b].persons.name = null;
++    }
++
++}
+Index: src/System2/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System2/Main.java	(date 1608383982269)
++++ src/System2/Main.java	(date 1608383982269)
+@@ -0,0 +1,42 @@
++package System2;
++
++import java.util.Scanner;
++
++public class Main {
++    public static void main(String[] args) {
++        System.out.println(" 欢迎来到酒店管理系统！");
++        System.out.println("请输入指令: 查询(show) 入住(in) 退房(Out) 退出系统(exit)");
++        Hotel hotel = new Hotel();
++     loop:while (true){
++            Scanner Order = new Scanner(System.in);
++            String order1 = Order.next();
++            switch (order1){
++                case "show":
++                   hotel.Show();
++                    break;
++                case "in":
++
++                    System.out.println("房号:");
++                    Scanner number = new Scanner(System.in);
++                    int number1 = number.nextInt();
++                    System.out.println("姓名:");
++                    Scanner Name = new Scanner(System.in);
++                    String name1 = Name.next();
++                    hotel.In(number1,name1);
++                    break;
++
++                case"out":
++                    System.out.println("房号:");
++                    Scanner numberout = new Scanner(System.in);
++                    int numberout1 = numberout.nextInt();
++                    hotel.Out(numberout1);
++                    break;
++
++                case"exit":
++                    break loop;
++            }
++        }
++
++
++    }
++}
+Index: IDEA project01.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- IDEA project01.iml	(date 1610886401472)
++++ IDEA project01.iml	(date 1610886401472)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: src/System2/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System2/Person.java	(date 1608379767330)
++++ src/System2/Person.java	(date 1608379767330)
+@@ -0,0 +1,8 @@
++package System2;
++
++public class Person {
++    String name;
++    public Person(String name){
++        this.name = name;
++    }
++}
+Index: src/System01/Test.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System01/Test.java	(date 1608364291101)
++++ src/System01/Test.java	(date 1608364291101)
+@@ -0,0 +1,35 @@
++package System01;
++
++import java.util.Scanner;
++
++public class Test {
++
++    public static void main(String[] args) {
++        System.out.println(" 欢迎来到酒店管理系统！");
++        Hotel hotel1 = new Hotel();
++        int[][] d =  hotel1.fangjian();
++      //  int[][] e = hotel1.Zhu();
++
++        while (true) {
++            Scanner Panduan = new Scanner(System.in);
++            String Panduan1 = Panduan.next();
++            if(Panduan1.equals("show")){
++
++            }
++
++
++
++
++            /*System.out.println("");
++                 Scanner room1 = new Scanner(System.in);    // 输入房间号
++                 int number = room1.nextInt();
++                 Scanner rengming = new Scanner(System.in);  // 输入人的名字
++                 String rengming1 = rengming.nextLine();
++                 System.out.println(number);
++                 System.out.println(rengming1);*/
++
++
++        }
++    }
++
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1610886401641)
++++ .idea/misc.xml	(date 1610886401641)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="true" project-jdk-name="9" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/System01/Room.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System01/Room.java	(date 1608359230168)
++++ src/System01/Room.java	(date 1608359230168)
+@@ -0,0 +1,5 @@
++package System01;
++
++public class Room {
++
++}
+Index: unnamed.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- unnamed.patch	(date 1615625261061)
++++ unnamed.patch	(date 1615625261061)
+@@ -0,0 +1,241 @@
++Index: writeDataByStream.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- writeDataByStream.java	(date 1615031862345)
+++++ writeDataByStream.java	(date 1615031862345)
++@@ -0,0 +1,23 @@
+++package FileTry;
+++
+++import java.io.File;
+++import java.io.FileOutputStream;
+++import java.io.IOException;
+++
+++public class writeDataByStream {
+++    public static void main(String[] args) {
+++     try{
+++         File f = new File("F:\\java学习\\test\\Stream.txt");
+++         File dir = f.getParentFile();  //获取文件所在目录
+++         if(!dir.exists()){
+++             dir.mkdirs();  //将不存在的目录创建
+++         }
+++        byte[] data = {60,89,101};
+++         FileOutputStream fos = new FileOutputStream(f); //输出字节流文件
+++         fos.write(data);
+++         fos.close();
+++        } catch (IOException e){
+++         e.printStackTrace();
+++       }
+++    }
+++}
++Index: encodeFile.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- encodeFile.java	(date 1615100276094)
+++++ encodeFile.java	(date 1615100276094)
++@@ -0,0 +1,53 @@
+++package FileTry;
+++
+++import java.io.File;
+++import java.io.FileInputStream;
+++import java.io.FileOutputStream;
+++import java.io.IOException;
+++// 简单的数据加密
+++public class encodeFile {
+++
+++    public static void encodeFiles(File encodingFile, File encodedFile){
+++        try{
+++            //将要转换的文件encodingFIle转换为字节流，引用对象为fis
+++            FileInputStream fis = new FileInputStream(encodingFile);
+++            //创建一个byte类型的数组，长度为文件长度
+++            byte[] all = new byte[(int)encodingFile.length()];
+++            //以字节流的形式读取所有内容
+++            fis.read(all);
+++            //遍历所有的数据
+++            for(int i = 0; i < encodingFile.length(); i++){
+++                if(all[i] >= 48 && all[i]<=57){
+++                    if(all[i] == 57){
+++                        all[i] = 48;
+++                    }else{
+++                        all[i]++;
+++                    }
+++                }else if(all[i] >= 65 && all[i] <= 90){
+++                    if(all[i] == 90){
+++                        all[i] = 65;
+++                    }else{
+++                        all[i]++;
+++                    }
+++                }else{
+++                    all[i] = all[i];
+++                }
+++
+++            }
+++           //将加密数据写入新的文件当中
+++            FileOutputStream fos = new FileOutputStream(encodedFile);
+++            fos.write(all);
+++            fis.close();
+++            fos.close();
+++
+++        }catch (IOException e){
+++            e.printStackTrace();
+++        }
+++
+++    }
+++    public static void main(String[] args) {
+++             File f = new File("F:\\java学习\\Stream.txt");
+++             File f01 = new File("F:\\java学习\\Stream01.txt");
+++             encodeFiles(f,f01);
+++    }
+++}
++Index: fileStream.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- fileStream.java	(date 1615018980036)
+++++ fileStream.java	(date 1615018980036)
++@@ -0,0 +1,18 @@
+++package FileTry;
+++
+++import java.io.File;
+++import java.io.FileOutputStream;
+++import java.io.IOException;
+++
+++public class fileStream {
+++    public static void main(String[] args) {
+++        try{
+++            File f = new File("F:\\java学习\\mysql学习.docx");
+++            FileOutputStream fis = new FileOutputStream(f);
+++
+++        }catch (IOException e){
+++            e.printStackTrace();
+++        }
+++    }
+++}
+++
++Index: streamWrite.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- streamWrite.java	(date 1615029360762)
+++++ streamWrite.java	(date 1615029360762)
++@@ -0,0 +1,23 @@
+++package FileTry;
+++
+++import java.io.File;
+++import java.io.FileInputStream;
+++import java.io.FileOutputStream;
+++import java.io.IOException;
+++
+++public class streamWrite{
+++    public static void main(String[] args) {
+++        try {
+++            File f = new File("F:\\java学习\\Stream.txt");
+++            FileOutputStream fos = new FileOutputStream(f);
+++            //创建一个ASCII，字节码的数组
+++            byte[] all = {65,58,96};
+++            //写入ASCII码文件
+++            fos.write(all);
+++            //关闭输出流
+++            fos.close();
+++        }catch (IOException e){
+++            e.printStackTrace();
+++        }
+++    }
+++}
++Index: FileTest.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- FileTest.java	(date 1615000176896)
+++++ FileTest.java	(date 1615000176896)
++@@ -0,0 +1,34 @@
+++package FileTry;
+++
+++import java.io.File;
+++
+++public class FileTest {
+++    public static void main(String[] args) {
+++
+++        File f = new File("C:\\Windows");
+++        File[] fs = f.listFiles();
+++        if(fs == null){
+++            return;
+++        }
+++        long maxSize = 0;
+++        long minSize = Integer.MAX_VALUE;
+++        File minFile = null;
+++        File maxFile = null;
+++       for (File file:fs)  {
+++           if(file.isDirectory())
+++               continue;
+++           if(file.length()>maxSize){
+++               maxSize = file.length();
+++               maxFile = file;
+++           }
+++           if(file.length()!=0 && file.length()<minSize){
+++               minSize = file.length();
+++               minFile = file;
+++           }
+++       }
+++        System.out.printf("最大的文件是%s，其大小是%,d字节%n",maxFile.getAbsoluteFile(),maxFile.length());
+++        System.out.printf("最小的文件是%s，其大小是%,d字节%n",minFile.getAbsoluteFile(),minFile.length());
+++
+++
+++    }
+++}
++Index: fileTest02.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- fileTest02.java	(date 1615016955439)
+++++ fileTest02.java	(date 1615016955439)
++@@ -0,0 +1,41 @@
+++package FileTry;
+++
+++import java.io.File;
+++
+++public class fileTest02 {
+++    static long minSize = Integer.MAX_VALUE;
+++    static long maxSize = 0;
+++    static File minFile = null;
+++    static File maxFile = null;
+++   //遍历文件夹的方法
+++    public static void listFiles(File file){
+++        if(file.isFile()){
+++            if(file.length()>maxSize){
+++                maxSize = file.length();
+++                maxFile = file;
+++            }
+++            if(file.length() != 0 && file.length() < minSize){
+++              minSize = file.length();
+++              minFile = file;
+++            }
+++            return;
+++        }
+++
+++        if(file.isDirectory()){
+++            File[] fs = file.listFiles();
+++            if( null != fs){
+++                for(File each : fs){
+++                    listFiles(each);
+++                }
+++            }
+++        }
+++
+++    }
+++   //主方法
+++    public static void main(String[] args) {
+++        File f = new File("C:\\Windows");
+++        listFiles(f);
+++        System.out.println("最大的文件是%s，其大小是%,d字节%n"+maxFile.getAbsolutePath()+maxFile.length());
+++        System.out.println("最小的文件是%s,其大小是%d字节%n"+minFile.getAbsolutePath()+minFile.length());
+++    }
+++}
++\ No newline at end of file
+Index: src/System01/Hotel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System01/Hotel.java	(date 1608361566094)
++++ src/System01/Hotel.java	(date 1608361566094)
+@@ -0,0 +1,44 @@
++package System01;
++
++public class Hotel{
++
++    public static int[][] fangjian(){   // 创建一个5 * 8 的数组，意义为5层，每层有8个房间
++
++        int[][] d = new int[5][];
++        for (int i = 0; i < d.length; i++){
++            d[i] = new int[8];
++        }
++        for (int i = 1; i <= d.length; i++){
++            for (int j = 1; j <= 8; j++){
++               d[i-1][j-1] = 1000 * i + j;
++            }
++        }
++         return d;
++    }
++
++    public static int[][] Zhu(int fanghao,String name){
++       int Ceng = fanghao / 1000 ;
++       int Hao  = fanghao % 1000 ;
++       int[][] Stand = {{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
++       if(name != null) {
++           Stand[Ceng][Hao] = 1;
++       }
++       return Stand;
++    }
++
++
++}
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(date 1610886401692)
++++ .idea/modules.xml	(date 1610886401692)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/IDEA project01.iml" filepath="$PROJECT_DIR$/IDEA project01.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1615625745115)
++++ .idea/vcs.xml	(date 1615625745115)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$/src/FileTry" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.gitignore	(date 1610886815826)
++++ .idea/.gitignore	(date 1610886815826)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
++# Editor-based HTTP Client requests
++/httpRequests/
+Index: src/System01/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/System01/Person.java	(date 1608358306918)
++++ src/System01/Person.java	(date 1608358306918)
+@@ -0,0 +1,10 @@
++package System01;
++
++public class Person {
++
++    String name;
++    public Person(String name){
++        this.name = name;
++    }
++
++}
+Index: IDEA project.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- IDEA project.iml	(date 1607823416171)
++++ IDEA project.iml	(date 1607823416171)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.name	(date 1610886400196)
++++ .idea/.name	(date 1610886400196)
+@@ -0,0 +1,1 @@
++IDEA project01
+\ No newline at end of file
+Index: src/Struct/Node.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Struct/Node.java	(date 1610888741339)
++++ src/Struct/Node.java	(date 1610888741339)
+@@ -0,0 +1,4 @@
++package Struct;
++
++public class Node {
++}
+Index: src/WinterVacationHomework/Rabbit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/Rabbit.java	(date 1611145189055)
++++ src/WinterVacationHomework/Rabbit.java	(date 1611145189055)
+@@ -0,0 +1,23 @@
++package WinterVacationHomework;
++
++import java.util.Scanner;
++
++public class Rabbit {
++
++    public static void main(String[] args) {
++        System.out.print("请输入月：");
++        Scanner Number = new Scanner(System.in);  //输入当前需要知道的月份兔子的数量
++        int month = Number.nextInt();
++
++        for(int i = 1; i <= month; i++){
++
++            
++        }
++
++        System.out.println("HelloWord!");
++
++    }
++}
++class rabbits{
++
++}
+\ No newline at end of file
+Index: src/WinterVacationHomework/PrimeNumber.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/WinterVacationHomework/PrimeNumber.java	(date 1611753938131)
++++ src/WinterVacationHomework/PrimeNumber.java	(date 1611753938131)
+@@ -0,0 +1,26 @@
++package WinterVacationHomework;
++
++public class PrimeNumber {
++    public static void main(String[] args) {
++       /* 题目：判断101-200之间有多少个素数，并输出所有素数。
++        程序分析：判断素数的方法：用一个数分别去除2到sqrt(这个数)，如果能被整除， 则表明此数不是素数，反之是素数。  */
++        int a ;
++        int b = 0;
++        int c = 0;
++        for(int i = 101; i <= 200; i++){
++            for(int j = 1; j <= i; j++){
++               a = i % j;
++               if(a == 0){
++                   b++;
++               }
++            }
++            if(b < 3){
++                System.out.print(i + " ");
++                c++;
++            }
++            b = 0;
++        }
++        System.out.println();
++        System.out.println("101到200以内的素数个数为：" + c);
++    }
++}
+diff --git out/production/IDEA project/day01/Demo1.class out/production/IDEA project/day01/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..33c8d8f656de727068f9a201e4e37d60c32a15ac
+GIT binary patch
+literal 1580
+zc$|$?U2_vv7=BLkvD<C>O(<H5fW;<&grL-7%7;xY4JLr3rdGJ{B-v@V+3aREn@aD!
+z_KFJ~XB<B+m~jRfxhM|K_yhbOiv9&JsL$C1Qm4^zXU;kA`=0lG-p{kYK6~;Dfb+Ox
+zU=%0&aSEq(yl&tOQX0-GK5Za^a|YhPo6#$42);3{IVHcK<82)or9ZFXqJ~QX(Rs_U
+zd=jBVvLq1Bx>ZwPIBz-T^;W%XdMmPQQ!<u!E7C4W&r*Cx81^@;rodpnD!0$3Q;TNZ
+zO=l>sOUn^Bn7Ezalv^@oOJ_Y*^gYX2&nPECa^<+n0)3KOf7W%HzI6OFg%$y%w@%#g
+z9`*u}X2tdBT(5MDsMywP`Ien3R;1&Y9u)_RzO2*=vJph9;kbZNbX#7<T(VU3MiB2A
+zWg26V#x-1y;R@an7+5xK+g)|N>d|8w7GlU^QDAhRlNjE`lCr(3VL65zt_h4RxUS#y
+zJ=rLj{)Ss^4oC5xj(iLST#w-fZVJSH`|_)&5AOZ`;Jc^a{P2SP^WGPKJbb8}z0VN#
+zl$4;|I@~C4nic;aqT+VbH|uPn+u}vMT@1@j-DJgl*3Fc4mSen!SU_ti&StyfiQe7n
+zQ@!kh=A1^W3wkKg^FrATb<qma-{7cu(y6-jVAK{3+(MDf6sN?+%K{U1Su;5W73r^9
+z{>JlpXsRj7<&wSTKy%EyeonQYc$}tiB9|;_SW$)kP++=iVmVuG&FomVoh-?U?|R!B
+zK4M&X*R8c0>_bj9HEYXe)1>Fm_ZFms(eCLo6S2+ablWhqKe~T2T-k1zJ=FKkdAq-v
+z<bH^(wC$qhn;8wa1y200*aVLJw;qmRgg+DY^+Bj-!2JNZ6i>l3a`G|6kHK}Ed$cXY
+zLGG~*J%K|!`|%Q9ZX1g=grQS*H#GkUePf{=gnve4?Gd7np%p@xrbdi!QThq`0rb~C
+zn+?C9BJprM^6_kxR*HIp0f5G*cMzM^;#xfVHAWTUAcda_<30uyH>9|bxWD^7xyc<2
+zt9U~}ybDYZ&=|cAgE7XrPciZt3?hvo%wZT;sZ(I;D@^_l<1aI#P3kq6&nK7+a=k_S
+z89vQP9A<85Tp-F}=01mWI6^8)gekm2N~84}j*<$g3b4S(gX(SJRm%93P{A}#Q1V((
+z=I}F22#qgc7uTR`m<bs50lP#CKNkUi(P0RQ04|ADo(2Iwpt}-_f1bQfewOR4zX9Mi
+BZ@&Nl
+
+diff --git out/production/IDEA project/day01/Demo2.class out/production/IDEA project/day01/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8af899a6bd14a8480b730fd18994ef38f1da5b03
+GIT binary patch
+literal 252
+zc$`g+!ES<35Jm3@f&v!OKX9imq?)+WbW`Js=%R-G177qQgapyV&+4j)i+(^q%5-?T
+z=uC1m_s*GQe($#*05b#*4D@Wg*zgI~LKUihCm4faOfWynOcMM^6>@z(CbHU!B<JKc
+zDpQfiqEd~2hGxB2CqggE#Pw|wF6FVD&I!(Ed9G5qQVrwibbJsO;lV_k;QpftL9+>S
+xQS8D^a*%0_K3e=?Q^d_DtQNaad!Rk~27U3+g3W5_&_IXPdjROd(dVwFyg#L<E|35K
+
+diff --git out/production/IDEA project/day02/primenumber.class out/production/IDEA project/day02/primenumber.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..04e7da1603257d4a0a5fd45d8e3d7330ed8e2bf7
+GIT binary patch
+literal 1276
+zc$|$>&rcIk5dL1f?b5nRe~JoKQBc4iMG^ebf<hCOq^L;^DxMzg3#_!e&2}N--o&FP
+z6T``bgI6^M6AoUy82=Cr|AH~-w_6f0RAZAj)0z2Z=9}5~zHV=R0x*iHC?Yr>!3ms9
+z(9st~KhAjKYyzTX4(b@vaZVtdH!ahh5C{$o&I)J+yP^a-i>9USE!XCi^H9!L=}8pr
+zvaHTZ$MozSr{*r24S{5_B3FkmXX}nxQ<k5VW3VPoOW^Rp)8aF^BC}O#Eo4isV_FM2
+zuazkCO!GKACh^i)@QSs86Hwt{$AcwTmX~H^eTPA`WG_2qb=&le*d78Gy&?vpIH2Ra
+zfeX0E_>^tC4cC$N8Rah8l}2Y6*$xaFxP;3(MhslRsDUvY=)hG^j|#;1jmA2=1n<v3
+zQ)TxLS8283su~w+FEfyCO=H^G2OP!aKuXqfQC!1yfq*zE&{dO5s$g4X={_>uMgD8J
+z(sH?q^uY9ByJaNXloSZnJ<H2#zi-`-SNTa|-#@(m_VVrbwI=1(^A|$L4Q~g$1%11z
+zrnO=(shtWfez#@WwVhQRw|H@iw!O4m7cizROF4zAY%~-}zuMb=r$%etccoRSszzTc
+zF}I)P-x43L)>Rw$-iy-u4!OboB?_`yEt#&$>6jGg|1WL=$N!B(FFN?fykCG%inol?
+zpp~T-)S;n|5byl(LCUc24B`-_(E^|oG3p57NVJlLL3EhDxnMpx9#a#UIKHeSuZ?MG
+zEwhfUOj@gth0>ulgquP%HSy-xR(EI}iDp2&M<BDw4%mPe%r}FKeWq^%A<CXjukHr)
+zcRmY`(Ujjk<agAdlUW2^93;b0PLWMN?Q`TfOxy@L-b50U#N9y}GdPSVM0?XrFh9d(
+zB#~mZIF2!%@+;mVD&;Z49I;3IT|CB7`uNr{OJs_kZu(OQZ$lSC{6s_~e;~x8GqcCf
+a$zYs1%B&n&<XNGY_8~@2(RbRH1HS<@>L`-{
+
+diff --git out/production/IDEA project/day02/rabbit.class out/production/IDEA project/day02/rabbit.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..f172cf9affbde368c5a3c05e86c693edb724cec2
+GIT binary patch
+literal 1331
+zc$|$?TTc^F5dIFmY$?nA4x)mfEh0q(yc7{BBGm#WB^cw2r)5JIw!6*lDaxA<8htW8
+zXkv`Nz(k`w0D;6G;O_wZ7sff=8fvJ<P0nRzzM1*X%-Qq(=k7NEqgV){8a)cmRH7Gs
+zK~&(ZoX+_t;eJ7c5SGUN29gGYh+s&;MFqnQ{&C&Z#RP*V6kcNR#;j$Hp*EqL+I&8n
+z((FZ^GDy>qu+rRE;<hg3qS7ley2DVDSmql;!x5XOQo4weKFf8Jp(XS%vC7wZ#Ng&i
+zBq?m&T!|L4aC?RP8q1g&0!}7x=%iv`aRy)3GDU{KE;cW8Ba%#W)6{GN`^^GLf~IJ2
+zhG5dl+i7h^m;9<+MuXB*MGa~h>W@WHa7o1oMkQcO#bsPka8<=ML{*IAIz!!*WeG>v
+zJU6F_jJ534`Y{o}4Hc8PsbES)4ATs1X%Wcl=x7V6RW1FeD!JhZEz3|L>(uNXO}8R(
+zGnW@s35{pzaBZQo23bMH)SigADGGg~D%Bi?p5wAyo}BfViWi!m4ih(zl^3OX?oq9O
+zhYR8sW*9oy{?5n44=;bbe|GTv&B3SFhfnto-+tNO*<}o^S-z&lEHll;eO+W|=Ll{J
+zNA@@#50`6WW0_pUJ0~SW9y(O+ZYa1d%X*ig_sFW7>(-i91i36`cv@KYhJrb|0}0Do
+z%jc*AaoNw9!5v2<YVS%j6l1s@oaN@Sp*g*-WAr$Yzd0^$<g_yI(tGSSI~qP7BE}6P
+zsS7QtV4k7xzqm1+{5KBWQ0e!VUj>-F<22Wi6rq*T>g(SI`&uy9)9iPZkS~E++&7|$
+z)=D&^rRe+_UP1z6p7A|YJlKS18{WBrE%+w7{KlBK+3S5Y=4*n#+4o`xfmh?3sO;+8
+zrI!X<s5;8lg8<D6NdY2RNm+wvMHRXzcZf8jL|8JJaI=xEt>8O?c61PzYJ|~=6QpUN
+t=c|i!9>Sc$N!ocyZl`?*oxp?B1;1|GDZF<Kvq&IL_VXkMNFJbZ;TJ5uMX&$>
+
+diff --git out/production/IDEA project/day03/Demo5.class out/production/IDEA project/day03/Demo5.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8aaf2e168045c52dafc9b79c82c074d837f60f35
+GIT binary patch
+literal 1441
+zc$|$>O;giQ6g`h7O$k9NSVjB*6tpN(5y6ilDn%46#F;8ir!IVy2$3}DB(KbL@4}TU
+z7p`33!nH2YaU6euf59K%e{dY}z61u8>X=Dx-n;kQ`_8#H`SSDQX8@y^)6s%s%{Y#}
+zc5<Y34B(VBr==OxaRx)uWaRd&hG7lo7~<o$Yl{hnSbAWdLCJZG7DHR!cCEQuWx?|A
+z@dbxG?Rl@voq6uta=+<R#IhYQwB{Fi{p?6)%BpyyS#npn?K137m-0{eD$h9FUCI=M
+zZ@Wubc?h%VnIRnamnglX0gOTAzR&9nO(jCc!_Dy4f_S$U1TU}5@@hy$L#Ku=2EE|b
+z{IWG|OLlt5XGqpIV4zjQh=KDMWk^nXo(P1`tFx9^_7;P-IK~pVVBjJyX}D}4i*W;2
+z&??P@hN}jy;ktoI<fLbup=F0;D!47cTzF!Y#c!@cJrGufTI|&*kc!mWUgj=I6(rc=
+zm8^~_+#t2Ahv7hluUI+HEpzd}7R$5>1a}3sDwUoYXw<BZ1|_M5Rk@Q{jpv|+afe2w
+zP~G`0&NX2>nd`F8bfOY?K9x|@r4W%2UQ{3)ZzD1qrezy%GxTl8Y<JaLu{I%*vT0rx
+zo?q9Hr>W*WZ>3gcFlJoW@^cOk0*elRxs&*2jc8)GxVz|BL0^=Z-A&_fiTCPNs{wrH
+zCm2mIJFvS%jyq1l78Z$|W$6DeZVX5NjYBWwpDV8>F!`a9-9x(!y&1jLQ}4mvhT%4{
+z@z9w-lB^K{uov=|Z$=09Mahg4P9@*#r2a|ICqC)Lm|_+c)hw!Uvlve%%%YZTHfJ>%
+zNs>#UT~U?(c*2~EjVUQ5sjs2)9hy$3l%bD^0qannD(ub1H*&5+m7&k;h=<_B8u|xQ
+z3f&Kflt(4gr0C$EiC?3{!4J@6_yZE_XqM7qp|r_RlupE3&`sjTs2A5rj!EzP6f2R?
+zGKq9ZW*sR!qxEwfzzcNZB@SW@U15a@5`PJY39%mv9wWWEqIM9vGi=!_!go=#y73f;
+zXw^igRVb&6xEvuw50nimqG~v*p*y;%+23*K2a@bNP7<ys97-={Le>m7aR;}kZhtr+
+Jh7<Ih`~?ldN!b7Z
+
+diff --git out/production/IDEA project/day03/Demo4.class out/production/IDEA project/day03/Demo4.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..083072de0ab9dae869de1caf3bb265cb76f90193
+GIT binary patch
+literal 892
+zc${rf?{Csz5Pl8{EnV3<7}J61=Fft<PB*8?7QbLjNQj!S@Wq%|Si?$ayL83K|Ku0_
+zfW!~}0sc|Od*3y}mbU5L`#yK~+;i7Ie}DZ3@B%M&tl+*59S;h4h(|gsG&D2?@>rNB
+z0(mOTt_oYl9wC411z!A`khK~;g3=04UBX(&3*2`TzwbsTPJhfusS^&IanFf7aZf-c
+zKJzXJ#m=cS-P^a{xPEwW#IWyp0b$en*cmxr9DD2pL%SPCUNAh8O`K@RW#yDGftZ)t
+zgxom;F?*}sZt$JH@;4<^taMU36CzUx6{{uVErQ++C(*!t>k09?l)Eb`3>YXH*g{ps
+zGXu}Duj0VqjUICOXdIr4SY4QHf!2lDCaf%tO)wX|-}guEAie^1rx&s7^P0m62P&6B
+zz0m$3rev+I<FnRs3QSPtD#n4BrQPUZ2jWMICkGPJ*{<@<W={fb{sevJLk4SX^AgO$
+zWNTa|U>zm)1(dOo6o2CE4ErtBROiSX|3J1jgHp=PkvF|L)CJ)t69`(B-&JT#Qov2t
+zWXhN%L4{A?cnLQ+Mx4RhO<KK5S}E1q=Wo|!7MEBQ)VLP%bn8D$Jz+WI98saM(&h}>
+rLZ2?HP42$FG_;1>xFd(=-<ZNtouP1@qs$x|S2$|Ceen6N%)Ivx_XLSi
+
+diff --git out/production/IDEA project/day03/HomeWork1.class out/production/IDEA project/day03/HomeWork1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..3eadbc53abd84ed96b756ac004a36d52f7b22afe
+GIT binary patch
+literal 2311
+zc$|$^TWl0n82--g&d%)a&@QwKtc4Y{z!rhFloooS78VQD7SOi9f)}RSv0e5ub$1rs
+zXX=9_nBa?=@BnB+q5^@3(jefA#>B(~<CBRd#&CHw@kJ%X`kfg{!LG)pGv}QD`u*Sk
+zpJ~7O>*@^vttbUigZ2PA&>2J*wg%CSXM^a$Hh)h$oF9MBfgWeGh|hD<pjX9C>9Q*b
+z9ewike2}qTSOkFq6}wgJ5%71V^J%+Vz#DJaC*Vt1qozQ0e>!jOF6Bnd!jLhNrDRdR
+zl`^vXj6zzT9|(Q+c)BRCuz%DjH?=hGvU28rtB`5#q$+2m^8$<Ghx(5gM~%j;ksoUu
+zv<vC{Sf@<nHHs+#(Z@%w2|j5)M~Eoz<Q1rKJxg{v+c=mq@_Dnsz@Ai5qL~+zAyea2
+zc@8m_&nS#>UsEADm4il(;1#(v)2(dMR2<}!;c297$|O`Q7_^O4X26(ms#UR8MO?*R
+zdhRTlMfwB>tx_Rn_NFBlRS&D*Aam-dMMTAmI$pw{iXk1t*r#H@jsr-lIH=<gUKR*%
+zw=BD87mSGk(;l}*i`9O-qTy8?ui>x`14+_5j|LqhNXZPNI!wH-V+`XO($a|pR{x_L
+z%reKqo{=MF%6?4b67#sIT(r#`*|18qjkqkPt;W5yv}tb|xz1S!2iUek!6=gw&9-L4
+zvGs|DO8nPUh$f&;$WxXx6Ny(InW{PIfMJhwQVK?X)XF)tyCaAUvh18#A+RK8WXyz>
+zPZ{?9v^~yU(KhmSQO2%}NpZ5%T@LMBy?yzK(p<eu;}sRoy~&$z(Y-caF?z_h65~d}
+zA&Iu}205c^#jWX2Zl8bu&czdV&VO|G%!PHg-=4ZPeg4+<6L+s)a7A}cy(6t8nSFf~
+zLaWHhroSOjKc`FQk6Ib?fr-mPuaUB?LRkeV@b_C*rZgd-_sLmGWQ}4`-hdAtrTsw+
+zcPMv}=B!z)cO5(D!}vGHq4I=T!Tix%>CR(k!~75lBbyye+a`-7v#b6WHi6iG+hHZY
+zk2TJB(#y{v?<n7kd1~Y;xGHO}KwRR+gC+8->InT<%D3(sAc`lr22h7(uCq4)AGHwe
+z-Y)M}U$?i-7xrIMlHTyhaMBkp4=0tdIh^#%qbiRYj~$A3P3iDoh9{~_!#f3^w@r<x
+z+F3MBL#c&7QwuHiZkra--fIg){Sh@17^Zb3a1}vd3ZY3=oSV71{6l>CIrQXZEVzQI
+z4mGMyp}IqhYEuYz1Z4Pt8(wZTCrvOCj0SF;#mcA>32ur8_&N>$q)$YA+G!}>?#Un{
+z|HLvJTS98|wuK@gZdMS8;}UXQgs9WbK+(D;L-hFB@%wJpDLQNGhW7|ZeU~`umR-d{
+zS%Xg!c5bHolG6`K_ys)Ukn3TQK7>fU&eH;{M-?`r8e0)YFP(?j$0R#>m_5u<R%9dI
+zWQ1dE)p54yB%5@K4f+_%aS<_G!;|=e-Tw+t;cLpi#VXvyYW#pT_yuwNiU$0~+`nTT
+z{-kUMtA&ClQH5qvhm9h}eLY%5GulK8Hj7ql5nIsi48~^;o+zWnpb=FqbFCoi9<(rH
+z3@XksliUUIBc3LL7%Tgp^*A!25vQv?hRf8~)8jZkCBoH=cak-%A;N$hFrr*5hf{1O
+z))>dnM<naG^T1DB>#>1621FC*IY$203mr}LRak+FX72pV3jPfW&k&xbqDAmW#U}o8
+zy6<7*3_*t;ldI5Gw7LdM)O%3wLlO6(iHM&E=j;&?u79u}0kl25Q&IOn6ZbxeNA6P>
+eL2h>L*cME14N{s%0Tx}h^ISzug0daXyZ>*sFb=c;
+
+diff --git out/production/IDEA project/day03/Demo1.class out/production/IDEA project/day03/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..1dfdc17d06bce34d5a795feaf8514bdda1974064
+GIT binary patch
+literal 951
+zc${rh+fEZv6kVrNI_-4YLb+J9Rly6TD8ofW<yMuLphZn;NQ_U1=>!Ja88S?b{D4nJ
+zf51dzNJxB9c>u-e2blN)zC(;Z0q%3!q!>Gs*=O&y&z!y1n)b)x-gf|FxTzt5b1Ke9
+zZ~+%J1kk4;i~dmFhP(un6U~7zE@`-o!7z+4hExoz7-0xa+K%l{Gbq{q1%}{lw`4IS
+z3bte2uT~Z<?-5@t6Ot^rCND2=&lYtZ4EoFVIzy~b;u}Mw#;jFwhbIWGaNA+%%04Nq
+z@Tc4;b7#pY`kw79O~@hKTcX$6o3x3LBgay^)~)(>*(jRaaV(G83bh&796dB5R`j{K
+zI?vbYgtVet^-SxIEepwKP@JNp6>SV{|DC8}RL2#Ji49j(jO)0D>pE^=LdPVg7$OIo
+z?+-q{+TVMwVp_)x@^x%;i!cU#|J&Q&FJ2#f_#(^bF((*W8~PqBu2`o34^-S(_bn0=
+z5N37O)Y`5w=d4wIvcuvP(woXQZ3r9Vjictdzf9J7+$p&g`7LJ|RL6Se&pE!V$uPyO
+z`o{-7B*z<r+MB?1#+s<gf?&4U$3zd}^a~VM08F?{F-es{E2Fg~w+r@3w%aL&Y9Kl&
+z>h-)6U9?7U0;&4TKM|xGxc3!-$J<bL5iER0O9w)$3G?MtU^<h2gY3W#!j!#3d>fIZ
+zwu9)_(Vt9u^Jrhxx~zYRG)AeQphyaXh*DH3hG}qwhHA)A)r%PVNX-c887C#TX!l(r
+yDyZgabkL2Hv__G~DWr*P7ySh@I8EYG7{wXN6r7dPltZLc1Q_d1(7qmNK<{5m+0twP
+
+diff --git out/production/IDEA project/day03/Demo6.class out/production/IDEA project/day03/Demo6.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8712e719213e2c61de3a8fd0092974ab33d4df28
+GIT binary patch
+literal 938
+zc${rgTTc@~7(KIHcH6RC<Wf<n;=QHHRuB|{QX?^GQmjb{FHMwbyTU@-CCk>N?>_q@
+zeDPTylo-Pg@Spe-H1Tp~izyG?&CY!D%{kwk^UZ$$^Ys+K67q2j;YJ)cam&c(5k7I;
+z#+?{aNULZrjtuS^`D}0Vo{4!Awt%tbw%i~m5J{zX1oWp~-4Pfmx-I8<yIFPoZCPzF
+zGgkC!vaut5SFO*Ida&;v3k((OvXfo3H=U-pyvlS_x-Ef3s!}|VZ=~Ijtv$OO_-<=&
+zRUINEzXCs(Sn2Pv#CRVlHTh0mK&vQhmFJWLSv%a4N8#}%k^=Fv*Y<19GgrxphXUqR
+zAq&G8F_E=!9}6ZHEj+-IiDe59@yNmo9-COTu!eODIcx|Fp0gk@+7nZ%9yql?V7Qms
+zlEFSZ=gU^zYlfZM{7-2IZo_`!`?5n*`myJeIgqLpl<jjx%bnxEQB<!@z+~6E>)9`8
+zJfM9?HfcW^c->Zny)2~rwP?H#Rlqz_s|GJ&GS&YMjGA}UDZM6?l?&-g0oP#hM^cXl
+zq1wlBlq;LF;5;z*1>$44eSxFVO=66rbrz3ff^!U$NSu*>Lgx#-ihhe1BkMEK_n10?
+zHi5|DJAF5onMs!3YU0D+ADI&j^fuN%!C=PxjA)pQb<vqqefI=|MHSSOr5;GhiiENj
+zC<ZWjXbgk=)e{^qGoGa*o1RvP+N9_$iruE%mqaKFIT}ikbrDmnWRP=-k*1_Gp60Bh
+kf*B-f%tkiEX{<DjD<R`**aq!43=^~B7ukXxRn5Bo4^z6fX8-^I
+
+diff --git out/production/IDEA project/day03/Deom2.class out/production/IDEA project/day03/Deom2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..489f5cc2144968a9628d06aeedc097c264df7a88
+GIT binary patch
+literal 1099
+zc$|$?O-~b16g{skopu<cf`HJ<hf-|;DHOj8F03IoDQZ%J3s;Z!g+4l+*UY?<bkC1)
+z<w6&(ae)a7e}HR$guj6h_0F^j7^-oS_wKvr-h1wOciQ>(^W-al`*>o)z+@a#NRALN
+zV`3I_{&v&AEd%om(RJxa{gfe`$?h;jimE0UhRf0sFWb#s;coL?n~;&Rs&adWyVCc2
+zU_{rY$1qf`@y^Ox?zvFSe1YI5mkz^t=52YOAMl*boxNN|yVBV!_)XY8tr9Isx!m0&
+ziqSr)L|oCl+SuZ)UO%&<+HO^B%D@TQE&F8_Vu%|^Teyuo42fq-X-~VnwIy_2)x6;-
+zGBIQ=EMU>Vl7+iiwva=dVeo=<syr9*YIk2$^&e2B<7v^PQK>cs#=457%DpDJnnVlU
+zESOlqDvgybunk816HVR_Mdehvej|0APM+qDrYlcmN~Kb^-?c~k5Hk$4e2@BO`cKse
+z;<jTT?_cx*!~A)kbPiNQ^wPU>HhEPmw`1TD$t^3@Xtx-wlH&-sXmigKr19OwUOkTP
+zOkZ%PW(#k=TUfX(>2HPGotEg6e)0WxM_<TZrYLgTu1GBk1|Bn{|4SRg^uO~khba9`
+z{3itF|CDGq$;**tWCs?$fE@+lLE57M7=}f=)lI+<u8@sm7>Qo-dqTrx^O5yr!u)`x
+z$VMvp5tE-0N+px2`iUPsM&vNWKK=SZ=rINk8J)i$1?+yO=|EPLBpJjU#|+st^;{%u
+zl{)$gW+~T15?3)o`a&dnluo{?Jg#Ak>^Q9iB4-G(GZ^d?Q>Vlp#zb(V>-3obF)*y*
+QA?{%kDe`0F-=H=98;afr+yDRo
+
+diff --git out/production/IDEA project/day04/Demo1.class out/production/IDEA project/day04/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5bcca7a5496dcb189ee197f4eb35f252c42a033c
+GIT binary patch
+literal 926
+zc${rgT~E_c7=F&ywOc7tzzvn5qB6H48~BlE_%K9bLNct$49UWchpoZlw$9R-aL+F>
+zCf=$SYK$RXdEpQ6#~7kMr<*~Ob?tlJkMo}AdET?{zdj!WxPzM}3|umy<8lVGxMJce
+zu9=ua!N7F`MFD-q@A%Q0K(bic7SJ99O;2E~>UX?Hz4opbK9RdEW+tjZL$<bM=&N{;
+z)S_qpfxu|BDGwKKS2nzMu(Zr{TlyV=TydwmFJH<^OLq1uwJ7vEd&@D14ENYJIiwsH
+z!zF>l&L+ui$)GC(I>nvMlFDe2*X{}kx?-Q7PvUGKhgu{X&$ncEK+UWLy|Cdu^y46A
+zR#s>h(#TlIB4?mv!NI(N8x|H&Hc+v!2x5=?BS*kKCF$<&dyVM7RPFG9l*l6Jv5@U6
+z@`K7_%84k-lkMfd4ZX;3Ro25$9#VZe3i_JkL2Z_X&0=!MX#z%9MJ-M^TO2lEUbN0@
+zS5Fc`>7_LpRk#YSDd!`^J30xB(CYmpELv;ekKzp148~v&nqNTUeqhPgznJx;t-Ezi
+znUtMz>w4O)8#YZk<yPlEAyIvgBv<VNQl~%@JOX4kOHKtIzR0Ws&Giq)ICp?m8<RLo
+z*o?ZS0sL2zQr+vxm1*Z#YrewW<Z9kIo^C3?;N;6rUVB=8jV#?YCm%<yvNP^cLcIC?
+z<4DkcbKb^dQFIgqP^U?iIfBlTz#J(o5dIc(_gK4+shFZe@Hxg)ILB`Fe>qPt!QUz_
+h&{I=e$24gJd4A(aogg7jkP(HSNb%*CnRpTx{{S%>t^EK1
+
+diff --git out/production/IDEA project/day03/Deom3.class out/production/IDEA project/day03/Deom3.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..484c9b4344cb01a41bb4ac959ee9a663d26a0361
+GIT binary patch
+literal 881
+zc${rf&2G~`5dJoH?AYCq;E)vBhPFV#DNwf!m5>Ttf)J4+Knm)G3!B7BUBxj<9HhQM
+zubg=WIFv()kl+D$4u0MOF}seEf?~<LGxN=SGvDm@KVQB9*u$O;8`o@DxNhMFHl%ga
+z#x1zgs${S!o!chvn7GSeJP7(h{D?twD+dgEE$a9Txkk|UpN+znKX@rxJ&HJus4aR2
+zVh~7w64c|vV91bdbj0y?)qCtmVRfIvp$Pg6CHGb1NW2wZPxQN9Gadx}?!Iaw23;yE
+z%z+uq(2ozJ&d$`@Wk|dAdZo_51pV@EP0^}EYYAE-6~j@;U^k=DpzS{i<dC)+YfHA`
+zSODiJft%Rk@UYFXh|4B+ICfFxSV5VA|2ld1`{eY;_~Xy_UnOvlVd0!YhWu>q=dB~Z
+z9sd(*9uH%mrqH4h0mVdQ5P2_1VN5!G5t7croG__+BfTDNPj~BbS4DT;4zW&eX+wT#
+zFsX{pEO{Q?Ohz|9gPoF*!UZ}F71WTUlP3wt<09P_926$SP0Em1d5qL2Xn7+uhJJ>$
+zv_;++!ysoy>Ofc28cZV2(DJNv4a&HLqH0i@PPajo^0SE1G0%{ZWK5CS3d#~qj!NiJ
+zCMEYNE)jic`SpkY^f;<rDZz0CONv~_GFgmR=rt!SPbo)}b;R;;WyX_qEm6&);#y0x
+Wi0i82GA3L)<*kyHB703$um1&?5RVD~
+
+diff --git out/production/IDEA project/day04/Demo2.class out/production/IDEA project/day04/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..afb6f086b23bd10d7a28844b2944bcd86b46ba21
+GIT binary patch
+literal 370
+zc${re!AiqG6r9(jNt;$vTk-C#Di{$xReGuP6!cK(#nUET;+A9sYby9zo&*nmfFC8k
+zT?Greurs`wH}A3g@%i=+;1c^0JnV%Sh8PioE2UL4C3xebCBdK7D@lk`rRB}0%A~my
+zS;@*Ut#eT>g;BQt5&h;tJrZ`(m3Th8NUmj7pHEn>gwlkA@qM}$Pa-LWE|NuKlrAQ2
+zi7*AnM*rA^Xi;xWF6YWFh}_6i+t!DVHleq*iZJ*caGR}V-rx`|ex5xokc}_~TqVrJ
+t+&+E<y*N8$44mkp!`T0BKo=2n7d@xg@Cje*{RzffLH-BqI*wh};0r&ELMQ+L
+
+diff --git out/production/IDEA project/day04/Cricle.class out/production/IDEA project/day04/Cricle.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e5ad2ab75d2e113022e2430f4759fd6113fb6be7
+GIT binary patch
+literal 1689
+zc$|%u-%}e^6vw|eN%w}Z1SAQC(o(Dx1662grM4-UHk39R`okc#qSi~Y!Zu+yZkATw
+zb$oNihtBxoOJC|+M@L%*M}2qvHyo$qf8c}ldv{|&8y#Wxa?iQve9o`k%TIr7{{Y}6
+ztV*0rK;Y#LE~oVFv|e%@ID?s9nw(AG916YEad#f`Mt%apkC9J@8*OkQfqq;x@*P84
+zSAYBXppnO4XXjBg@&ln-;#C3R@hJ+#)|KrD^ktVzH`OgQSy#^LWZCy@XEisr#Pfn%
+zwFJ6Lwqsq|SYNTcMYU3=rnlr)RDDT#ww7B;Vbeo-t4)Da8=yd>a7-Xss;bSSCngJ?
+zU8!5t?m6pOiU(p&z$jVHs=r1-G3@d`O}omzs?-)#BZw$*NMejmXKcszXBj+O46^pu
+zY~~R02#smDKA9UMUX=Ni1QKO;!>d^Hwobb<#82pi1<c(cO}vN+69d?1;uxk(JdY`f
+z*G!bKAkcHpb^WIAsm6lkuesG`w}DG>TsCn9S0!FIQO05%Z%8bexP~{id|e~oGO>)e
+z3E1h;<&~RO#s8bCyxH`vb%Ch6!GlcLP}`ln!fyKPsioF)3A}@MS<j;{?*4l3{_xDO
+z5ZJq}YF5E@D$2iR`)k}aedYM<NQPZ#H<wf!w18}AsqSdM_OD0cm(RX@bmzw~Y;wnB
+zLFo}1o^q<LE+DIWuSc*H2zqU}w>kOj9LFMYLwBqqFtUTNom+0rY6T06nO7Cx^)@9e
+z{hqjPZKJ_)6&=U&3U$?NTCDK%-I=x+;czZ8nYz^+2_17!7xZtAi<=Frjrr~uJRDwb
+z>}f<n)$3*3w{jBi3mpDmxd{yYw;i74P0-ITTkzq#$u))!3}Qbu2dLhMIDdf;zk|5m
+zV?0EpbmSXEKiNX8*xKwl75f@Sb{i6SfH?R4v28-M(3AKc;<OQ)mKoWTxQpWhMn-DX
+z77}T6*3#&zd`f7UUixUN#eRV9kEFQw_~)+}JBlH$6X?{}6z?F36mvSj5Mz|4VPXbd
+zxPT;Xpc@}>e;d6xNb6bJ=W!CltW4@ESnr|W9&_*<Mp$DC77k++5%QM#O^&ku8RU>9
+z+rT(&`w@9eh#_%ALPVnyFR)p^Gp^8|bl4}%lMvD5@rURcAN&?kop~h4Jjn{cNHL_D
+zb0)~FFSN!avj}h2qs&q8oR`BBra>S2r}4~a8mTR0YQ^mRC)`B9*vtC+cQKQk<0$`{
+zl#U0Lb?CdM#mtkanejCGM%&N^8FT+GTD(OwD4hssQU06JKGRqUyae7u6^eGVLG%b-
+Kp)Mb+bAJNR30xll
+
+diff --git out/production/IDEA project/day05/Student.class out/production/IDEA project/day05/Student.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e782cb00aed6e36b70d20b2b27ffc1b61773e87b
+GIT binary patch
+literal 733
+zc${^SU279T6o%i)CfV$EV&lg2!|!j?q&9kyt4ePKK?qW)RK=@lGQ^SnD4UJYf1y|Y
+z4vSb(u=oCt{*B^0n}t@43_Ek?oOhn{&d%@CAHM+fvEjqRwHmIwxZ%UWO%Jzl+hcUc
+z$6egBx%)022vjD+B-H}qxj^-aiA}a8&}t9fs}HIds(9Sn$x;)KH`jIr%1@IKwTlB2
+z>lf2#Pp2={UdT)^NQNrhRjIN2B3aJfnTb`8)WM@ZIn$AjvrQIa73GKiX(HgX^G1;}
+zvA|OM?SG7@bWC(}PFbL&9t-$8$uu46XT~~_Mehx(mXN6PvM0x%Pd<JUsQ+cpR$DIG
+z5^Ly4G;zsAS7IG?iHB&BHIr}abdu0w<D7wmNv0!SA(>|Uhcjy?>21?jMt538bl04d
+z7I63NE{yGigj(<Oxg0(rAo%%M;OsD_bIupI+d_#0sCK$X5MLOTu$XIY)<cC+gVEAV
+zg^LJ)JmQteu&h?W>QiI;xSgOh2PS!_p2Or!R=_;MmkY$}!p_Q1IB$+n9vq_5{fg>0
+mxZPLZQ9EM>D06P0mQw-}n&*tJaIA8zF?X3&YxGKf_Ua#8uZ2JW
+
+diff --git out/production/IDEA project/day05/bird.class out/production/IDEA project/day05/bird.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a3dd14e6000f11d7d6ec4bc804cd23b98866a6a
+GIT binary patch
+literal 511
+zc${reyH3L}6g}=EX+ogT((<NsD<Bb;ilL|r5>tebin_b4RgChe(iEv1zroOfnF$7v
+z82A8wq<?|9P9lK-54O*-&%^%se0vAbMBRjjRRa}N3s^I;jtw1~I<^?JQ|Zg7%}{AL
+zH~f~{F87CaCkmxMZ0&a$a%aInFccl>i;IcZ6X6x_xx|#5pwHbd52eB>nTxLFn89)e
+ze0topdomofi1oP_EB+)f<j1ZMBZh24rJ0>z686QpRAz>fA1RFm9R(fR7Iv^p2lL1K
+z`Rr~!d(cs{u!jOEzY{4x0o<1!cNvy{<W9$t@F*^rMD*ySkqqohsuNKu!96Nf{)cAJ
+zM+&(<>d4cFs*wRx)o3;dwFzfv)ea6{!JguClV&qvNu^_fcGVPHSd3jXETKpq)D$bJ
+g*GcRR7|+O*vM<Q}wlgT!jP0!CVrobK9N#Q|0cgEs2><{9
+
+diff --git out/production/IDEA project/day05/Demo2.class out/production/IDEA project/day05/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..35c41a5bd4ca3861ac7434637d5cdfe3c045dd16
+GIT binary patch
+literal 252
+zc$`g+%?`m(5QWcZwN(AY8`xo?BC#Si#HwLI>~HIaE7c}d5|3pivG4#MN=z>cGs(%E
+zGv6fhdOw~3hG;l2P_<FBQ72eq6{~DQFxs6B!JH;rNvQiOmW%T-km*_k5hqPQ2}QIK
+zsmlE?G_$=r5vu-HT>C?BCXdNrL~vHgISu7p<&2}#-a%Z13ll{`<&P#b@{JdXc;_vH
+sgA6mYP~Z>qB5pomwb*&u1I6wgbmO4_o7K{xffB3x1yF{g&nud8KdHwqm;e9(
+
+diff --git out/production/IDEA project/day05/Demo1.class out/production/IDEA project/day05/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d709e4ca88ef32191551bb61de677b948f7e3cdb
+GIT binary patch
+literal 1444
+zc$|$>&u<$=6#mA$JL7D(jY)8S($dnjO$v?ELITt!g}M!i<kXd1wX$-W*sFMx^{%zM
+zsg!&Fh@QD{E{7nM0)iWe1L9PP69@hRPE?5S%{rn%bx^&YH}A*y-n{qi?2msx`3Ar&
+zK6T;Z><A`su88w4E?`n&%Ip`%2$(inMPWwavVgo6L_sz$U`<Zl6R>M>#}^o_2a$h!
+zv$yIeclByW&saTf>+qgV0%Pww?W`N50tf3Iy)`pix#{=f%T>C2I*0@gPp;J0^#ffA
+zb+lG#W=RmORm~w{ook6JAXX=9EHOR=N`PixD=P-N%GKuT@VI8C+Z)TepLd~fRN=UQ
+z+l)7pw!aXV#@xJ>X;ad}0eA{mJiLqd7+LhgFuorroihrv9_H}AKw)LcXr4gnMjU5p
+zmgxSnpLOF-Ix6u&5g&TEimHce27O@9w9I(XcVl(kZ)g8;HMi2t?{SKFlY#PJ$RMuV
+z;e;9I^mUJOjt_AQsJ^j6GFhG+Mx=|6z!z5#rv;Am^oC!HqqffO2U(X|n&~J@P43dv
+zFm9c^y25ocT1{Z$1ty3d#2fxDbWn6bx3f6eQn<w{Q;*|~&Ax!Q6h(eg3w4_MJn7Ni
+zE_Z7TSX|UmC-l>aL1OjgcJ@oWyVduH!1rF30qNDLmrK-i7&e2<uPQ7EoO`9-1Wx@w
+z4regJ&&&J@5aw=C9;8*_F1R}vzl3<4hYwN8+-YHy(i;F!!fV_|Foy9#viKH?4~;KS
+z7_+uv7r%znvYe-Gvt^g0*&OxMZCQ4sWfvPQ$7!^rY&2W4G-84($JAAxmBZ~pQZA)5
+zsgkKBldBrdWtk)Mk|oy!C>$ds1+({!IQvCzo0hNI$LvAB)|^vz<Y$=SMB9+ooGeS4
+zCum+OJ6Fnb`iYr%8^woGe7^JhLx=L`$2nJqx4E2D2SqYCPh^+cS0w&BQvL&DzYz6|
+zto}we|KR>7eLHwP=XsI%UvY|7nb|+_!#_;TG5q2PjuJ7C?{N&r>FDASPEaeb`YpUc
+z&Egr?agv(N8o*iDJ1im<-c&gK@1M2)!Xfb-C!e#l#d~31`CGWb-DTmAaTA~Lkhf_U
+JX}`mD=^rVINDcr1
+
+diff --git out/production/IDEA project/day05/pig.class out/production/IDEA project/day05/pig.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5475e3a14679a4526b37c346eadf82ab7424059b
+GIT binary patch
+literal 508
+zc${re$xZ@65Pi)u8>1))?h7~6#PLErV7Qognivxd_XaxHW)?CGCfxiH4t|0jG~wU}
+z_#^lg#+n{tjM|-4SG}%!?{&X_&fWktP_v+6%|r!N1M3zxu&HB9$2Nm@E(0027%Fx5
+zj^A^~<H5jb$B_&M&BG2u?jr09hN3G2aW(e4BD&#SkC2iZ_PE#Kkxc3Zn2T@ah@s&2
+z`Q)_W4CSCnV8DGf@JE0lKk|eaGGyzCnAHx)QBPdTgv+4mlVrq(4nxO|ja}?9m>;v*
+zeEKk-KI+)FaR7s`Z#@P(&3Pbw?lG+VP@Rlo;geW6j_Jjz9~nB=WF{s{g8O8t{142a
+z50lCZP(z-6Gg%q1#2H1CsutB5I<=$YSFk5_Z&9=qnpaZ=%BpD>Y%D1j4a+DJ2RX&+
+gg6m9i1LiX_rR)oGzv&FxrlPac#swYyvg#~<0iI=J5C8xG
+
+diff --git out/production/IDEA project/day05/animal.class out/production/IDEA project/day05/animal.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5474fe16d2bb637b242e60c136af11092a3cb6f6
+GIT binary patch
+literal 544
+zc${re-AV#M6#hn6*Bv)COZ)$^Zp@(VM!G1v3A~aD4DUxBYGi+8T?5~tN9dwgD5xN)
+z2k1G1-Xc1?D_9i6oSE;;_kHJ_dH;HO15n2{hmMkgG|C1Ru$aLT$1+xQtm;@}&|Kk2
+zhGMfXu7za__tI(wzH%=Q8PZ3}RlzYssrvVMr%mD$uSep1Q@QeV<aDHeAv$(s=XHhM
+z7QPDcB&h{gYRHgl_QZI<ZV6X8!lp8*p)KWrAz2MQdCMF5UD;5fBpZ|V!s;eCiY78J
+zbgY}$z$SJ0@p|`pbE~6bVhdRY^QSjMVcPatr!Tv~uT*P145UMay%9Z>;u)1^ozs8;
+zjVXmg?alp@X3z&AvRzc@Yjyf+Mw@!0n4mjHmZC|hK{!DtuRVj+b{~<rk2o_Fb4XH5
+zK_d@?TyliUF&lXlfan&wGFr1JPCO5y8i4VDWKnxUYHG<Nxj`Zx*_knMVn@?N%=vE!
+CBWK(I
+
+diff --git out/production/IDEA project/day05/animaltest.class out/production/IDEA project/day05/animaltest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..31b1221234aa93c14973e86e44ee0412ce0aa17f
+GIT binary patch
+literal 679
+zc${rf%T5A85UhcPg>@AL!T0-xqOKl1X}p+tB5Hy$F`fpP;Fx`w-NnSK@rN`9qa=QS
+zf5J}~dlnLmVGrHg)m1gqJ>Nf{UjPnZ889%dV<v@J12N2{F^`2b{Vf_;!m`3vbgb%F
+zV@MuJSBA$7@#5wcgLdN81w*DRU2)cQs=~kIRhy7(*{gB;iu+R4Jx~j8WuSU>{<wEw
+zaaTIr4n+_iQqSSiWhfMH%6I&MTQ+waRweYM+c=C);(mj)xdCm4L{<9reFn4VtV)87
+zir4gO;#8``GyUUsm4%5Rn8fKTXu3}Ox%2U)TI)JCOcb$cVhbf5+a`9fZemx7M*j~$
+zQ2$!z)jLrmC|?{r${%XwF$jf2+w_`B(B(_dx*&2$62Tp{8<#uLP6v#h8z5oO?^R{f
+zLKA^4#67)ZnqFCbF)%eb#bK%}%8YVi>mBSRYL8G%MqnHnie{I9QH)VeBa2*5d`*lP
+z<*7De*V*_xwDKzwr8gv7&`T|(`i5C(k%>Xp<IpjQRAgT08W5JJY!Ft!M0BUgNIUfl
+Di6)KN
+
+diff --git out/production/IDEA project/day05/Person.class out/production/IDEA project/day05/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..09b2a3d04f48b924014c21cecc2709e4ff47bd37
+GIT binary patch
+literal 609
+zc${sJ-AV#M6vzLQtLv`oN1FEionQtTgjYp3fe=UuhWDcmwzBTZx(2>MH{EpIOB7Vl
+zMGw$}L{AZ&S(h|wU=DN6{LgRxXWqYF-vE@6*P&uwLj(&N7O@n?vW^w3s#sI8&Jf}q
+z!NATK6r1<xn67sDH7{A*?v(1DYucS7hRCsLo8AdSw($3Qw?WOPPMeyORnr#d!(LOk
+zm%M5DIH$#}26s)F2SvrZG6xKaYMYM^%B7lc2aZk8gbI=s9#}&38T7g{bX%fg%9hwz
+zv@c&bU?5{aM@+?rflX|Y!_S+$kNaB{+Xi+JXE3JO45^9ji)L4}ykDjIXyAz+8E}Sl
+zksZ%yI;9#7=+T&h_sCx6pE85mmziagj|lxWFhe^E4RVo3iXo66#3?2ytB^u!^x_Lx
+zaqkH;4}MpYVuG|FjzT1jC@IQvV>M=x4w#b4d}bzK9{M>DmdpuG4_XzHN|Z4c1t<-3
+cKY+Ziq}n4wY2_JV31L%^r0<44$A{;>0oV#_yZ`_I
+
+diff --git out/production/IDEA project/day06/Demo1.class out/production/IDEA project/day06/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e1d3af22ad49c35ec9978234228364869856daf6
+GIT binary patch
+literal 599
+zc${rfxlY4C5PeIW7&{ILG2y-sDNtZQf(AqbqKW`1h=yvDtinb<kmDdx(ow>9P(i^Z
+z1U=sYwEO{L>_h~ltmK)UH#6_etlz$$UI46OPKSzq9SIC*7{pLFhINc!RK=KzafZZ(
+zbY-x~5X;XWGALVKMKGib(iOW6rzHFXUa|?v7Q8aI54kVHxCJV~v8*$s3Kf2~v}SD!
+z$6H<}*x}M;=+7S&YW$R2Hg~I5G4Q2ZU5`Y#U!^v)Lz*F8w}m)i(2HKfFN+-+3h5E`
+zVpwjV8=3(Vnu-YnlbB-2OnzQmeY{+Jyk5UQUVc5FtC%)0gIR{;pV6qWEx1>ziE{7{
+zDxTE?;m}if4NByi(@D?Tr_ll$P;iF^G&{fy>PZ;cw017vX=_Z;FHjMl7+AOiS)C$_
+zJR=`pxCgtTOBa%46HO2XS)+ANp@+PNG%~H`75c)Q@_?>(uTCB$5u@66zk*(5Bi#HI
+cpNlGq^A@qJa)<a$MA#-tQhC_k7m??F09u50oB#j-
+
+diff --git out/production/IDEA project/day06/Bird.class out/production/IDEA project/day06/Bird.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..26d114935e6ac200cd99aaac65f0e6ba4d35aa6c
+GIT binary patch
+literal 598
+zc${^S%TB^j5QhIlOADolfS`ic9bzIFqZ<r~nz*WNFeJp)0UA7}m!yKmy)Wddi6lON
+zZ{kZB=d?{oy!50qXa1S_X3~Cqy}biC#<l?+HEHTPHVi1JXRs-KO~)34b}BqE?J`sv
+z);)jZEr)xPR&N>zZ_?T8GpHB-*k&kL!n3bu?$8cy_|PGxWcefR^m!m;oQUf5PCPJ}
+z)|fxHPg>_97<WkZxEpo+n!unmqA4yH9z(Tp`_C3Um=L%8N1DMH*pA~r$ze2l5ws5}
+z*Yjt=$i5VEyR1|XB*8=mS!s$?ve=c@`JBHHB$m!R;c^GN^tE)zM*)+KWDSbCNYMeb
+z=6(qFO1BhpWQ|Bo)6rnktr}M$kEMvBp@3y#NLDdn9Yry9HAAF+qI9S<RHDqdC_!aW
+zLOB5pXgP&^c@AX|LbaqXr9)^}3*1svlB2mMwdNz_PTYnSRLEy2TctYsTlB8dEk%AU
+HBCLM{sOe*(
+
+diff --git out/production/IDEA project/MySelf/Hero.class out/production/IDEA project/MySelf/Hero.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6d1638a53a6bd281336a7c113e595cfeda1bb48
+GIT binary patch
+literal 462
+zc${^Ry-ve06ot=C(uSl7Erph!4Y8y}q7xH{1u0?(Fcf8XifLV?NflBg9*dzuV&DOI
+zD8zNB1mb5o_PM_2ySCrnUtR$mW6wnmTMjIAv~+E3+t?vknV3mJJDQ3IF-S!=9t_Ju
+zW#bcqF_{x6B-Bq;rphxyC-~jhi<xqs-!i2csZ3riW{E6rM3PqAd?eCX6iWM5(JCkE
+zp5RB9k3*T>4K8Gn^EfLAHOn35i(({0rCS|+cBE%|aIx#54%@>T975w;n$Y^X*L5<L
+zqmp0-y%_ua*c$(U0n%CCk&dq_E*h*JyO6!XtJ{AD^$(XYo~j<7bsZ+F%_N<4*aO|q
+kZZy#Xs-31&#oYLld9Z}}li6UV$3*`hrk<yn?JBqV0gbOmsQ>@~
+
+diff --git out/production/IDEA project/day06/Animal.class out/production/IDEA project/day06/Animal.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..6d59aab560c8e1bcb9073a4a404cbf8b3aa22cec
+GIT binary patch
+literal 654
+zc${sK$x0(p7=_PGqLq}DXqU#R?RMxEG=g!{ZWKiXS3$)z?r&ldZ>XV(6(Kv_`3B-b
+z5PSj!ZBXz5d=54E65^==2f7#a*Zqg{{pVKQzuepb_=QOwY4m3>fWb6|bPVHb1{y}v
+z_@?2zhEai(D;-O~EY;<{EZWko70Z4@xwQp>&PC-ae@P%YHNDNzRd0u*-6iE(>rJO(
+zHGa#A9g4lGw6|qL1$kUd`MYXQAXnOvt-1N)imM!H6Plm;cU3@7FIMe%onH2ujjFY#
+z0!~+?oDD<<x?pG+Gcb+`I%ywWw=ZrVZqM6ihmWVn8h#k~3DZCZIyXh_=hKs?gTuEW
+z0pp`1fu46e8<o0M^*@!$tv%mz_zAow8~Mn)@`{@@?$f>{9bT&UKV<>!PmtLz-D><1
+zfZ#)Gj7gq(7sf2JWhBC0w(u9?5(zVTjnoAT3FH`a90xj(!WT+3bTcy|0eV<N2s2~Y
+z7F7wp&5y9c%oRG`i6&W~rHGhe)I(~2q>QP-DX`0*gWfl@li>_660kdCqawuWVJpk=
+K94md{y8J5<27~?p
+
+diff --git out/production/IDEA project/MySelf/Node.class out/production/IDEA project/MySelf/Node.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..97d1dd1cb8be0d29c25c4d2c02b277bf3be6dcff
+GIT binary patch
+literal 1669
+zc${@rZBrXn6n<`Ac9XEs01XyYN?Tg;0;IGUT7y7DtJuJ{rp8G-qqC4D-MZ{D%Z3@g
+z`#1dJjPT8|j-}Q*olZac6Z`}I1wS~}=WezWDD}%d_ndpqJ<s!;yU8E_{`L&Od#I-{
+zfVm_TTvKs9g(%*aPFcl#igr#eAIQjpip3OCoybxTCQy;fhq7cjiI4Dc3ODeHicbX+
+zwz=uAxlL1`x4ODlGwscybjt!s&uZNd&*Hm=-KHI=J}`ETqHQ>>qQ3sX-0+#G%v+A-
+zF9<}lxw=4XIVd?*wH$M;y|r$7cZ_vAD0VjtyKZ=v^uu7xzi;iZ)Mz#ZGTD>&%PYk$
+z;njR&<C|4uJ1kTJNGu)5<~mhv-?EEUYe!;Ap9~EhZ@;(w3c~nnx$`GMEKubYN>a00
+zj^VdGR$V&L_KkI9xMf%l+h^|`Ij{Mi<+K8FiW7)Lmh2ESycRhPz9E;Hp5ZjzErG~A
+zrp7(j^><VhRm=#aYHr)xFmG6rQBqEATHc`H42Crf;Vpsw?v*Q!Z?;TN!)LguVGySU
+zdX7wA!zj*b$jJC$mt@8Bj6KOz!+BiLP{pduT+^WAmWtaNK1WT(9SvXLENAe#90GmE
+z732G}9KYUqTYNoarSKtCY+GPBdqm!4*S2|q<vQiu-T!$fjH|($&^M*pE4k_kzU5<}
+zYI{4rNj0Nxn@BR9bjvN?qTD`3H;t|GEB?pB?6fUC+rc@0V*~s?qYzR@?u67WuvDEk
+z#vO;ib%b7#R?x=tk0Bm%6T#bDl_03#9j;m@0q=&_a28?l3$}^Sel7C9AhM61eBluy
+z2e@5$j_4s`GTPZSzr#716yL{e{wb8kW2leVl##+A5(gNSr^$T`bx)HrB2OO%d?c(q
+ze@1{_B+!R6`f-t5r^xdfp)Hf$O){&K+gAiBp$~Q7h0x`0j9G#zNkY-|l@U68J4};&
+zex#KJm8VD%Lr*n;`~&(6(jG#4g5C(elwRZs`nU~HhY87U!cT$D67eWhu46=efr!WH
+zPasDgGnm98rjMYkgeViZPDtYfb}<yc6S)-PP9pLTMpaCVAsfsq$50-Ha3+7Uv21xa
+zt^A&9L}Pj*mQL!8czRfGDCu#%p{7fEBavRztD(}Xg|(??rC78S&%`sa?{Q`-6Q3?A
+zlNse#oTB{S#>K(QzkWt~lC%%e-yKJX+zi28A%d$|!Yo#3b(GM+TtF^QJWE74$w4U+
+v7fBas&vR&(Su2=vnf0g1MA92U<R!0AR9sattIEx+-~;@d9R>e(B;(S5m{v;)
+
+diff --git out/production/IDEA project/MySelf/Demo1.class out/production/IDEA project/MySelf/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..c18beeef57616de41467d3b0f50f5c52cc5107ca
+GIT binary patch
+literal 971
+zc${@o-EI<55dID<UD&RGAoc&JS_>5Hg4+5+MQUqfll3oaXlkz(Sm`#vnq@J;TVKE%
+zZ;gphpo!2}^#ObeZ+hWN80YL3L4$iSvorI}obNkxzW@6C4Zs5KN{C@b#Kj<HCHRmO
+zN<RSpmkJ?`ISCnLC0xS12t}g8Ob|Kl^Fpb_ff6qB@)Z$RMJzB(ESW9SDKhv|=`w?`
+zV$}?Wh-$Ws2c2fcu%GCa24!NZRn;41-8OlAkQAJ4v&|4z?{_t$@l07YnpVC*`KE5R
+z7^YHN>W=<GR~mY&u4s;Jw(14<6y2^<UwllNA+T-O7N5E`7<-QrgF>Dm;dON!v!N{8
+zw%%3EwnKGEvpROwSTi{_$>lQ7kuu^q!Z0~9jdbt7ezU*(iq{soxhCSej2pNqq99`l
+zw?q_W+{Pl&9CI8W@a5gl_itsCuq@*aRycZ<K_0yehUie?!^)0PrOrg^Kev)v<8Guw
+z>$V-ENxQK+&L7>Tr97e@hdK?tSr{}7`O)149m^Zcko;>29*07D+{MSojAsy^^Qb}V
+z^y{_SKkNtNo)Y`E`O<Ko(K?s1o-Sh=hv~KQ&j-erKsG^<LY|Qi%=N)OxaBFb6K--6
+zN6E?_0LO5gd<Z9S@}T(>W&PwgqS9CR)QqqP-)79;hoEHw?th?<3GE}q%r1gGg!Uk9
+z_G$ZBw<r^^heI1)6ecK-2%YUA(nEAeXO@ly!bB@VDxx?;YEq;jM>L9rP>E=n2y(jT
+bJW4o))2@)mgg#4zb4XHc+SPyFoqXXpM^(}T
+
+diff --git out/production/IDEA project/System2/Room.class out/production/IDEA project/System2/Room.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..59543ddb64959fac92ac60b5f660862122bd3e89
+GIT binary patch
+literal 590
+zc${sJTT22#6vzLgtLv_lx6&@AX-~F9LeP`Zix3D)MTXGhYKyMyCDt|QV+Dy&&<E&4
+zMQ29IZUb}noHPIZoy+^j%Nu|b?CVHjTg8r!7|I${><UxSD6Fd3Q&D3``ctoOhYYO4
+zpx)czB=9E;IkWpXiEQt<c_mXVQl2`#6P+={8wWiGr5)Va3|Z6h?F-4cvHC7$3T7~{
+z+@2LWB3>qyXygz!^M$<*0*|1jM#mgm4_4E){9&^jg^oXLNxW})687hnLGK3BaA2Q1
+zf~*PBkx+50AwxBOb}q7Yjx;!j2A!jb5(EF<2aUU`a@il-gNUKn_^&b4X@e<RZ;USC
+zAP%u*hKUBqW+`ezArHtKb1>r-v0FArd<Nx7N^@j0h?7l{FhOw&d5ZYrCls(wUjf`$
+z0$tJxef2lcD9?~Eo}nDhkX+GAL=`PA=xG|8qe3-BmD+-|tRg%y3X>kKM~<>7Nn4+Y
+C7-#(e
+
+diff --git out/production/IDEA project/MySelf/BinaryTree.class out/production/IDEA project/MySelf/BinaryTree.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..31574630300b9cb6eaecd42d7fc2a1a8966dfb58
+GIT binary patch
+literal 406
+zc${rd%SyvQ6g{^|lQve<HtOD8RWK`86&DJwVqK(k<7yJ8aY{OYF%|k*t^^l;fFC8^
+zjD-r7f%`Zw?tFcJd;++{Q2+-+ACZqkLZ_7TdQv?}LX_OEQ(4aA8>NL=PmPpgf_J5~
+zs;>#o=yXPKZ>=^=l$Mj#GLvR1vXYTuQsttY38R{Q1G@FIdf~PdN)wJpkI6#3intWI
+zh|}6AU5st0Fa^t^e`rFGRx6XsJJke++uJT0Z4VxN!eHleLVug}kS%0h;{+}KIzaqf
+zw0Uar!~tA8yv3FQ+Gp>eH%oW9dKPpLaP9pHuxIUE-uE}=a~q6ZqyNW9I6!E7->L>b
+Dds0oO
+
+diff --git out/production/IDEA project/System2/Person.class out/production/IDEA project/System2/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cde07a26465345894ee8ca9823e3bf274226e84
+GIT binary patch
+literal 352
+zc${UA!AiqG5QhIv*T$qVt<`$>)>beecv8FwJp~maxo_f9w<H_bYy}_7LlHdq06vs-
+zHWfr<*<t?K`Tp7Y`u_L?aEVC>j!}Rf4t<P$95HY$YRNE8SK>t^mC(y1vqtIV6+{18
+zX=QI1Ce#1Vvz*}D=8528s<gaY*M&5XqNqB%rW92!jB@&?$nCRg8AfUL+FDs(BoETG
+zjiy0i)~rn_7s|B_cI9(7F@lfd2z%%=#D6g|`u)>=v67`_=uKxiPH8_*`!c#jb{Qk1
+weTo681w1-HIDZG5pKaj1k@65yjEQv=CoUjnK<Z@IjR*%ompNDG8F$=p3lk(nvj6}9
+
+diff --git out/production/IDEA project/System2/Hotel.class out/production/IDEA project/System2/Hotel.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..7815c06a6058bca7cff972fcf5ba1e87d738e620
+GIT binary patch
+literal 1927
+zc$|$?-%lJ>6#nk+!0b*JSU{j<fi9I&z|xg1twnxRL6OzvR~K6=FAU413@kI7-JyoJ
+znlz>{YV^$)W75R*#TN~fq&Dq~zWCsq{s$%XsqYQ3es^YoMOI@b_ug~QJwLwhoICf|
+zzaBgSZ~-4`h@wYDT^KcZMa5YS3VOphhlGY#(HG`6DW~&c^y5Muod)E=>va$qlG3n>
+z5fzsODz4b}TAx64em<SqC_2VkG9gui0+mCiWjZ4Q!LIJB0?L@ZWC+xxP0N^CUt2T^
+zbNXVAn!2=|)pJ+%f+_dDveI%*1VoBsg~MbBXW1;u5PO*>Y{$qkRaM5(v#XPO-uG5A
+z%l1bCfs`fC*p*7J=r{F5PPc9(GETv?ZVbABEPc&Qf8><ebdE(rpI&!p*_DzGTE<>4
+zWQ}oCrqJBn=cI20^>`_QTGR<dN{b*5+Eu&}!J8OWF&4pF((pJ=MDRAoRlF0yDZI?;
+zjoP+TbP9TY(r}jTrD9DbCPGL>@GjnqAdSforsQT?hM1IuODn(t2OOpsSB$K4NaY!m
+zjV;+Uc!W(mF+;WvIUBm{SA7|^fSQ-PoFyfrP_!*JAiCdx8CON;>cbihGni!;MO?(=
+zae<~aebpGVt*q``Go58hMMt+B#yV5BJ>_~*;UXdauJZki|9R`y&Yj0QcfNe`>9@}w
+zezx=d-KUSg5b-CUe7^I|ch4SvEYMlb^{7h46<KV?>^L|xt(*3$;hT6=#`UaY7dBLU
+zK&olmUR}@g2Ba*@D2(OwV$mSKuS-+<F}x;E=+;usD0X;`gGXWfo8#O@-Y8=}pZ@11
+zIK<5lF{bBo8PhRH^18t3|AkGU?Z55N&W9w*XF_oBKj5rT=5N8dfxACYNewXDvklP`
+ziiUncAh3mCa46QZiQuEV7zhrxNHLb=rZc82)CQj}w=5_NBc8V9Cn(oj#WpH3w*%td
+zi{Ebx&OiUapg}Zp?nIcgOjAKHDw+|(8S2hM<3AH(KUH4JDm2lmN4{+Y%0H3bEqwTz
+zDFvvxj2I<JW0v|>u5BDmP+ssbprVFHyU@gQ^gd@Ifs^|j36Q~n=>t;ZKcezJ)KY4_
+zRQZgOn+P3<;Z0}{a16MQh|BOdm*MsS!!|Mi%Y2MbWRcrg;8Cs<)J@SsGK<r;o=?2T
+zC%~s;kI!@opD2`F1jH_)B+~B@iL;3wk+0}i!8H+M4|2-Vh+Ol^(nUq0ZA~^P$=H?$
+z-Q5uT*)3=iXut*9=(?X^(VGc0#+0(etuDZRFSHLvO2>VG3HcT>f^1ud+n8E<o~9)4
+zQYW>0@Ph7L8t~x_`|w8m%C;n1_sdx&%UNBb6=i_NnX;WVIfZTlxWwdpcZ5myfe!dU
+pL+Eqi1?bW3!VB{2a$|PmeXbg<GPs60o?Ya=nkTPOcgdXx{|0yFrj7sr
+
+diff --git out/production/IDEA project/META-INF/IDEA project.kotlin_module out/production/IDEA project/META-INF/IDEA project.kotlin_module
+new file mode 100644
+index 0000000000000000000000000000000000000000..a49347afef10a9b5f95305e1058ba36adec7d6dd
+GIT binary patch
+literal 16
+Rc${NkU|?ooU|@t|0RRA102TlM
+
+diff --git out/production/IDEA project/System2/Main.class out/production/IDEA project/System2/Main.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d0537ba8ceb1e9318f2735b69f3ea48cf00931c9
+GIT binary patch
+literal 1735
+zc${riO>h%s7=FI|>~6MOQkteTR3L>?b{ilRX(}lqT5TImTQpcL__s}$b|Kx=bfb8~
+z1A;Rsj2s*f4kKfyGwN8unN(Y(M`yfx>(L=?x#)QCq)^{)7c7<R?DxI<{(R5-`|U6H
+z=57IKhan?^jsTv(K?zA2oj4@nNfC!-2<Q;;6jvRQA>nDhJtN})x+FZy>2nggCG<$>
+z<;E!q&vTO(B&0dt$G3hF10s$x2!~9|v=1|QRc(;L*OebJ7=mfjGWv_-!$#qlKAa;-
+zZ91RTbAx)p<otc1&mJ=;88)Od?@ijq`2KjGZd#orA1BICubxPs(%;eJIo%qKXY7J$
+zjdpS`g5^Lngj{{mHgoYzR<|spK*vQ_-NwLD1lF&QlP|wTq>Tsi2qZ(mJ&`Zk4Dx^9
+zWbGd)jBrOno>LO|^uj2G9I6l*S&!vyBgfN!kWeodkfu6g>)F$N`h=6Yh`5Ls$yFv_
+zEM$#tlNTevli$lx6>LVMh?f-fAj7ady7bMpm4%O&KA$RI`0mcRPs($jE`R&Q^5qYf
+zzn@>8zxv0`_eC62@G_`0Ju5S_E4Qwc&rK~|Jb!!s%Vc!v>eR~2HFa_<|E?A#`R$)B
+zsivhx@0>lmbYVdqDB8|<`TU#<ry6HWTjL==oCCwgM@p@r8?W$SUsW)K;|fmTHL4Kz
+zq~LYD!QkO-^g3nraaaX!qLCUzj?0&3lM3GAC&cpfmGb3}h}AKyAd3+O<>8TFs9CG_
+z!0;&}Yp)Zz4OlO7jx&VaKAHLWQL?eg($L4LA)yLlie!RwIdT|QE05k9Udoy%uHiMP
+z6&22%u#7VlZ=I@Dni*+KpB!^<4P7CcSHXC@sOKjC7lNC0r*@q1GE`tb<pi6u2-%Zz
+zE=#I%#NGj?{Ax-YL=zh5x4<6{7@soQA0sYKlo9o}&VpTc)LUp5Tp_m7uH66LhA7bh
+zL2Y*rdwSs|Em-UZJhk2ue4P4;&O;cQg_xd)G;{-jS;&36OQ`DKlk|BK{)n#x<!iz^
+zNy`UR?<9H<Y^I-R3h^Jg*CDho-X*F<e6`gjZ1@ZbZ^A!~eZ&VHzQxD+DDgE8U+?F9
+z4e=WtUJw%gu>UK<xCr<0(&E`Q(=up%7%QQ68mD>KAt&qy;U<NMP(oco<f`y`l@yUE
+zmt-Io79)WY>Zj3K0YHw(9H1%|t}0>EGz9+M`}4XJ1`lGGIs%CFf0a-}Wo<wec2GH0
+zRO1H(ag(GA2;pbc;a7yQh<f~nP57NG|Ds;r#b)Zu7A9dUtHU<dh$w496Kh5@+l3a^
+z3e9QXNyv154`DY`TNlxSowP*4sl_gmNrYBKUNr;=rv|MglL;+=7}-%w%!l11^N`Id
+z;b^>!EQY-_J3s>qVISIPAodg20p%Ywh!9rM1wq8)BHtwu2k50}gTbJ(Rrni6cB~Sf
+N$2D+AvfY`z#J^lpl3xG-
+
+diff --git out/production/IDEA project/System01/Hotel.class out/production/IDEA project/System01/Hotel.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..731dc593d211dcecc5fe5db58853f07fd5815cc6
+GIT binary patch
+literal 1025
+zc$|$=O-~b16g{u=@unltp%kRFsGx~3CRT}V_=*V$fmrRLhNQA_Xh%A=Oi39`-1AFh
+z;Z|2B23fjr?Z#iAi7}d(kU$VUZ%RT83p>fZ_uc!>yXSt)$CG#a0Pf<d4IP&yu1JhY
+zj0>2vK^R2y0@}pnih#b*s`&z`Vi5Wdw>Q@O_9Jht$w<1`s(Q^8uN^4=G^j`QU`xO$
+zmS1c|{>H7_g{4;HH)jN_r(U?;2)t0hn3!B$T^0}lMcD?WM#4DSTaLWyvj^U0oKhmq
+zi^uhCf#HeeV#9mx6`IUcC`aueT%YM=k}7%KYq5aP+lY%hhg7Zj;X1P|DWE}`kfe6G
+zwcW1zi-9WNj;p<?-uA$NDUeX<`~K~Q{hehmtu_2=gfVEGqxv)m^^{uDE6@sB!+i_!
+zhKB?!YBLUMNK*H70I+d^Hc7wt^zkRA)M%Hi_ek8=W^?ZTOE_-MvG(lpju5Z@{M1!&
+z7uWT<ykqSm>*n;@R9>(3YhQEq{FBm7f~YSs_Otss=2ZMH*+341UN1Q_v?JsnC%enY
+zH0?e5i*Vu^T~;D7fIg&H+co4FPqCLgZ#ppp3+P9h*a6B2%-@g_8F7U4F@!jV<S}<d
+zToQvA>U1btaSg!X2n%k`DZM%Gm~6MAIdadgXj-YFQw)kpkra#K&?#5+E-*$H7_$qE
+z>;hx`A2Y4r_y9Yr=ch*XQdU1(2}eeqp&sP$hwu#-@dLv+;Eh_roz9>bO~wD&A@8yr
+mqlsTcsAcrvJ90c}eA~y>q`5S;3>)GE2SRWi#E-^5;ibQC-nA3}
+
+diff --git out/production/IDEA project/System01/Room.class out/production/IDEA project/System01/Room.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c836e3658a2de00348592d9fb17ec3a6b9a636d
+GIT binary patch
+literal 255
+zc$_=+Z`VEs1_o0G0WJn+23~dsK6VCvMg}&U%)HDJJ4Oa(4b3n{1{UZ1lvG9rexJ;|
+zRKL>Pq|~C2#H1Xch>%Zya$-(cVo@fD4;5r7$;d1QsSd6zE=kQbFw_sq&(F1HWZ(+U
+zFD*(=b;|^);sgomWhIs+@-VP4urf06q9|u%5CF;P=OpH(>-#5Vr6!j!C^9es9SH)A
+yKnT<XB-wyGeK4PafmLfe1LH;@gNcD1NV0(inHe~MBo9OZ11AF)SUWdZ6%PO{0x;76
+
+diff --git out/production/IDEA project/System01/Test.class out/production/IDEA project/System01/Test.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..78ac971d2d61be539a9bed256a7c96da1f72a733
+GIT binary patch
+literal 1066
+zc${rh+fUPA6#sP>+SPK~00D1+C>;o83SJoE1w}{(l8j)Gr;kyg*tNK|ULJkW_+*SP
+z#s_0GF}@grn1EqM-~B&e`s82W<$T?e39L=d*K>a7_B*HF_dlCo0rX>3Mm0J@P!W~T
+zDWeM~M0CptqJxVb5gG@3Wk`r|aZ<u58GYy%aazO~0TqLWWjI3u{AzSsKw#LO*9BB3
+z3`?JI({p-eip`m12`B6nGpAX`;Cj&*a2Aa$_f9^@I(oV{rcLQtCr&_`8J2(sbvCiY
+z?lR3})`FIFGKRGf=Vio6X3e{dTp|Sr*D*{jnPQfuXDD7O;xS%$PX@}*G7D5VQYJl7
+zTC^SAq|lmDU!&Yam@rRFXJ^L*R3;skx;@U8JuV{J1jtF-&7|}ZgL4aUDm^^Cf*RC{
+zIIG|s1_ZRVY=3zB<J;5iSMRo-tp0rTd~5SXe&tR6+2j1DTt4^u*O!MP;tB?FUO?5(
+z4ipUGf`HmRoE2QeC0^*Vf?-@ChS^2?o`|aoMsSUH`~QTAT8a1dxg|Zd(^POKrnXB!
+zePKw3txeK|9Ga8P(lm=m88fYBnQJDkrd}<-Jn0r0mJGhVpc?gt>Eqij)fuyv-BO)K
+zwJhNMZkB$ZI;>Np<rZ19+eW+9@3_p&?rN?uf_U^MT2Vzef<Hb8d~YPfq-k^tbOt*&
+zAbj-T2+4|q5p^V$;&(k7=nP>$8jHcJ@RJ?rTZ1p`Uq>K^;LHXp5?wbwLmbaRnps0=
+z1M)=oI`$0&ngU^E9hEQPfB$!j;{0B%!w^YI^oFQ0nW|J#yL5d?i=oBqp^xgclHP=7
+vis~S*12~9)ha92|Agmon$eS(~>8)rZCP%&QeZSElA}FH0nb2b%$K(G1;Z^u9
+
+diff --git out/production/IDEA project/System01/Person.class out/production/IDEA project/System01/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..18746ad4c5ef7cc8d1bb9267c57dbdb870dcf476
+GIT binary patch
+literal 354
+zc${UA&q~8U5XQev*T$r=|Fqt{wH1sWJSkp;o`MRI+&6KlTapcIwt|o4K?DyzKp(0&
+zn+k%m>@eT#{Jz=QY(KvMTw)S}V;G==k&m&DLk6xzB^k!aO1y};6nYt_)+oKaV(4Bg
+zt?UiMWcvSkmJxhgKM_1gl$LkvDwpO_<YjAD7oyCBQBMC9xqVg*!zf8#8!M~xi}*pB
+zrq(nmOzX8N<U+Z=-mZM+Mn>>)6k!it8uN!^82<k1K3~bgGIXZ13@5Z9r;Qn1Lfedy
+y(>}$3)B+wIAe?`I%}?Lqy^-<|QtT58VmS2&MD$1<@46A;0BAGk>OA``H~0p%+C>%s
+
+diff --git out/production/IDEA project01/WinterVacationHomework/NarcissisticNumber.class out/production/IDEA project01/WinterVacationHomework/NarcissisticNumber.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8ce6bb0709a616a185e5b3cf1acfd134e00baa03
+GIT binary patch
+literal 1218
+zc$|$?-A)rh6#k|^EUm?sVnJ<-pnxqX^|y*e60H)51x-re!W*XB2_3rKX?CX=?tKU^
+zjW=H7g(jHz06v0G;4`RE&u*K5p&B=P=KP=YowL(^{(1Nbz-`=%VgTs~GRP*$Fd4-~
+zTrx0aV47iIQQA^3F$8n@O@>fe)dfSmB5kqWY1M?Y!D|*-k`-lgYm+<D(|g8{Zb+A5
+zuCgU<Eu2kmaxIm;qFUmGa+-y8?wHbbrK_dctyZF>7MC`|XzqDsm+$d{#qFI!RXft&
+zDR~eWCt4+{5t&4FB1w7N*`a15ebN|)s+yb4HQw$ai&j;~F~zd<l(CaI=Div*7#K7#
+z6T@ZX7!nVa(yn%Rdrjzus=M(4<OeYu!yK*{xEjMe3Jm%G9+pZTL48`=6{h~fRNZ&A
+zXwm9bha9QyTv8RD(NLO36TDT5;u@|q1lR=4(c(=}RyH->lDa{XtGTUdDXH9QzTa9#
+z`jlh{w>{0v>h}c<-0&tYGE5zLrM;(`q8HSKu*^-ZoP7g#=@wO#YIfQTu~pj^PTAtF
+zD+t%C;~jc6y31YRcHI*0R5!7763E{YH}>12Px$d$(Oq>Zf3ifGTUJ$SQ8KW=F#TWH
+z7{>n{he?F#7v?<yFz-&$86mAeoDmPtegHf0-BCIRd}9!&=!|s(hz}8u;56dB<S!KA
+z6|E%di|OIu*Ee{SPDI=H>9B||r4x0l7|LWCnMO9-$Tqf9p;V|r?{+bq3a4Kq{tkik
+zAyvV9gkCcC_SeS)zpsa3#_wT}JV+fQ7$Yf5h;9;&1w!$dd`~d!V_YH}aTJjtJwTE3
+zNRkw!_#8$^3Q<-PXGjW@bp<Jsys0V}rD))+KWFd<g6umUeDkBu`P(>8|4yLJj4Is0
+OEwYZ2?yc_v(Zp}sZYcc#
+
+diff --git out/production/IDEA project01/Struct/Node.class out/production/IDEA project01/Struct/Node.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cf98048743e897d6b50f1b71c8ecf8c668239994
+GIT binary patch
+literal 251
+zc$`g+y$ZrW5QJw<Of<$Hd;>eRFqM^JBUlA3BKDVf=t)c<UVJYr!NLddp~Sst;T{Y-
+zv){nI-j64MDS93(v|V&ubP3K}WlApy)^M~V*vot`3Efa-a$TNdS!_j|a?%g;M5H@W
+zDC2*jt&i$LXorz5%0vfiF3$*Fl$S*!SIRI=6HZRzDty?e6Iy>Tp=T~ZDzZbciBB@o
+q7@)=<G(-Hj!s@UKDi74hchHTO8eCSV3N18P{V#wfysF-+DE|W`BQMAR
+
+diff --git out/production/IDEA project01/WinterVacationHomework/PrimeNumber.class out/production/IDEA project01/WinterVacationHomework/PrimeNumber.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b5515b7544d1c904974b0611e9385dc1b71a684
+GIT binary patch
+literal 1370
+zc$|$?TTc@~6#j<pcA-{5$|BxTQNddaDqaex)EF`KlGI>~`Y@CUENyq2?V#bk8vlTa
+z;mK%>iBD<_8Z;)p8GnbD_~g4W;<sB8FxE?xIWu$4cfR?~nc2SoG5-d@L1bcR!saG)
+zVoNI>+hf>)oq_3Yg{W<JS=eo1k3e+5aUDG*5b5q26)-a1xDsg2I<7i5T^dvVMLAZa
+zr#0*4WpPycPOx8e8hX;H2y|sHIj&azsLV_4c<yPhq;7bAA$h@fN{cjUqD#_o1=_o>
+zWT)hHnJh|oBAL^^<4&Z5vxVds;h5rZh?o8Z*%Ni(1dMUy1y<&?%ooneawy3{hd?an
+zP5XIu$_XU4EYq+r;E5xK6&Ci!u@6bchdobMv@gqNm7es*E6q`)8qpg^ANE@~5NAL8
+z<2ZyBjW`_4{Q_J6T`q~2M4um<QhEK0D>qZos>H5)(+t?P3LP(?a5almvXqYD2#yLg
+zh)#huC0S4z&*h1i96iZZMN3z+J$Cm<PrU{u>QD-p<zN?N)xQHPj2C%L+j~>JA8$YD
+zOQk-%die3y&Cj#d&(H6Dy7T12%g3Re|N44XSV#w*I>tw^#OJuzy@Fb#t%*J*^V;)g
+zES%tz%X(g6x-1YMab4wSin3BstmN);O^Y10OF1pw@uI49)e_UcOaD{i#hJ3I17H54
+zYL}Dl`JEyoi^ZIyRocQZ`|)4e1UCI0hb?I2*BSg8_%ZS=(#E+<au%G;T`wS>hT)a8
+z(a;&eD%yArfM&FCZo+D`){;ev=qP>HB7>2k7S(Uq#%jEKfI*|*v`yQ1fOgxk&GNwd
+zSwyQ1qH2mq3tu)w?<4UH4Yo1Q6EFv(8WEAfs=?q}`sZNMZk!LO=U_bzg#@C8LjjFE
+zv<U`lXkiuWD5R6oE=t|W{a(uJqrhWG5O3ooac8gw7tn#LSQ{2JMCKqTfi@PBAcxJB
+zN#<d+b7cf2F{dMJ#}#I^aW-(7$Tn(OAO77%7nopL*Z?8epznx@1(HSS5h8RgkaG#p
+h_6-)3H-@B}C<2rwFo5G2<PlrBU&Y8a`np2f^Aiu2MS}nU
+
+diff --git out/production/IDEA project01/WinterVacationHomework/PrimeFacter.class out/production/IDEA project01/WinterVacationHomework/PrimeFacter.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a1bfac9a735de552c377050349f7c4afed52c9c
+GIT binary patch
+literal 1584
+zc$|$?QCAy96#gdJWFanvf@w)<5Gic~)}~a8SSZ#;BWXja2EkfihA_f5o86qv1m(Ry
+z!sDx+(`WlYJ@p)afWN}u;e+*?-FQl6)#jYc%)R%!cfRk=%>MT0vtI#R!~Gmi;DU{d
+zgD7D(hZN?_@Rl(zjS_Mthk0Dh;T^ndR@X)$@Sa&M+IZi_b%E@%>$`eIAYGc>6tF76
+zjuIHIyS}>HYj3M?LvDNYjMjsu^fqPa8oTeb^q$)ln5l2MzE<I;Y)b70{%X)x-vnW+
+zd@pp{sw$g|EfL+8t}k$^^q~Gw?#r?#{oQgyhpxZ7WcC&=|1~n{>d<U>48#&L+~tO2
+z2^E;j;@OxqAu*z-U9a3|O5cwt48-9p^8!N+Et{=1*@?8+C<^2nK`(5os%x~393g+%
+z)N(M45rLD(>e^Uxu#6i9u;SnY+;s3EZn4CzAkY*eJ8Mes1v}m0EGh%|$ic^`+W5r5
+zDrz=vJGg_YgE~eAux5gHjloV#|9@Y(%Zpa5Z$DH`{gSJ3(ABCfkTR{$$4zmAa?S7b
+zG&`qcn{62{B?io)*uMH!*L)pa5OX*|PaiErD*oU29M*A<TZt)w({0&OmB1(SEm!Yx
+z)z#A1JiL6VHk)*OV+kb%G96=?tmI2G@=q@*?@O<z*1zT|O7^HcBW}#k34z6gG6{u`
+zyKH=FPUdso_7^eN-w#@<4~fN^QwhQY8(X}L^&n{VIs#73+>?qYyIsW&e0P*YzeapR
+zR;9n=sqRdin857c5;qPyDgl1<oy3>pC2jo@73p~mS1XGALg4%>aTA#QZyesl5Wi05
+zm*Q84Z-?VaT4m0Hb7t--#7|M!e5$gs6Js2m{`z&~IS=9#PRGe2i!}YfSLx+nkh=c_
+z>8G&PE*&DXVl7yCtM~(^ig~N^J;t6Oo42091`aXsNQg(4c>MhLiOi44KE`D6XAEAq
+zh&e=#W5FsA`<lTzhEqD?v_J`lO^UM-GfEi~6f#XNWm;EhFOuU;6i~$(KH3R9z+|Lh
+zg^KbxhjGR%M)QnMa7FGoi(;hvOJWODHpGYX2BxA;+-Bnn+<%&gab%t|F=OMLu=%do
+km9u})Jj3`*RN*`}IOka7Gi;*4%(rQuVB|7=<!D^^3z?sOn*aa+
+
+diff --git out/production/IDEA project01/WinterVacationHomework/rabbits.class out/production/IDEA project01/WinterVacationHomework/rabbits.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..2004b7ee24b251bc7c7ff8458cea86a3667602a1
+GIT binary patch
+literal 291
+zc$|HY!Ab)`42J)-+g;tRwiLWdkJf{G>Z#&I5D$w&mGwNc4w|~1f$3DA%ahQ958y+I
+znbos_<WD~S1oHL0`vfq@I7c4`84fdy2<bUn4i|*}$*d+Mm+sLJMipCgvt4WB@0D(a
+zOe)u?wpO0w{0Ecp%p1bAdSDxjuT`T0JA3Wc=FRz+(krbwY!-z4&TV~Tt~jm@mmNP_
+zsaI7X!GLi5{{_N0n#)$%r}9>>OcO9gPacUul5#~fm97+xWN`WcdY7h$OlsP}BkV~n
+Oeht`1-mMQiSMdYWtw4GJ
+
+diff --git out/production/IDEA project01/WinterVacationHomework/Rabbit.class out/production/IDEA project01/WinterVacationHomework/Rabbit.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..3dafbe81d4fbee0189be7590b846fe2d553b74b7
+GIT binary patch
+literal 895
+zc$|GwOK;Oa5dJnVC$2-=gqDytlmdk`r7^GaD)fSc8Yw(PP%6Y}<F3+eopt0oJnkTI
+z=Z4^f5JyB0i3F%Wfd2vNjVt0%m`x%@hzMJr@ys_f-^}cO-T$-;U<p@ESU8%%ERMx-
+z+{6jY891r!QzoLwYcU^3K_d$WP8(Qch+UIP1}hBV{Ct%ma>H8}45MYK#O+q2Cj9%n
+z=8`8>_8jh3xi7WdcSeE@xy>+BUXv;iew8~ske*ug8sf3%Z`t>FttNwI3T$wx7$)-%
+z%bWZWw_UF4b|vtosxNC=Ch03t9QW%~Fg+xUTJ1GNa1U(-(zPoNS4#K<M;o3BHW-qX
+zfIC~ac(dQ6S@BxFBW_A<jPzP6>H-#$IAEY?!NwVydGAAKZ};W5=kLD1e(~eWD+6aO
+zoWpsB@qg$nT)>jfzi8nSE)&VBa9wZB^VerBT+vCn|L%lgY%t-S+NN;+c2%Bk2ckiz
+z;<X5v=nX7A`!4Mwpp6LLppnx<+_Z?MwkRt<eAyv=6oZl_)ocw)X7WP;oo6WVBq-_1
+zbXVxGj4qF>=z@*V&C^c^OfQw>C|NdXMmk#PfPL)3V<cleC&o!y{r?owq!T!ZiGK1M
+zgb^WK+(9T6ZX@y;(FZ$-bzqbi+K69|tmLNOBJnKD-v9oogA#3+nkC$2$r29`r#C^h
+zO=O5`jyM;|(#!>_o~6boafmXAhawJ>PGgGvQ`AL<uxUa=$dNyZ&_1#TqKy5batueh
+H1I_#a;K9i>
+
+diff --git out/production/IDEA project01/WinterVacationHomework/Number5.class out/production/IDEA project01/WinterVacationHomework/Number5.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d93e0aa293da4e0c219dffab7d0b2176ff46d483
+GIT binary patch
+literal 980
+zc$|GxTTc@~6#k~S?PY<|LPf2Js8~Q*Z;0Azq9nv76-?IDpik3fQy1FZX4!gq*ThE?
+zed5I!gT@C#<bfJ6{Q>?Cv3>IwXgssqgcyrE$;_PZJ9Fkc=gfZlz1;*bjjK`gU?hTL
+z7!Bii6en;}!kDm6MG-_sOyglpgfSV$X$fZ}OfiIVhG{t08T^^?B12%-TGAQ%3WllA
+z*Q+JnzROD$LJ|c_<CP+}4Pke{fb-B;Wf&>kGfYRfi(KQ5VVSqAs{YurR}?S8be24;
+z+%OqZnFobs{)j6TZk83*u?@4Fb?@bNnIa{-(4^6eL$t@%9iyVC8aGYdCOW8UmQ89{
+zo}ou|xVCbe*E$NLs#Ui&ea;Yu+|e^7qR8k)p9Dq5S)8N%+8d2_^VRP2^&c-@wst=L
+z{JJLLyo?LD$k6}KwK5g_k_a&)<1(&LX6=pj-B0gZuiv!Ro_Qg@f7!mVA8~U(VwPd}
+z|J7uO@6~9bw5)5+Uy%BA)zPceP^(VFpjR@(QtnVS9jd9$t5mdP7nnh+39CY#8q9QW
+zluxvAFKFJZ)%Su9Wx5jLoMh@xoV@9{4=qoRQl{4`J|CFq1kG`>6j~Xr!HEXgXP54$
+zIpl#z&@6ZMNes{$!5~td!%g^U01KP&CHz|m>>#+fiBJPlVR8%MYw7s?w-`vrm)@aQ
+z_(aI(14h&FoC_~@;HV47#5P7-A;a&=7^CZeFpUUZAH@)2^qa|~x(8XxVvc0YlSm<R
+p#FK&p<OTB1;UEr?&>_s=Fw&IR5yE5e|AHbR$WjuK!*0e${{YWx`KJH?
+
+diff --git out/production/IDEA project01/WinterVacationHomework/Number6.class out/production/IDEA project01/WinterVacationHomework/Number6.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..dd6f16608a476403f36cdd71547a2e47289b07db
+GIT binary patch
+literal 1614
+zc$|$?&u<$=6#m9u?<VfXX%n_-Xd4om5GSEA6l#9B6k4aj1}Cj>m4di1aYo73>s_-R
+z7jlbGP%m()R1u<52~iPII6x0gWDtJ<H~xpDJ#q&`c(d!Ou3{=y+L<?RzW2@d-kaUu
+z{%QOQ;3O`@VPe?8NGG1bXdDqF)i9=(<2?kKj3b5TdcZ>Kgn<_fyvU%RvRzxAW{4)o
+z<`}fBw;&k03$`m}>y>%oU*z)+d3p+7i92)Lx7E7o)Z~&~V;C%4vRx_sIbPz@_S~FT
+z5g&PeITbRbGlZ;g+hsVIe7|s+U*Rc-yNju!^lf)Bqt0bEy?MfMe~}n_+rS9G>763Y
+zAuqu~R9)Ims#xN#D|`j3&`XDP6(ui~XLvPGYoMPYUi9jINle>Hz1fsEsYpz8A;EB9
+z521mRCenCG0bVxo3SKpl!6}CQXFX5Wq|d7}LN0j=wQe1+b>Os#*YSpdGbYX=+kq()
+z=a6L>czlhB?_tL0=P!$re8g2;u1P_OMN}EBFmKyS<=tvsQh@}oQ09k{Z8ubb4Oe_D
+z^R5gUO@)qnb=gXEfol8!AICJ_B*m4TYoEFI*H`b|SlPL?vGeH<J1d{xyZ+<$R^yLf
+z))_-zg_lLvb19=swp=2sCb=uAe^zp8tX&6t+Z;#Qs%qt^#FFi=$7mpBd+XNr)@@SI
+zs_A~?+g44nfXhHmwV}W;{E*LfuXttAqzz?H^OE%ZWdpNxs|uc1u2<<^<W=9Z4zJY&
+z<+9eQsmT#`JjdMyN7RPHz|3Ch{}p&~xhmSgTQ7Zh1u|oMDYD#ginbIP1Lqk={+Bjt
+z=Hqb~!an+gs3$`I2>KRi?50(UW=3;td=u=aV0%A}dg#Of8qKENgI=0D@dT_en5_`b
+zAm8_i+|P)-cL&i;XtT%fB9_*IF{Y(;OSiOdFllL)UR}qa6;qZ&rZpN^SJ%EmJhXDF
+zI@{R&-HNFw?Q7(lK^aTC+60%q#1~&;+=@Nw=)VK~fuo@`-9^U+I#>1GjonSP*C65K
+zjH?u*L5j0MI{PSL_33xfDuI65IYvoOP_k+AoS|fM<eSBlco&E90gm899K|OXz;!%@
+zHS*uY2yWAFSd}VAM<2ln97G?L<{cE87L^Exh+UQUJBm3R^x!68kCK{R;u#>EMu=;~
+z+DFA6B<v9MU4rNahN1={jIKW>{zU9=MA=_BM-~M?9grTw+cd|CHjf#+MMM*{PSDP?
+K<U1aW&;JWO7@Ge8
+
+diff --git out/production/IDEA project01/day01/Demo1.class out/production/IDEA project01/day01/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..33c8d8f656de727068f9a201e4e37d60c32a15ac
+GIT binary patch
+literal 1580
+zc$|$?U2_vv7=BLkvD<C>O(<H5fW;<&grL-7%7;xY4JLr3rdGJ{B-v@V+3aREn@aD!
+z_KFJ~XB<B+m~jRfxhM|K_yhbOiv9&JsL$C1Qm4^zXU;kA`=0lG-p{kYK6~;Dfb+Ox
+zU=%0&aSEq(yl&tOQX0-GK5Za^a|YhPo6#$42);3{IVHcK<82)or9ZFXqJ~QX(Rs_U
+zd=jBVvLq1Bx>ZwPIBz-T^;W%XdMmPQQ!<u!E7C4W&r*Cx81^@;rodpnD!0$3Q;TNZ
+zO=l>sOUn^Bn7Ezalv^@oOJ_Y*^gYX2&nPECa^<+n0)3KOf7W%HzI6OFg%$y%w@%#g
+z9`*u}X2tdBT(5MDsMywP`Ien3R;1&Y9u)_RzO2*=vJph9;kbZNbX#7<T(VU3MiB2A
+zWg26V#x-1y;R@an7+5xK+g)|N>d|8w7GlU^QDAhRlNjE`lCr(3VL65zt_h4RxUS#y
+zJ=rLj{)Ss^4oC5xj(iLST#w-fZVJSH`|_)&5AOZ`;Jc^a{P2SP^WGPKJbb8}z0VN#
+zl$4;|I@~C4nic;aqT+VbH|uPn+u}vMT@1@j-DJgl*3Fc4mSen!SU_ti&StyfiQe7n
+zQ@!kh=A1^W3wkKg^FrATb<qma-{7cu(y6-jVAK{3+(MDf6sN?+%K{U1Su;5W73r^9
+z{>JlpXsRj7<&wSTKy%EyeonQYc$}tiB9|;_SW$)kP++=iVmVuG&FomVoh-?U?|R!B
+zK4M&X*R8c0>_bj9HEYXe)1>Fm_ZFms(eCLo6S2+ablWhqKe~T2T-k1zJ=FKkdAq-v
+z<bH^(wC$qhn;8wa1y200*aVLJw;qmRgg+DY^+Bj-!2JNZ6i>l3a`G|6kHK}Ed$cXY
+zLGG~*J%K|!`|%Q9ZX1g=grQS*H#GkUePf{=gnve4?Gd7np%p@xrbdi!QThq`0rb~C
+zn+?C9BJprM^6_kxR*HIp0f5G*cMzM^;#xfVHAWTUAcda_<30uyH>9|bxWD^7xyc<2
+zt9U~}ybDYZ&=|cAgE7XrPciZt3?hvo%wZT;sZ(I;D@^_l<1aI#P3kq6&nK7+a=k_S
+z89vQP9A<85Tp-F}=01mWI6^8)gekm2N~84}j*<$g3b4S(gX(SJRm%93P{A}#Q1V((
+z=I}F22#qgc7uTR`m<bs50lP#CKNkUi(P0RQ04|ADo(2Iwpt}-_f1bQfewOR4zX9Mi
+BZ@&Nl
+
+diff --git out/production/IDEA project01/day02/primenumber.class out/production/IDEA project01/day02/primenumber.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..04e7da1603257d4a0a5fd45d8e3d7330ed8e2bf7
+GIT binary patch
+literal 1276
+zc$|$>&rcIk5dL1f?b5nRe~JoKQBc4iMG^ebf<hCOq^L;^DxMzg3#_!e&2}N--o&FP
+z6T``bgI6^M6AoUy82=Cr|AH~-w_6f0RAZAj)0z2Z=9}5~zHV=R0x*iHC?Yr>!3ms9
+z(9st~KhAjKYyzTX4(b@vaZVtdH!ahh5C{$o&I)J+yP^a-i>9USE!XCi^H9!L=}8pr
+zvaHTZ$MozSr{*r24S{5_B3FkmXX}nxQ<k5VW3VPoOW^Rp)8aF^BC}O#Eo4isV_FM2
+zuazkCO!GKACh^i)@QSs86Hwt{$AcwTmX~H^eTPA`WG_2qb=&le*d78Gy&?vpIH2Ra
+zfeX0E_>^tC4cC$N8Rah8l}2Y6*$xaFxP;3(MhslRsDUvY=)hG^j|#;1jmA2=1n<v3
+zQ)TxLS8283su~w+FEfyCO=H^G2OP!aKuXqfQC!1yfq*zE&{dO5s$g4X={_>uMgD8J
+z(sH?q^uY9ByJaNXloSZnJ<H2#zi-`-SNTa|-#@(m_VVrbwI=1(^A|$L4Q~g$1%11z
+zrnO=(shtWfez#@WwVhQRw|H@iw!O4m7cizROF4zAY%~-}zuMb=r$%etccoRSszzTc
+zF}I)P-x43L)>Rw$-iy-u4!OboB?_`yEt#&$>6jGg|1WL=$N!B(FFN?fykCG%inol?
+zpp~T-)S;n|5byl(LCUc24B`-_(E^|oG3p57NVJlLL3EhDxnMpx9#a#UIKHeSuZ?MG
+zEwhfUOj@gth0>ulgquP%HSy-xR(EI}iDp2&M<BDw4%mPe%r}FKeWq^%A<CXjukHr)
+zcRmY`(Ujjk<agAdlUW2^93;b0PLWMN?Q`TfOxy@L-b50U#N9y}GdPSVM0?XrFh9d(
+zB#~mZIF2!%@+;mVD&;Z49I;3IT|CB7`uNr{OJs_kZu(OQZ$lSC{6s_~e;~x8GqcCf
+a$zYs1%B&n&<XNGY_8~@2(RbRH1HS<@>L`-{
+
+diff --git out/production/IDEA project01/day01/Demo2.class out/production/IDEA project01/day01/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8af899a6bd14a8480b730fd18994ef38f1da5b03
+GIT binary patch
+literal 252
+zc$`g+!ES<35Jm3@f&v!OKX9imq?)+WbW`Js=%R-G177qQgapyV&+4j)i+(^q%5-?T
+z=uC1m_s*GQe($#*05b#*4D@Wg*zgI~LKUihCm4faOfWynOcMM^6>@z(CbHU!B<JKc
+zDpQfiqEd~2hGxB2CqggE#Pw|wF6FVD&I!(Ed9G5qQVrwibbJsO;lV_k;QpftL9+>S
+xQS8D^a*%0_K3e=?Q^d_DtQNaad!Rk~27U3+g3W5_&_IXPdjROd(dVwFyg#L<E|35K
+
+diff --git out/production/IDEA project01/day03/Demo1.class out/production/IDEA project01/day03/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..1dfdc17d06bce34d5a795feaf8514bdda1974064
+GIT binary patch
+literal 951
+zc${rh+fEZv6kVrNI_-4YLb+J9Rly6TD8ofW<yMuLphZn;NQ_U1=>!Ja88S?b{D4nJ
+zf51dzNJxB9c>u-e2blN)zC(;Z0q%3!q!>Gs*=O&y&z!y1n)b)x-gf|FxTzt5b1Ke9
+zZ~+%J1kk4;i~dmFhP(un6U~7zE@`-o!7z+4hExoz7-0xa+K%l{Gbq{q1%}{lw`4IS
+z3bte2uT~Z<?-5@t6Ot^rCND2=&lYtZ4EoFVIzy~b;u}Mw#;jFwhbIWGaNA+%%04Nq
+z@Tc4;b7#pY`kw79O~@hKTcX$6o3x3LBgay^)~)(>*(jRaaV(G83bh&796dB5R`j{K
+zI?vbYgtVet^-SxIEepwKP@JNp6>SV{|DC8}RL2#Ji49j(jO)0D>pE^=LdPVg7$OIo
+z?+-q{+TVMwVp_)x@^x%;i!cU#|J&Q&FJ2#f_#(^bF((*W8~PqBu2`o34^-S(_bn0=
+z5N37O)Y`5w=d4wIvcuvP(woXQZ3r9Vjictdzf9J7+$p&g`7LJ|RL6Se&pE!V$uPyO
+z`o{-7B*z<r+MB?1#+s<gf?&4U$3zd}^a~VM08F?{F-es{E2Fg~w+r@3w%aL&Y9Kl&
+z>h-)6U9?7U0;&4TKM|xGxc3!-$J<bL5iER0O9w)$3G?MtU^<h2gY3W#!j!#3d>fIZ
+zwu9)_(Vt9u^Jrhxx~zYRG)AeQphyaXh*DH3hG}qwhHA)A)r%PVNX-c887C#TX!l(r
+yDyZgabkL2Hv__G~DWr*P7ySh@I8EYG7{wXN6r7dPltZLc1Q_d1(7qmNK<{5m+0twP
+
+diff --git out/production/IDEA project01/day02/rabbit.class out/production/IDEA project01/day02/rabbit.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..f172cf9affbde368c5a3c05e86c693edb724cec2
+GIT binary patch
+literal 1331
+zc$|$?TTc^F5dIFmY$?nA4x)mfEh0q(yc7{BBGm#WB^cw2r)5JIw!6*lDaxA<8htW8
+zXkv`Nz(k`w0D;6G;O_wZ7sff=8fvJ<P0nRzzM1*X%-Qq(=k7NEqgV){8a)cmRH7Gs
+zK~&(ZoX+_t;eJ7c5SGUN29gGYh+s&;MFqnQ{&C&Z#RP*V6kcNR#;j$Hp*EqL+I&8n
+z((FZ^GDy>qu+rRE;<hg3qS7ley2DVDSmql;!x5XOQo4weKFf8Jp(XS%vC7wZ#Ng&i
+zBq?m&T!|L4aC?RP8q1g&0!}7x=%iv`aRy)3GDU{KE;cW8Ba%#W)6{GN`^^GLf~IJ2
+zhG5dl+i7h^m;9<+MuXB*MGa~h>W@WHa7o1oMkQcO#bsPka8<=ML{*IAIz!!*WeG>v
+zJU6F_jJ534`Y{o}4Hc8PsbES)4ATs1X%Wcl=x7V6RW1FeD!JhZEz3|L>(uNXO}8R(
+zGnW@s35{pzaBZQo23bMH)SigADGGg~D%Bi?p5wAyo}BfViWi!m4ih(zl^3OX?oq9O
+zhYR8sW*9oy{?5n44=;bbe|GTv&B3SFhfnto-+tNO*<}o^S-z&lEHll;eO+W|=Ll{J
+zNA@@#50`6WW0_pUJ0~SW9y(O+ZYa1d%X*ig_sFW7>(-i91i36`cv@KYhJrb|0}0Do
+z%jc*AaoNw9!5v2<YVS%j6l1s@oaN@Sp*g*-WAr$Yzd0^$<g_yI(tGSSI~qP7BE}6P
+zsS7QtV4k7xzqm1+{5KBWQ0e!VUj>-F<22Wi6rq*T>g(SI`&uy9)9iPZkS~E++&7|$
+z)=D&^rRe+_UP1z6p7A|YJlKS18{WBrE%+w7{KlBK+3S5Y=4*n#+4o`xfmh?3sO;+8
+zrI!X<s5;8lg8<D6NdY2RNm+wvMHRXzcZf8jL|8JJaI=xEt>8O?c61PzYJ|~=6QpUN
+t=c|i!9>Sc$N!ocyZl`?*oxp?B1;1|GDZF<Kvq&IL_VXkMNFJbZ;TJ5uMX&$>
+
+diff --git out/production/IDEA project01/day03/Demo5.class out/production/IDEA project01/day03/Demo5.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8aaf2e168045c52dafc9b79c82c074d837f60f35
+GIT binary patch
+literal 1441
+zc$|$>O;giQ6g`h7O$k9NSVjB*6tpN(5y6ilDn%46#F;8ir!IVy2$3}DB(KbL@4}TU
+z7p`33!nH2YaU6euf59K%e{dY}z61u8>X=Dx-n;kQ`_8#H`SSDQX8@y^)6s%s%{Y#}
+zc5<Y34B(VBr==OxaRx)uWaRd&hG7lo7~<o$Yl{hnSbAWdLCJZG7DHR!cCEQuWx?|A
+z@dbxG?Rl@voq6uta=+<R#IhYQwB{Fi{p?6)%BpyyS#npn?K137m-0{eD$h9FUCI=M
+zZ@Wubc?h%VnIRnamnglX0gOTAzR&9nO(jCc!_Dy4f_S$U1TU}5@@hy$L#Ku=2EE|b
+z{IWG|OLlt5XGqpIV4zjQh=KDMWk^nXo(P1`tFx9^_7;P-IK~pVVBjJyX}D}4i*W;2
+z&??P@hN}jy;ktoI<fLbup=F0;D!47cTzF!Y#c!@cJrGufTI|&*kc!mWUgj=I6(rc=
+zm8^~_+#t2Ahv7hluUI+HEpzd}7R$5>1a}3sDwUoYXw<BZ1|_M5Rk@Q{jpv|+afe2w
+zP~G`0&NX2>nd`F8bfOY?K9x|@r4W%2UQ{3)ZzD1qrezy%GxTl8Y<JaLu{I%*vT0rx
+zo?q9Hr>W*WZ>3gcFlJoW@^cOk0*elRxs&*2jc8)GxVz|BL0^=Z-A&_fiTCPNs{wrH
+zCm2mIJFvS%jyq1l78Z$|W$6DeZVX5NjYBWwpDV8>F!`a9-9x(!y&1jLQ}4mvhT%4{
+z@z9w-lB^K{uov=|Z$=09Mahg4P9@*#r2a|ICqC)Lm|_+c)hw!Uvlve%%%YZTHfJ>%
+zNs>#UT~U?(c*2~EjVUQ5sjs2)9hy$3l%bD^0qannD(ub1H*&5+m7&k;h=<_B8u|xQ
+z3f&Kflt(4gr0C$EiC?3{!4J@6_yZE_XqM7qp|r_RlupE3&`sjTs2A5rj!EzP6f2R?
+zGKq9ZW*sR!qxEwfzzcNZB@SW@U15a@5`PJY39%mv9wWWEqIM9vGi=!_!go=#y73f;
+zXw^igRVb&6xEvuw50nimqG~v*p*y;%+23*K2a@bNP7<ys97-={Le>m7aR;}kZhtr+
+Jh7<Ih`~?ldN!b7Z
+
+diff --git out/production/IDEA project01/day03/Demo4.class out/production/IDEA project01/day03/Demo4.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..083072de0ab9dae869de1caf3bb265cb76f90193
+GIT binary patch
+literal 892
+zc${rf?{Csz5Pl8{EnV3<7}J61=Fft<PB*8?7QbLjNQj!S@Wq%|Si?$ayL83K|Ku0_
+zfW!~}0sc|Od*3y}mbU5L`#yK~+;i7Ie}DZ3@B%M&tl+*59S;h4h(|gsG&D2?@>rNB
+z0(mOTt_oYl9wC411z!A`khK~;g3=04UBX(&3*2`TzwbsTPJhfusS^&IanFf7aZf-c
+zKJzXJ#m=cS-P^a{xPEwW#IWyp0b$en*cmxr9DD2pL%SPCUNAh8O`K@RW#yDGftZ)t
+zgxom;F?*}sZt$JH@;4<^taMU36CzUx6{{uVErQ++C(*!t>k09?l)Eb`3>YXH*g{ps
+zGXu}Duj0VqjUICOXdIr4SY4QHf!2lDCaf%tO)wX|-}guEAie^1rx&s7^P0m62P&6B
+zz0m$3rev+I<FnRs3QSPtD#n4BrQPUZ2jWMICkGPJ*{<@<W={fb{sevJLk4SX^AgO$
+zWNTa|U>zm)1(dOo6o2CE4ErtBROiSX|3J1jgHp=PkvF|L)CJ)t69`(B-&JT#Qov2t
+zWXhN%L4{A?cnLQ+Mx4RhO<KK5S}E1q=Wo|!7MEBQ)VLP%bn8D$Jz+WI98saM(&h}>
+rLZ2?HP42$FG_;1>xFd(=-<ZNtouP1@qs$x|S2$|Ceen6N%)Ivx_XLSi
+
+diff --git out/production/IDEA project01/day03/Deom2.class out/production/IDEA project01/day03/Deom2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..489f5cc2144968a9628d06aeedc097c264df7a88
+GIT binary patch
+literal 1099
+zc$|$?O-~b16g{skopu<cf`HJ<hf-|;DHOj8F03IoDQZ%J3s;Z!g+4l+*UY?<bkC1)
+z<w6&(ae)a7e}HR$guj6h_0F^j7^-oS_wKvr-h1wOciQ>(^W-al`*>o)z+@a#NRALN
+zV`3I_{&v&AEd%om(RJxa{gfe`$?h;jimE0UhRf0sFWb#s;coL?n~;&Rs&adWyVCc2
+zU_{rY$1qf`@y^Ox?zvFSe1YI5mkz^t=52YOAMl*boxNN|yVBV!_)XY8tr9Isx!m0&
+ziqSr)L|oCl+SuZ)UO%&<+HO^B%D@TQE&F8_Vu%|^Teyuo42fq-X-~VnwIy_2)x6;-
+zGBIQ=EMU>Vl7+iiwva=dVeo=<syr9*YIk2$^&e2B<7v^PQK>cs#=457%DpDJnnVlU
+zESOlqDvgybunk816HVR_Mdehvej|0APM+qDrYlcmN~Kb^-?c~k5Hk$4e2@BO`cKse
+z;<jTT?_cx*!~A)kbPiNQ^wPU>HhEPmw`1TD$t^3@Xtx-wlH&-sXmigKr19OwUOkTP
+zOkZ%PW(#k=TUfX(>2HPGotEg6e)0WxM_<TZrYLgTu1GBk1|Bn{|4SRg^uO~khba9`
+z{3itF|CDGq$;**tWCs?$fE@+lLE57M7=}f=)lI+<u8@sm7>Qo-dqTrx^O5yr!u)`x
+z$VMvp5tE-0N+px2`iUPsM&vNWKK=SZ=rINk8J)i$1?+yO=|EPLBpJjU#|+st^;{%u
+zl{)$gW+~T15?3)o`a&dnluo{?Jg#Ak>^Q9iB4-G(GZ^d?Q>Vlp#zb(V>-3obF)*y*
+QA?{%kDe`0F-=H=98;afr+yDRo
+
+diff --git out/production/IDEA project01/day03/Demo6.class out/production/IDEA project01/day03/Demo6.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8712e719213e2c61de3a8fd0092974ab33d4df28
+GIT binary patch
+literal 938
+zc${rgTTc@~7(KIHcH6RC<Wf<n;=QHHRuB|{QX?^GQmjb{FHMwbyTU@-CCk>N?>_q@
+zeDPTylo-Pg@Spe-H1Tp~izyG?&CY!D%{kwk^UZ$$^Ys+K67q2j;YJ)cam&c(5k7I;
+z#+?{aNULZrjtuS^`D}0Vo{4!Awt%tbw%i~m5J{zX1oWp~-4Pfmx-I8<yIFPoZCPzF
+zGgkC!vaut5SFO*Ida&;v3k((OvXfo3H=U-pyvlS_x-Ef3s!}|VZ=~Ijtv$OO_-<=&
+zRUINEzXCs(Sn2Pv#CRVlHTh0mK&vQhmFJWLSv%a4N8#}%k^=Fv*Y<19GgrxphXUqR
+zAq&G8F_E=!9}6ZHEj+-IiDe59@yNmo9-COTu!eODIcx|Fp0gk@+7nZ%9yql?V7Qms
+zlEFSZ=gU^zYlfZM{7-2IZo_`!`?5n*`myJeIgqLpl<jjx%bnxEQB<!@z+~6E>)9`8
+zJfM9?HfcW^c->Zny)2~rwP?H#Rlqz_s|GJ&GS&YMjGA}UDZM6?l?&-g0oP#hM^cXl
+zq1wlBlq;LF;5;z*1>$44eSxFVO=66rbrz3ff^!U$NSu*>Lgx#-ihhe1BkMEK_n10?
+zHi5|DJAF5onMs!3YU0D+ADI&j^fuN%!C=PxjA)pQb<vqqefI=|MHSSOr5;GhiiENj
+zC<ZWjXbgk=)e{^qGoGa*o1RvP+N9_$iruE%mqaKFIT}ikbrDmnWRP=-k*1_Gp60Bh
+kf*B-f%tkiEX{<DjD<R`**aq!43=^~B7ukXxRn5Bo4^z6fX8-^I
+
+diff --git out/production/IDEA project01/day03/HomeWork1.class out/production/IDEA project01/day03/HomeWork1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..3eadbc53abd84ed96b756ac004a36d52f7b22afe
+GIT binary patch
+literal 2311
+zc$|$^TWl0n82--g&d%)a&@QwKtc4Y{z!rhFloooS78VQD7SOi9f)}RSv0e5ub$1rs
+zXX=9_nBa?=@BnB+q5^@3(jefA#>B(~<CBRd#&CHw@kJ%X`kfg{!LG)pGv}QD`u*Sk
+zpJ~7O>*@^vttbUigZ2PA&>2J*wg%CSXM^a$Hh)h$oF9MBfgWeGh|hD<pjX9C>9Q*b
+z9ewike2}qTSOkFq6}wgJ5%71V^J%+Vz#DJaC*Vt1qozQ0e>!jOF6Bnd!jLhNrDRdR
+zl`^vXj6zzT9|(Q+c)BRCuz%DjH?=hGvU28rtB`5#q$+2m^8$<Ghx(5gM~%j;ksoUu
+zv<vC{Sf@<nHHs+#(Z@%w2|j5)M~Eoz<Q1rKJxg{v+c=mq@_Dnsz@Ai5qL~+zAyea2
+zc@8m_&nS#>UsEADm4il(;1#(v)2(dMR2<}!;c297$|O`Q7_^O4X26(ms#UR8MO?*R
+zdhRTlMfwB>tx_Rn_NFBlRS&D*Aam-dMMTAmI$pw{iXk1t*r#H@jsr-lIH=<gUKR*%
+zw=BD87mSGk(;l}*i`9O-qTy8?ui>x`14+_5j|LqhNXZPNI!wH-V+`XO($a|pR{x_L
+z%reKqo{=MF%6?4b67#sIT(r#`*|18qjkqkPt;W5yv}tb|xz1S!2iUek!6=gw&9-L4
+zvGs|DO8nPUh$f&;$WxXx6Ny(InW{PIfMJhwQVK?X)XF)tyCaAUvh18#A+RK8WXyz>
+zPZ{?9v^~yU(KhmSQO2%}NpZ5%T@LMBy?yzK(p<eu;}sRoy~&$z(Y-caF?z_h65~d}
+zA&Iu}205c^#jWX2Zl8bu&czdV&VO|G%!PHg-=4ZPeg4+<6L+s)a7A}cy(6t8nSFf~
+zLaWHhroSOjKc`FQk6Ib?fr-mPuaUB?LRkeV@b_C*rZgd-_sLmGWQ}4`-hdAtrTsw+
+zcPMv}=B!z)cO5(D!}vGHq4I=T!Tix%>CR(k!~75lBbyye+a`-7v#b6WHi6iG+hHZY
+zk2TJB(#y{v?<n7kd1~Y;xGHO}KwRR+gC+8->InT<%D3(sAc`lr22h7(uCq4)AGHwe
+z-Y)M}U$?i-7xrIMlHTyhaMBkp4=0tdIh^#%qbiRYj~$A3P3iDoh9{~_!#f3^w@r<x
+z+F3MBL#c&7QwuHiZkra--fIg){Sh@17^Zb3a1}vd3ZY3=oSV71{6l>CIrQXZEVzQI
+z4mGMyp}IqhYEuYz1Z4Pt8(wZTCrvOCj0SF;#mcA>32ur8_&N>$q)$YA+G!}>?#Un{
+z|HLvJTS98|wuK@gZdMS8;}UXQgs9WbK+(D;L-hFB@%wJpDLQNGhW7|ZeU~`umR-d{
+zS%Xg!c5bHolG6`K_ys)Ukn3TQK7>fU&eH;{M-?`r8e0)YFP(?j$0R#>m_5u<R%9dI
+zWQ1dE)p54yB%5@K4f+_%aS<_G!;|=e-Tw+t;cLpi#VXvyYW#pT_yuwNiU$0~+`nTT
+z{-kUMtA&ClQH5qvhm9h}eLY%5GulK8Hj7ql5nIsi48~^;o+zWnpb=FqbFCoi9<(rH
+z3@XksliUUIBc3LL7%Tgp^*A!25vQv?hRf8~)8jZkCBoH=cak-%A;N$hFrr*5hf{1O
+z))>dnM<naG^T1DB>#>1621FC*IY$203mr}LRak+FX72pV3jPfW&k&xbqDAmW#U}o8
+zy6<7*3_*t;ldI5Gw7LdM)O%3wLlO6(iHM&E=j;&?u79u}0kl25Q&IOn6ZbxeNA6P>
+eL2h>L*cME14N{s%0Tx}h^ISzug0daXyZ>*sFb=c;
+
+diff --git out/production/IDEA project01/day03/Deom3.class out/production/IDEA project01/day03/Deom3.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..484c9b4344cb01a41bb4ac959ee9a663d26a0361
+GIT binary patch
+literal 881
+zc${rf&2G~`5dJoH?AYCq;E)vBhPFV#DNwf!m5>Ttf)J4+Knm)G3!B7BUBxj<9HhQM
+zubg=WIFv()kl+D$4u0MOF}seEf?~<LGxN=SGvDm@KVQB9*u$O;8`o@DxNhMFHl%ga
+z#x1zgs${S!o!chvn7GSeJP7(h{D?twD+dgEE$a9Txkk|UpN+znKX@rxJ&HJus4aR2
+zVh~7w64c|vV91bdbj0y?)qCtmVRfIvp$Pg6CHGb1NW2wZPxQN9Gadx}?!Iaw23;yE
+z%z+uq(2ozJ&d$`@Wk|dAdZo_51pV@EP0^}EYYAE-6~j@;U^k=DpzS{i<dC)+YfHA`
+zSODiJft%Rk@UYFXh|4B+ICfFxSV5VA|2ld1`{eY;_~Xy_UnOvlVd0!YhWu>q=dB~Z
+z9sd(*9uH%mrqH4h0mVdQ5P2_1VN5!G5t7croG__+BfTDNPj~BbS4DT;4zW&eX+wT#
+zFsX{pEO{Q?Ohz|9gPoF*!UZ}F71WTUlP3wt<09P_926$SP0Em1d5qL2Xn7+uhJJ>$
+zv_;++!ysoy>Ofc28cZV2(DJNv4a&HLqH0i@PPajo^0SE1G0%{ZWK5CS3d#~qj!NiJ
+zCMEYNE)jic`SpkY^f;<rDZz0CONv~_GFgmR=rt!SPbo)}b;R;;WyX_qEm6&);#y0x
+Wi0i82GA3L)<*kyHB703$um1&?5RVD~
+
+diff --git out/production/IDEA project01/day04/Demo1.class out/production/IDEA project01/day04/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5bcca7a5496dcb189ee197f4eb35f252c42a033c
+GIT binary patch
+literal 926
+zc${rgT~E_c7=F&ywOc7tzzvn5qB6H48~BlE_%K9bLNct$49UWchpoZlw$9R-aL+F>
+zCf=$SYK$RXdEpQ6#~7kMr<*~Ob?tlJkMo}AdET?{zdj!WxPzM}3|umy<8lVGxMJce
+zu9=ua!N7F`MFD-q@A%Q0K(bic7SJ99O;2E~>UX?Hz4opbK9RdEW+tjZL$<bM=&N{;
+z)S_qpfxu|BDGwKKS2nzMu(Zr{TlyV=TydwmFJH<^OLq1uwJ7vEd&@D14ENYJIiwsH
+z!zF>l&L+ui$)GC(I>nvMlFDe2*X{}kx?-Q7PvUGKhgu{X&$ncEK+UWLy|Cdu^y46A
+zR#s>h(#TlIB4?mv!NI(N8x|H&Hc+v!2x5=?BS*kKCF$<&dyVM7RPFG9l*l6Jv5@U6
+z@`K7_%84k-lkMfd4ZX;3Ro25$9#VZe3i_JkL2Z_X&0=!MX#z%9MJ-M^TO2lEUbN0@
+zS5Fc`>7_LpRk#YSDd!`^J30xB(CYmpELv;ekKzp148~v&nqNTUeqhPgznJx;t-Ezi
+znUtMz>w4O)8#YZk<yPlEAyIvgBv<VNQl~%@JOX4kOHKtIzR0Ws&Giq)ICp?m8<RLo
+z*o?ZS0sL2zQr+vxm1*Z#YrewW<Z9kIo^C3?;N;6rUVB=8jV#?YCm%<yvNP^cLcIC?
+z<4DkcbKb^dQFIgqP^U?iIfBlTz#J(o5dIc(_gK4+shFZe@Hxg)ILB`Fe>qPt!QUz_
+h&{I=e$24gJd4A(aogg7jkP(HSNb%*CnRpTx{{S%>t^EK1
+
+diff --git out/production/IDEA project01/FileTry/encodeFile.class out/production/IDEA project01/FileTry/encodeFile.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..589b0992045d761e001c99d8eea2629291a6df11
+GIT binary patch
+literal 1487
+zc${@q+fox*6kR9jq(i48;U<EPcV-$0B#2i~2T)Nofd?3;xI9b~+SpF$WMVVQyH;6N
+z`CvJ3YLyOE!^=#KRw<}het_ShKjDMA&S?}VF-dptv-jF-@4e1Rzy0{?4S+)!F;Itt
+zIu02K;jn=Oj!5gMj$;O*(i26G^z=%rSI2P!ah%X`GKQZeyf21+1GN~?aZ1N&f#`A9
+zbN!P7VXO6`fOe`h;|Nq|UC$Ywo1JzlWA=2Bp4x0FZx=7x6<4lTotl5yy(&<j9dzld
+z%%>eM&wRP+6^O5`2-;<3uh@UuX}6SC@r^54Te!T2*vTbH+Oz>M<dx_AQNQBYvt$n2
+z#iBrHazKJh1UGL0kIeb&(Sn^ed<6`RoVlKN%D!9j7&BFmu2+zG0$VnA^>v1sAe<QW
+z?fmaKyR7Edv6m9e+O8+C)tU@ai?&xtvotByP?}vSu)(@b!tCsl93ayrV2qaLDtRX;
+zQ@ti!r_3@@j|PFp?+7BpXG{#@tci1=fZM(&hKcjIU?MBo>NXL?L{5gx_4%Y5?3t3D
+z_y7I#?&YJYfU48K?#sf%6o0dLrYk^f#||EzZ_kH7a!rtt=_^j&7pSqmJr&WS;}!hN
+z>VTf7o+O_Uh**;YtsFISt>XI5>YC_CzF4{{B`i~7Uv1Y|#m>tUU~RTR*uy_V9ponr
+zA$8_`D_3bg1)q_&Wr(LVLTKbYs+=)w<J}AZXhJieRdUoIS^N!+e&G2ELgOR|=h~K_
+z-Fh7xPIW9H@@x38)}Y;#zP}#ekB$bdJDGWmHf0=Jz@ET(1d~QGGq#AcG^V<>-|o`x
+zRnh)0_=zw0iB)_*F^%i+aoQ3vc0&`3pKh-pI^Mnvy+>=(*i0<7gsLWO3C1E~IWEkn
+zYOH_pKi?c-HS~m1B*77@QNwQ|6>FhZN2pdGV?&hV7m84z1Z9dakDa(lW$zGo4?p4|
+ze!>DQETWaX9b|6D6QuBrDoY{HL1*?neqf%)Dht?!-4whA_sO!CT|8vveb~?F6J9Ok
+z3`u#(YpK0^PG*aJx6y7v)kiez2<d1So$-Bf{R1MO*cu%P{vdS3WtkLP2{wC%CBl3*
+zuOKmAyJea0KV>Cp<=Rs(P_uRdYS{qL1p@~tK{t2*pc-O#z<^E;1xAy|sFvz^X1ZvF
+KXdh54-Jbzj&p3zx
+
+diff --git out/production/IDEA project01/day04/Cricle.class out/production/IDEA project01/day04/Cricle.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e5ad2ab75d2e113022e2430f4759fd6113fb6be7
+GIT binary patch
+literal 1689
+zc$|%u-%}e^6vw|eN%w}Z1SAQC(o(Dx1662grM4-UHk39R`okc#qSi~Y!Zu+yZkATw
+zb$oNihtBxoOJC|+M@L%*M}2qvHyo$qf8c}ldv{|&8y#Wxa?iQve9o`k%TIr7{{Y}6
+ztV*0rK;Y#LE~oVFv|e%@ID?s9nw(AG916YEad#f`Mt%apkC9J@8*OkQfqq;x@*P84
+zSAYBXppnO4XXjBg@&ln-;#C3R@hJ+#)|KrD^ktVzH`OgQSy#^LWZCy@XEisr#Pfn%
+zwFJ6Lwqsq|SYNTcMYU3=rnlr)RDDT#ww7B;Vbeo-t4)Da8=yd>a7-Xss;bSSCngJ?
+zU8!5t?m6pOiU(p&z$jVHs=r1-G3@d`O}omzs?-)#BZw$*NMejmXKcszXBj+O46^pu
+zY~~R02#smDKA9UMUX=Ni1QKO;!>d^Hwobb<#82pi1<c(cO}vN+69d?1;uxk(JdY`f
+z*G!bKAkcHpb^WIAsm6lkuesG`w}DG>TsCn9S0!FIQO05%Z%8bexP~{id|e~oGO>)e
+z3E1h;<&~RO#s8bCyxH`vb%Ch6!GlcLP}`ln!fyKPsioF)3A}@MS<j;{?*4l3{_xDO
+z5ZJq}YF5E@D$2iR`)k}aedYM<NQPZ#H<wf!w18}AsqSdM_OD0cm(RX@bmzw~Y;wnB
+zLFo}1o^q<LE+DIWuSc*H2zqU}w>kOj9LFMYLwBqqFtUTNom+0rY6T06nO7Cx^)@9e
+z{hqjPZKJ_)6&=U&3U$?NTCDK%-I=x+;czZ8nYz^+2_17!7xZtAi<=Frjrr~uJRDwb
+z>}f<n)$3*3w{jBi3mpDmxd{yYw;i74P0-ITTkzq#$u))!3}Qbu2dLhMIDdf;zk|5m
+zV?0EpbmSXEKiNX8*xKwl75f@Sb{i6SfH?R4v28-M(3AKc;<OQ)mKoWTxQpWhMn-DX
+z77}T6*3#&zd`f7UUixUN#eRV9kEFQw_~)+}JBlH$6X?{}6z?F36mvSj5Mz|4VPXbd
+zxPT;Xpc@}>e;d6xNb6bJ=W!CltW4@ESnr|W9&_*<Mp$DC77k++5%QM#O^&ku8RU>9
+z+rT(&`w@9eh#_%ALPVnyFR)p^Gp^8|bl4}%lMvD5@rURcAN&?kop~h4Jjn{cNHL_D
+zb0)~FFSN!avj}h2qs&q8oR`BBra>S2r}4~a8mTR0YQ^mRC)`B9*vtC+cQKQk<0$`{
+zl#U0Lb?CdM#mtkanejCGM%&N^8FT+GTD(OwD4hssQU06JKGRqUyae7u6^eGVLG%b-
+Kp)Mb+bAJNR30xll
+
+diff --git out/production/IDEA project01/day05/animal.class out/production/IDEA project01/day05/animal.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5474fe16d2bb637b242e60c136af11092a3cb6f6
+GIT binary patch
+literal 544
+zc${re-AV#M6#hn6*Bv)COZ)$^Zp@(VM!G1v3A~aD4DUxBYGi+8T?5~tN9dwgD5xN)
+z2k1G1-Xc1?D_9i6oSE;;_kHJ_dH;HO15n2{hmMkgG|C1Ru$aLT$1+xQtm;@}&|Kk2
+zhGMfXu7za__tI(wzH%=Q8PZ3}RlzYssrvVMr%mD$uSep1Q@QeV<aDHeAv$(s=XHhM
+z7QPDcB&h{gYRHgl_QZI<ZV6X8!lp8*p)KWrAz2MQdCMF5UD;5fBpZ|V!s;eCiY78J
+zbgY}$z$SJ0@p|`pbE~6bVhdRY^QSjMVcPatr!Tv~uT*P145UMay%9Z>;u)1^ozs8;
+zjVXmg?alp@X3z&AvRzc@Yjyf+Mw@!0n4mjHmZC|hK{!DtuRVj+b{~<rk2o_Fb4XH5
+zK_d@?TyliUF&lXlfan&wGFr1JPCO5y8i4VDWKnxUYHG<Nxj`Zx*_knMVn@?N%=vE!
+CBWK(I
+
+diff --git out/production/IDEA project01/day04/Demo2.class out/production/IDEA project01/day04/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..afb6f086b23bd10d7a28844b2944bcd86b46ba21
+GIT binary patch
+literal 370
+zc${re!AiqG6r9(jNt;$vTk-C#Di{$xReGuP6!cK(#nUET;+A9sYby9zo&*nmfFC8k
+zT?Greurs`wH}A3g@%i=+;1c^0JnV%Sh8PioE2UL4C3xebCBdK7D@lk`rRB}0%A~my
+zS;@*Ut#eT>g;BQt5&h;tJrZ`(m3Th8NUmj7pHEn>gwlkA@qM}$Pa-LWE|NuKlrAQ2
+zi7*AnM*rA^Xi;xWF6YWFh}_6i+t!DVHleq*iZJ*caGR}V-rx`|ex5xokc}_~TqVrJ
+t+&+E<y*N8$44mkp!`T0BKo=2n7d@xg@Cje*{RzffLH-BqI*wh};0r&ELMQ+L
+
+diff --git out/production/IDEA project01/MySelf/LambdaTest.class out/production/IDEA project01/MySelf/LambdaTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9de0916c0588c254012221c97b800761faa7f04e
+GIT binary patch
+literal 2683
+zc$~FXdv_B>6#s1>*(Gdgx~05@6pEyP1bm>hJcQCpG2!8sLd4fJnI=m&J8^c>5>dgo
+z;`@305dNcoKu<aP0X%*XKZ1XGyt7Gdn?~?>jy)$cbLYN)bMNi``sczg0G_~iaqPem
+z6GIk;EgZFQ%))UCCoDW|;iQFAYcPV-ag1Utj%RSj!nh{RT6oqW0~a;%oC()~fyp>}
+zaak`{Eac*N9#`X}{ep=X<Jf{D4%+ZaoEBzc%0%8k?5G!b>bQaS)ZnCnjuBDd2D&p|
+zz|U37Q(R84DW7hfjL0*8l1Wd~jmr*I@<Ic>nQYDF{&YIS%2Ne4!9z7n%rf%=0~=CT
+zGuPNGOZzM+rd=hypg0`4VzQ`}Td)n76{5K!ey8%vTxus;?0Pz!BZ>5cz9hLWKXN&s
+zeGMEkup?Es#^zL-&+<T}Pv(^;f>C{r+;&FS2DaT#u*vX21A9`d!)%e)I60X1WT-S^
+zE%J(mJTHQRfw(KGGSA06KZ5&j;0|ad8%gvVNHiNDT(Vr|tFlIJCV5cR_>3~CN(5(?
+zNg~a&)rzMyU@@1es-zc)U6L#kHP7*iss`Ld!3M{)iK2}XJQLS!%)mFW)fH0lLedM8
+z1uw#b$y!p#0+&NJ${=e!VO?aZmh^d0RHY#b^pp@PRFYM)T$My2?2bVsP@(PB1Rk>?
+z5o&cprDxSECXgn%s*PF9>BO(wsOjvxE>=C2tVmImtbD@6Yc_7+bsKNsO#|y9XsXKd
+z)2Er@WZ<TSTQ=Up+cw_8yX0t9O|Ag+{M0p`UwP%$LdDC}38G4jzWVcdB7K3NSM&g!
+zm4_D<BF`tKWHrLoQeyFa_N=J(x|89-R+Z4(!o03~P5Fd#UyFi^+D7Bw+*XT@sQ=%?
+z`%Tr_V73saL9!hmkk`B@SD2(q+>~kr8zndrT{9(gtL<;)v9+*{V>>>i!e&tsUEp$B
+z$TFw8?_YG#+;|y}&<~=f-jy1EfK1fLp<)_|jms<Q?D<OMkcNjY)smRY@-SpYe%fQc
+zpa&XUHXwAwBGCQb3QB^SU-!sCM`~Or^bu}TQBIV2Qct9$7bXpIUS>0VL<D)JE_<p(
+zCyFZ2b88@#Sy`j4%OF;7qG<k(oA}tqC-}m~qq=JjAZ_AHUDRJ0*tw+a1+!v?H!7Pt
+zj!hHHLJx(t<t56*H)K8|#7wnfz#b0>xDlU)A*bkmTV5ayd-dKu!-9g(!-2YDiy8M%
+ziW9X8|8LB?%lqpNuI7#~-*;)&5sCw=nDt=mFEh3X&-ed-)(!CoOo8SMOnhr#_rHqG
+z!1nvgp`Uth2lQVDeG<@r5?Xf>m8RXGy>stf7(ddX4ZCQKMVBT9XtnDC*o}v2UxPhJ
+zHI)A#W9_uxPFO#qE!Xa}ySWah!_9R%oo+7X#N3?em~PH;EH{^kIcsP&ow%F%32XPw
+z!@h$qIyviTC$f9xZ9?BJpa+<Tv&6cG-ds=n?+aKD+(ln@{~c^FoQ?C?)IN{ROBozS
+zR}}3*ti=%JaEj<LtiuI#;|daBWO;_ZiEf||H?fgM<R<FoEm6kFdR7?3UfK`R7t=mE
+z86?|{{dfdziMZ~=1`5YWS|ij;LEgib++A#4z&3z_Z3cAxGC+ID@F9RqQC~Mq9Vh8F
+z+T(lg;Guo=EBw%8ArV>FP?y5v^r?vGbeK*wFYsg}{}eutZVh~jukjf+BSZ8y;%Di1
+S4(AC5eVV`}`n^PQFaHHBfySf&
+
+diff --git out/production/IDEA project01/day05/bird.class out/production/IDEA project01/day05/bird.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a3dd14e6000f11d7d6ec4bc804cd23b98866a6a
+GIT binary patch
+literal 511
+zc${reyH3L}6g}=EX+ogT((<NsD<Bb;ilL|r5>tebin_b4RgChe(iEv1zroOfnF$7v
+z82A8wq<?|9P9lK-54O*-&%^%se0vAbMBRjjRRa}N3s^I;jtw1~I<^?JQ|Zg7%}{AL
+zH~f~{F87CaCkmxMZ0&a$a%aInFccl>i;IcZ6X6x_xx|#5pwHbd52eB>nTxLFn89)e
+ze0topdomofi1oP_EB+)f<j1ZMBZh24rJ0>z686QpRAz>fA1RFm9R(fR7Iv^p2lL1K
+z`Rr~!d(cs{u!jOEzY{4x0o<1!cNvy{<W9$t@F*^rMD*ySkqqohsuNKu!96Nf{)cAJ
+zM+&(<>d4cFs*wRx)o3;dwFzfv)ea6{!JguClV&qvNu^_fcGVPHSd3jXETKpq)D$bJ
+g*GcRR7|+O*vM<Q}wlgT!jP0!CVrobK9N#Q|0cgEs2><{9
+
+diff --git out/production/IDEA project01/InBook/Day210202.class out/production/IDEA project01/InBook/Day210202.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..a2e81b15e08daaaae799f859127803b4ec8d95a7
+GIT binary patch
+literal 1617
+zc$|$?-E$LF6#w0PZMrP9q|!EiRFnc~3nWbewW(1E)JD^S1X@d<Zj)=fbhDe;y<sLk
+z`{FqIBFs4Q?z1vO>!hgf{vFi96aN9jxx4)$4UU<~J?H+;*YBKjlYd^c{sM3Ti#m>C
+zM8jwtXLN*cHjZ;~q%~x8Xc&tltK_&k&UcajMWua^pxB&_Nqnp!ui+Dh*raKjGS3iB
+z4bL$|3QkopbeBw9%r<IE!oA6tEJ6|`r^2l{?wabp4MyaO=_y;$zU(-w=_|aM9m`}h
+z*&Nww+_V|`Qj4WK{4P&h++I$XrEA*DIlmHjmnpWlgP9>-7f#(0nK6c=JISxs>Xy?K
+zVxKv?r;aNcdzr2+-4PYJ&-MJCdVwK&$#r>?;aCvTkfxRPp_1vTsJ>UbZPs@>PIU^H
+zJU}r|IrOsAa4TZURB=akM{`akFpxkmjkzt3*0J^D_fJ~)l>Jk>J$>|O^T7j#khMyq
+z>QGuaUZUk~-Fs-@G79RrqT#B6DST#N8byX4sv$k;^7@RBD^Atxj^Xn-zA#Y2jD}eQ
+z*KnQO+LuUB`#{w`i?7*ds;ESmSF1GF)WKa0-)@iIG0eSEsoeCWs8J@TA$K=qI_c|F
+zN>V|=YwCG<<~PEBwM89Y;s!%<^Ut3)zx(0e`@d~%eEaPF-<z#ppZw8!{`eQh&|l-L
+zqTtvSF6T|TLYgPJEj`7wINa$4_I4=Cpw-pQvfDb`9fO9ln(92m(4N(_?>ehu+bJM1
+z#VgWrn;I5q$t9Y4qt0LyZCkhni+i3RW<T$*u$?1V;54_Zmhgsxz}!J1uM1QUxr6&+
+zhn*ZuQQ($UHl@gEpiQ3qU)&f5|Jx7mp@;s+)F%X{eid}SLANwXMlw3G4)(imK1OHE
+z2Q~E3X#@`F#{kJLB=Ket%tC}}gnhk%&_YjtBD{`B$=CHnl=K;;M-wqpXZN{GL`El~
+z8_*Vds_TeP#FDYVuZwJJ(C3q}=;#^_J%o{rt>JJBM}ReSD|TU@-3WA_i9vDzhj4<l
+z3=U(Q_~wb{ETOmX76i4eI+zYv67sg+&uzSeLF!?EJl`cPL>US=PTpb4a}n<o7NKn8
+vgbz}Wd89CelQfl6+w%yJ(}aXcQ&Stp97&yQH}Mr!PvS$m$LanNeJ5T5AV`#&
+
+diff --git out/production/IDEA project01/day05/animaltest.class out/production/IDEA project01/day05/animaltest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..31b1221234aa93c14973e86e44ee0412ce0aa17f
+GIT binary patch
+literal 679
+zc${rf%T5A85UhcPg>@AL!T0-xqOKl1X}p+tB5Hy$F`fpP;Fx`w-NnSK@rN`9qa=QS
+zf5J}~dlnLmVGrHg)m1gqJ>Nf{UjPnZ889%dV<v@J12N2{F^`2b{Vf_;!m`3vbgb%F
+zV@MuJSBA$7@#5wcgLdN81w*DRU2)cQs=~kIRhy7(*{gB;iu+R4Jx~j8WuSU>{<wEw
+zaaTIr4n+_iQqSSiWhfMH%6I&MTQ+waRweYM+c=C);(mj)xdCm4L{<9reFn4VtV)87
+zir4gO;#8``GyUUsm4%5Rn8fKTXu3}Ox%2U)TI)JCOcb$cVhbf5+a`9fZemx7M*j~$
+zQ2$!z)jLrmC|?{r${%XwF$jf2+w_`B(B(_dx*&2$62Tp{8<#uLP6v#h8z5oO?^R{f
+zLKA^4#67)ZnqFCbF)%eb#bK%}%8YVi>mBSRYL8G%MqnHnie{I9QH)VeBa2*5d`*lP
+z<*7De*V*_xwDKzwr8gv7&`T|(`i5C(k%>Xp<IpjQRAgT08W5JJY!Ft!M0BUgNIUfl
+Di6)KN
+
+diff --git out/production/IDEA project01/InBook/Day210201.class out/production/IDEA project01/InBook/Day210201.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..da5c00a5d5b6d2d4208cd6f830a74ed570be6dcf
+GIT binary patch
+literal 1488
+zc$|$?&2|z=6#fdjDblt{n}{)*IQ~Qhje%q|j-u#DjG_=!VwB^;Q-LzHfo`TL^st|Y
+za6Ow@&n(cR9v{GGa5)b#EA<vcjY>Rn=&D=yufF@;+x_<a%Qpbdplo3n@gXE|Vw4oK
+z7LrJD%vmrI*UP+xUvXM5XS8iWOJ}w88^<}0^9+#-uIH)@LpYvTWiYaSRWgj^T~98z
+z8*4IH5o>kQjOP7{sIQ8^)#pv6p=xeR+j8C&-`_|siq8C8YCbiWCR;<e9>bpagZyLh
+zL?r9NTThl$;Ck!n-c3?eY78t#q6pS0&Da1>au5um2jpc2(o4-T41c<<)@}$--&7Tf
+zoMQcG<u+up2X;{?NoHPi16dUvhMgrPDjNmS?7`>Q&oRYdmHc*4kxQ<wX!vspvpSoN
+z5jY%a8y9eq!J&IqO9i4?kgDcaTO$!<qPS$^GJfZ{Vk3)1274<&8&`FTB^%dp-9`>K
+zY}|xnBaecXmMQJG^pWZd6UDX1vZB6Hl{zgY8`Lwutv(m-`pH|wnIh(-XrwI^af_&9
+z2N}j2Vnb$quOievSJg;rDd8#NJQmL-2C+UiASJb+sZTm;a8JWhs86w9_knDl|CEr#
+z6Wg>Y<UeBA7tiH#+j;Qb?R6R|zAjZ+il8^OdVr{kRgT-b4|f@+zkqYSC;o=q#MozG
+zNmP^{bU5zO^yi89cC*(qPX^h#XtgBK@@#8?n>qR|zb?FLUACtCf$8sg*e-CT)06|;
+zx6XXO)9J+bDYBwoFS*15$9;yQKZT9qz>ocK2s`Qfp?@JTJ?XUWqEnJ~M!R|9IoLlv
+zv;Mq9`bvz^YH!NB5u<$wdobP)W)=+c1pbJ=w#s3%ST>x~#j@#Sisgv2P%Lw2yqG^(
+zn0b>4FBman>Mu;r#EjVm^IwEw=1YWuE{s17_V<VXUcoFsN2D;*1%H9)@-F_)v7Oy7
+zFm&D^_bx12CyXw3bYW|t;U3Uq1PI`mM3i30A$rO5%di6_g8h(cmQ;0<>eYp02yBXU
+zdoe-f5Nzzje%dE-m!2sq>L%qofM1A&672_xwJ>EF#bJ^R93kIvgg#&zCdV|#QTj6?
+g=YMhzQ>bR|I96!4DA^sXQkn^zq;r(cGxVJL2z^#s=Kufz
+
+diff --git out/production/IDEA project01/day05/Demo2.class out/production/IDEA project01/day05/Demo2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..35c41a5bd4ca3861ac7434637d5cdfe3c045dd16
+GIT binary patch
+literal 252
+zc$`g+%?`m(5QWcZwN(AY8`xo?BC#Si#HwLI>~HIaE7c}d5|3pivG4#MN=z>cGs(%E
+zGv6fhdOw~3hG;l2P_<FBQ72eq6{~DQFxs6B!JH;rNvQiOmW%T-km*_k5hqPQ2}QIK
+zsmlE?G_$=r5vu-HT>C?BCXdNrL~vHgISu7p<&2}#-a%Z13ll{`<&P#b@{JdXc;_vH
+sgA6mYP~Z>qB5pomwb*&u1I6wgbmO4_o7K{xffB3x1yF{g&nud8KdHwqm;e9(
+
+diff --git out/production/IDEA project01/InBook/Employee.class out/production/IDEA project01/InBook/Employee.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..a6de33cf0fb8d3452c1ac146e48f3e00fe4b0ff9
+GIT binary patch
+literal 666
+zc${rgTT22#6#mBbmTjeW&n`ad7Fj|)R0Q1-q##4^t<eVC(%rBv=s)#PPy{{n1Nu?X
+zx6_hgGR!$=&YbTu%YJ^ne*joRHh~B-0|;Z*4|6fh$FLw^$fgnyC4sOb+bq-ND|s&q
+zE$K816|ZAE%}s&mmhITyw!lQL^#49zC3?@jAbO;1JL>qZU00nmS#N1Rw;@|q*|Gg|
+z&<uN*_N_pwTyl0@_quS<zG=A+N>NHkZbu+?q`V(TW4U}^PaM$Zja;7g<EPTTRXah0
+zjuI93uG3J5wl6rmFCU7lE5()KvQK3qfhiMF#7x97K;Jz^1d?6Jllqlvc*yd*Mffp8
+zTtw=MVCFC=he1Y@ryBbP^N95ZVP#$svX)+9JZr!ZW10XU$CxMF!Y~%OK>-cpN&>n{
+zQAX%0&B+k!QH%vL1!n&)V!gn4`X!I*=CUR<e+B|VfpJXq0f!!Yz{S4cNlXRc4f^!&
+eOsht8GJ4J@c3+oZ_W!s+tpDLLe|e_$<jgmj%46mL
+
+diff --git out/production/IDEA project01/day05/Demo1.class out/production/IDEA project01/day05/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d05d9bce3a86a57ebd4e075445900297ea58abba
+GIT binary patch
+literal 1444
+zc$|$?O>7%Q6#gdOAII4c<Kna-P*JIfq>#7-B|zN<sN1MUPK@fRm6g-P9^y^bJJ#;H
+zB6qGx+&~<WpcjM$haiO%#1Vvq1Q#SEBqXGA<AB5oQNCFRYSaW_Yu?Pf_kHiZ`DS;&
+z`g89y0E<}5VGK`<Vg|EWoXO!yJmq4}%<}~T7R>6I0t6OZEV@_{aL)UopDYVxW@fJo
+zSQXt?0uwbqRBQe2hKjDqjewp)O}AulT}HmyA2_X~<HrKywYJ<jyI8uUy87ud-CgO2
+z0+TcAwJmv5mI4`WmKsUqhnr<nL~L<XIecPew8<354uKLN+1L8Ifo^cLINEIaRoz!f
+zhjkl?Y;CW~UfPa}DHqcMxy!G$R4?&$7`u3u`-bjEEw$pCj&o^`^QM*u592PL^YA>*
+zF>*x(fxe-m_9+)-59e_~U}U{&R^tNsi&`gf63N~wYwLDA;b1w77d*U(mpoj=g)Axp
+zV?#=ibni^{jV;wmc+k}4>r%D;PoMt+Hg@7fb$M>xC%jnu8~+M5NvMpH-SSYHA-90r
+zGrNEZi!+BwpTi|w=BdPE0>`^@TUB(}lF1D}>2MV%GE8E_t<D~H8+MwV&HjA*jbA>0
+z^UjBF-TC1CU-#b;E>?^TFAJQ$NAts*dRrZ^2X$6tE78%8iyAMnruBBeC*W1XP(_tM
+z#<61Yw}%@)$T3j-iVWL<icb%S<@-B4ig<0Orw)M+KXHTGDbL=Yq9TK!;U}u>VpZVr
+z|J9qo$^XXT6wHfiej|Jt`5e+dz+H*6;B24y1mdGKJVEQE&QauPy#W9ZqLBKI;US_(
+z7C*w}A7cDtj1)4vu(G#dH#7EruF<sej+tzCKiAAy^`@1rH*LG#bewvl>EuUE&`mKl
+zH)W-8Yd}h^;~1(#YTj_&dSlf|k!i|&&ID*|V;mZ?kBrzyMb=Eq=d3Af&~IkRF51q!
+znB$3d;bfMaqQmV8Zs&^jLeZJuGbi3f_7+B8x5cfy-;u&-(cYsp3|L0QOe*4XYR8bJ
+zgv(UCL(x8^q+d|VFDc`<6!Lo%@e?NT8;;|5`u@PfxXX`<hm)!JSIPbX(?m`3QohDn
+f;wE_+6dflpl~(zNoM~QC2k+q#u0~kpDjxj{Z`E6$
+
+diff --git out/production/IDEA project01/FileTry/FileTest.class out/production/IDEA project01/FileTry/FileTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..6ae8b45a3532813c535c3989adc605dea7a08828
+GIT binary patch
+literal 1479
+zc$}3~-EUK682`Qf*xPe@+HUPSsi*^F(85>|bklBvY%pMU6ex^LxH;R-%7OMAa(ar+
+z8;rr27!z(56hj~(kR>F<&5L3fpm!$z9d3B%Eg@=s-nWH~*&BNCeEpt}_xb4g{oe<V
+z0lbIfDni)7(Gx&gg$FwYd52?{pI}_7)oQ}9Tab4Z^6w3xkK=uzf1o0ReiZ}wFn~QA
+zdl^~=Ov`llFnE)xF$Uj|J!LRNvZiGmsgx!R=Y&2{Bug}FPwK@n-7$sUF#6oHW?5jv
+zCfS^swB$zF?I*0Hn-)Vy@^to`eo;>sb*qrhyN+oU`emhQQ=|yjQPY;OB2IS-lrz>O
+zjDbxvc%})CoL(EpOZsPd^K(kcMucWsbxlaavXt<sOQF20Po5vuFUUSPHgR+^sCm2M
+zOd1WB=dJXJIvQeVXV6yHq=2E!nNy}UWq(>04j*aQhe3w6m4_d;T%%w(8iuf6!vPF)
+z9Mo_KhZ%a7uYa+0d+x~(mzS@8{l{W;`THNc%6~olcIm4snV06T2t)VO(!KBg{N~Fp
+znq=!r+T6rBW75?yf{!_}8b)!1Bd6ggjx`d`UwMVZYq!S`Pc~ngQZ&o1aHAEpB~$-f
+zLeMPlHywJL?aauN`h+g5XjldJtW-x{Y9l{Wc8wANc16^Dk?bhdbE&GKmndhXV7U7x
+z%675hHg?mROsy>(UdfuZtpY9kqF$^RIl7lvawL^~8K!_(lVbGN3qqryfhGf3eUbGI
+z^rxD>85<F$|ETzRz{Kegjgyup&WQWB-3MEca0k(rx)HAt)f)0TB#0|`9qa4CY!O^0
+z{dEzZ@u>GceA(?)_(!{cgKt3@YzOc2vkYgMKzBw-D35zpZ*MRjjH|bhODOT+u8fw@
+zs!*<>We$BpR5#AvKuAi12`v+lk}`V@2`P2>XRjkH#Xdjb{Bn@Z)#iUfFsk_<AvEqy
+z1gZ$<$9;mUKO>T_qV<%(+Zs4;;CvM>`u57c$K+4~P^r%d(HMd>st{pe>N<kA&`P6h
+zqi<FegM=O+G)FNf$zz-*WYLT&G@%*txr8@ylOleh2r<XwlsALDc!TVkm>OZ7#8p(W
+zfoybFSRmg`atC+uHa63%*5eMkNb-~SEo>n_PChrWm81ZY^84HJ5863A9H|;rQaQHO
+cHJ?v%Au`(G-&jXV>=`<rQaXn1a^2nk0Va)LiU0rr
+
+diff --git out/production/IDEA project01/day05/pig.class out/production/IDEA project01/day05/pig.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..5475e3a14679a4526b37c346eadf82ab7424059b
+GIT binary patch
+literal 508
+zc${re$xZ@65Pi)u8>1))?h7~6#PLErV7Qognivxd_XaxHW)?CGCfxiH4t|0jG~wU}
+z_#^lg#+n{tjM|-4SG}%!?{&X_&fWktP_v+6%|r!N1M3zxu&HB9$2Nm@E(0027%Fx5
+zj^A^~<H5jb$B_&M&BG2u?jr09hN3G2aW(e4BD&#SkC2iZ_PE#Kkxc3Zn2T@ah@s&2
+z`Q)_W4CSCnV8DGf@JE0lKk|eaGGyzCnAHx)QBPdTgv+4mlVrq(4nxO|ja}?9m>;v*
+zeEKk-KI+)FaR7s`Z#@P(&3Pbw?lG+VP@Rlo;geW6j_Jjz9~nB=WF{s{g8O8t{142a
+z50lCZP(z-6Gg%q1#2H1CsutB5I<=$YSFk5_Z&9=qnpaZ=%BpD>Y%D1j4a+DJ2RX&+
+gg6m9i1LiX_rR)oGzv&FxrlPac#swYyvg#~<0iI=J5C8xG
+
+diff --git out/production/IDEA project01/day21313/toString.class out/production/IDEA project01/day21313/toString.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..39e8aab6e08da56bf3ba221e95c50d84952e9776
+GIT binary patch
+literal 797
+zc${rg$!-%t5Pj{f?a7#o<JfE=K*BPPu_ulR7Z8^qBugVea+FI>ZBNT|Gz%KHk-}fW
+z!5|KN0RO>9a6wdii~_`SsOsuhRqxeQfB*IM8-PPRv9N}l77Exh<`&1c@wbh+Q^8&A
+znA5I>d$`Z>fa4)U>6wa^e$J40TPF;Kqa=_F>%NNRt64OX>9H7vbhF_nV-cQ+RGD~r
+zS<r9Ql%ehi;{2f3@AW;M40WpF$x{L&p<;%nd+MKw_reQBJn@$3f=Z+lQ@jEuHAKd+
+znL#tHLhnd~G7dyapfyZp=~%v0Mnm-vW!L1|uu-+)qGe+bZPI<YgN;Y%7`VgHwc%mk
+zMh^!ZeH)K)$WXg94uf+c^7ZIUjy1#DMCw62)gm5CGiPhH+Wb^fa>*SG24?KM2m*$p
+zn?--M9iC6Mj3^<QQGO$9rV{TB3D6`%iio;#B0W}-*~mYHFNBr^*H=_g(K{1`w2g-A
+z|33&VgPw+YI_ArPnO{iu3Pm1yM!vZB8SLW%UME}1F5!^1m**Nb$X8Iu=Cb$$J+>VA
+z?ib|zc8&iiI@LMy?Xt5!N0Ho5;~ZX|qx1>9JqMjC7cAT0WXsg0Lj5c>Na7ap?UK9>
+ZWf=Bm#z0t;e1VpF71tJ`uP^%C_zfc-r6d3V
+
+diff --git out/production/IDEA project01/day05/Person.class out/production/IDEA project01/day05/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..09b2a3d04f48b924014c21cecc2709e4ff47bd37
+GIT binary patch
+literal 609
+zc${sJ-AV#M6vzLQtLv`oN1FEionQtTgjYp3fe=UuhWDcmwzBTZx(2>MH{EpIOB7Vl
+zMGw$}L{AZ&S(h|wU=DN6{LgRxXWqYF-vE@6*P&uwLj(&N7O@n?vW^w3s#sI8&Jf}q
+z!NATK6r1<xn67sDH7{A*?v(1DYucS7hRCsLo8AdSw($3Qw?WOPPMeyORnr#d!(LOk
+zm%M5DIH$#}26s)F2SvrZG6xKaYMYM^%B7lc2aZk8gbI=s9#}&38T7g{bX%fg%9hwz
+zv@c&bU?5{aM@+?rflX|Y!_S+$kNaB{+Xi+JXE3JO45^9ji)L4}ykDjIXyAz+8E}Sl
+zksZ%yI;9#7=+T&h_sCx6pE85mmziagj|lxWFhe^E4RVo3iXo66#3?2ytB^u!^x_Lx
+zaqkH;4}MpYVuG|FjzT1jC@IQvV>M=x4w#b4d}bzK9{M>DmdpuG4_XzHN|Z4c1t<-3
+cKY+Ziq}n4wY2_JV31L%^r0<44$A{;>0oV#_yZ`_I
+
+diff --git out/production/IDEA project01/day06/Animal.class out/production/IDEA project01/day06/Animal.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..6d59aab560c8e1bcb9073a4a404cbf8b3aa22cec
+GIT binary patch
+literal 654
+zc${sK$x0(p7=_PGqLq}DXqU#R?RMxEG=g!{ZWKiXS3$)z?r&ldZ>XV(6(Kv_`3B-b
+z5PSj!ZBXz5d=54E65^==2f7#a*Zqg{{pVKQzuepb_=QOwY4m3>fWb6|bPVHb1{y}v
+z_@?2zhEai(D;-O~EY;<{EZWko70Z4@xwQp>&PC-ae@P%YHNDNzRd0u*-6iE(>rJO(
+zHGa#A9g4lGw6|qL1$kUd`MYXQAXnOvt-1N)imM!H6Plm;cU3@7FIMe%onH2ujjFY#
+z0!~+?oDD<<x?pG+Gcb+`I%ywWw=ZrVZqM6ihmWVn8h#k~3DZCZIyXh_=hKs?gTuEW
+z0pp`1fu46e8<o0M^*@!$tv%mz_zAow8~Mn)@`{@@?$f>{9bT&UKV<>!PmtLz-D><1
+zfZ#)Gj7gq(7sf2JWhBC0w(u9?5(zVTjnoAT3FH`a90xj(!WT+3bTcy|0eV<N2s2~Y
+z7F7wp&5y9c%oRG`i6&W~rHGhe)I(~2q>QP-DX`0*gWfl@li>_660kdCqawuWVJpk=
+K94md{y8J5<27~?p
+
+diff --git out/production/IDEA project01/InBook/human.class out/production/IDEA project01/InBook/human.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cbbb5fb98328f6e7058f53ee5123d386083ba6e1
+GIT binary patch
+literal 485
+zc${re%Syvg5IwiAG%>a{ZGFF%tqao@#6`u0iXa3PD&61K(5B`gX(Dtf{y-OggqtpO
+zVL`+X@IOkI{((4&QY(1j&fGcY%$du)f4;l{*ujQ`1m;92$R?4KkjK1$1p$i;i9N$M
+zynTjfp;%{#9XgjfLs~Oz{nWP_x_iMJCLxOEG`U&lt`XEfV9aY9U51o)VjnopmD=_#
+zZdb`m=N^Mpb9}d{9~*%*b;Ns>a;Z`(Z+G|&mmwf2U`fU@R%qV%{$V^Ajt2cv|L)`U
+zR=}!^HLNqp)7A``pjkD!-BQmQ9lh!Ofoi?3r&~1N@rlT5A!9h|xog;7&2x2b(eJYV
+zzzo85P?<C%U(lv3J%U@+VjY`^(-wmhp-bNfgGeuxGNT;d8iGBBv_vrxf(m9R%HIOY
+lvy^EWljdDg2b}nXh!TB9?AJgF=j2G5pE40ACh1U_`2ye)V@3b~
+
+diff --git out/production/IDEA project01/day05/Student.class out/production/IDEA project01/day05/Student.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e782cb00aed6e36b70d20b2b27ffc1b61773e87b
+GIT binary patch
+literal 733
+zc${^SU279T6o%i)CfV$EV&lg2!|!j?q&9kyt4ePKK?qW)RK=@lGQ^SnD4UJYf1y|Y
+z4vSb(u=oCt{*B^0n}t@43_Ek?oOhn{&d%@CAHM+fvEjqRwHmIwxZ%UWO%Jzl+hcUc
+z$6egBx%)022vjD+B-H}qxj^-aiA}a8&}t9fs}HIds(9Sn$x;)KH`jIr%1@IKwTlB2
+z>lf2#Pp2={UdT)^NQNrhRjIN2B3aJfnTb`8)WM@ZIn$AjvrQIa73GKiX(HgX^G1;}
+zvA|OM?SG7@bWC(}PFbL&9t-$8$uu46XT~~_Mehx(mXN6PvM0x%Pd<JUsQ+cpR$DIG
+z5^Ly4G;zsAS7IG?iHB&BHIr}abdu0w<D7wmNv0!SA(>|Uhcjy?>21?jMt538bl04d
+z7I63NE{yGigj(<Oxg0(rAo%%M;OsD_bIupI+d_#0sCK$X5MLOTu$XIY)<cC+gVEAV
+zg^LJ)JmQteu&h?W>QiI;xSgOh2PS!_p2Or!R=_;MmkY$}!p_Q1IB$+n9vq_5{fg>0
+mxZPLZQ9EM>D06P0mQw-}n&*tJaIA8zF?X3&YxGKf_Ua#8uZ2JW
+
+diff --git out/production/IDEA project01/day06/Demo1.class out/production/IDEA project01/day06/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e1d3af22ad49c35ec9978234228364869856daf6
+GIT binary patch
+literal 599
+zc${rfxlY4C5PeIW7&{ILG2y-sDNtZQf(AqbqKW`1h=yvDtinb<kmDdx(ow>9P(i^Z
+z1U=sYwEO{L>_h~ltmK)UH#6_etlz$$UI46OPKSzq9SIC*7{pLFhINc!RK=KzafZZ(
+zbY-x~5X;XWGALVKMKGib(iOW6rzHFXUa|?v7Q8aI54kVHxCJV~v8*$s3Kf2~v}SD!
+z$6H<}*x}M;=+7S&YW$R2Hg~I5G4Q2ZU5`Y#U!^v)Lz*F8w}m)i(2HKfFN+-+3h5E`
+zVpwjV8=3(Vnu-YnlbB-2OnzQmeY{+Jyk5UQUVc5FtC%)0gIR{;pV6qWEx1>ziE{7{
+zDxTE?;m}if4NByi(@D?Tr_ll$P;iF^G&{fy>PZ;cw017vX=_Z;FHjMl7+AOiS)C$_
+zJR=`pxCgtTOBa%46HO2XS)+ANp@+PNG%~H`75c)Q@_?>(uTCB$5u@66zk*(5Bi#HI
+cpNlGq^A@qJa)<a$MA#-tQhC_k7m??F09u50oB#j-
+
+diff --git out/production/IDEA project01/FileTry/writeDataByStream.class out/production/IDEA project01/FileTry/writeDataByStream.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..54d2e3ca95d13700033d30661157b11a60e5a1d0
+GIT binary patch
+literal 1072
+zc${@p+foxj5IvJ@vSHak06_xc4KK?zilAI#)S#g(7qE&HR)m*f8R9~+No^(yzv7cm
+z`s4#Ip%lvx@H_M?EH6C^g`$vTySIBzcb_ve`SSDQX8;q(8fb;3V<3h>10f74Gpx*r
+zGNU?D24c9O%uQv+blfsvVqC|Bj@t~;wClMt!w|LxmKn6!%DP}^wOvmv)XQta&-1ks
+zW!mkE!%NHDcU63t)Z`1d#?Wi$T*~=7saL)$#X~N6c4tZYf|q9qROYV7&}FUIoBSnD
+zmAF?-(W>heXVgfx!O(KB<W^Fu6BUKmU7t$VsTD(LB}<u&3XSSH23)MmYF!>pVnnI)
+z2=I9E(Y7P1(ye%k1^0_o-*Ey7hWL`?&elAy2D)_gGZ;&iy6*@zg}DExYgBbHkw6=R
+z`8OqozTEVx%6xnO_Unf?t5VeD>S2-Gma68CiAhYEn8u8WG>Aa=X{r?bu89opnYgcp
+zb(|p2!~?aIJoOY95`R=Lu5AiO(oR_?pGUkX<WueoPafz=SOfo_PE>5WHCYQT&2tLN
+zTXb9$wpquKs$C>tL*81+2C-AB)YKKL(nJ|-eBS4dz$LWMWmcaMnA%yg?G&ZRGxCwa
+zJ+R$ixr1ypNa{F4);s{96J6w+a2DN%#owV(9<cWjDzu09pxHwWMCOMZh`vUQoc=8O
+zDOLz4()ogxDC7%~gvc-KBUTvNL({aD)J7UGl3D}J?+{bP@!eqBEOInA9B>(<H^888
+zGf6OsMI62KHcB!kNl1pc%o4jCq34M46GAB78B$?j3Q6=(&sL06Rge1L680SWsQV;!
+uJdX>cVve4Rv`K2VjmzjKe}$eT!avZfBSgPn7zERCRT)zw=(S+GuKxy1Q{&$N
+
+diff --git out/production/IDEA project01/day06/Bird.class out/production/IDEA project01/day06/Bird.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..26d114935e6ac200cd99aaac65f0e6ba4d35aa6c
+GIT binary patch
+literal 598
+zc${^S%TB^j5QhIlOADolfS`ic9bzIFqZ<r~nz*WNFeJp)0UA7}m!yKmy)Wddi6lON
+zZ{kZB=d?{oy!50qXa1S_X3~Cqy}biC#<l?+HEHTPHVi1JXRs-KO~)34b}BqE?J`sv
+z);)jZEr)xPR&N>zZ_?T8GpHB-*k&kL!n3bu?$8cy_|PGxWcefR^m!m;oQUf5PCPJ}
+z)|fxHPg>_97<WkZxEpo+n!unmqA4yH9z(Tp`_C3Um=L%8N1DMH*pA~r$ze2l5ws5}
+z*Yjt=$i5VEyR1|XB*8=mS!s$?ve=c@`JBHHB$m!R;c^GN^tE)zM*)+KWDSbCNYMeb
+z=6(qFO1BhpWQ|Bo)6rnktr}M$kEMvBp@3y#NLDdn9Yry9HAAF+qI9S<RHDqdC_!aW
+zLOB5pXgP&^c@AX|LbaqXr9)^}3*1svlB2mMwdNz_PTYnSRLEy2TctYsTlB8dEk%AU
+HBCLM{sOe*(
+
+diff --git out/production/IDEA project01/ThreadTry/Hero.class out/production/IDEA project01/ThreadTry/Hero.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e591e4fd181e16a3fe28759b6f590136ed7ed04b
+GIT binary patch
+literal 418
+zc${TW%SyvQ6g@XdTN7hjtJc>>!9^Rvu3RZ@grZP%(Nb_ZNrrSvo0KsX{45tmaN!5|
+zQR1CZ5OHAc+<Q2Wnfds9dk1ii!vGcR`0&s+Ww(aC8ukfZF6NTZ8cfBL=*>i)^@gQZ
+zd3Hf?CJO@f3Ds20MaDF`<>6B0s=Ok!JO4%f?wCEVi<HTYfy(9Gavn=P67kHY6p5IP
+zg;r+%0ljjf9tq9CXriS^NBX&UBXz;~!LV5BMD~@T`35{QfgwU1gs7qxVhui_{#VIf
+zzxTS2r!pxCZl^oOF~7XR-{JCRIm}`Qdj?qN%1>nX4X$;b9^hDRBYFizrz<$o$qMcZ
+nLk=2TTWkn6@~n-|q5w@sj=p8sWCm<!;>dP}>2SYgUADgf&r3=X
+
+diff --git out/production/IDEA project01/MySelf/Demo1.class out/production/IDEA project01/MySelf/Demo1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..c18beeef57616de41467d3b0f50f5c52cc5107ca
+GIT binary patch
+literal 971
+zc${@o-EI<55dID<UD&RGAoc&JS_>5Hg4+5+MQUqfll3oaXlkz(Sm`#vnq@J;TVKE%
+zZ;gphpo!2}^#ObeZ+hWN80YL3L4$iSvorI}obNkxzW@6C4Zs5KN{C@b#Kj<HCHRmO
+zN<RSpmkJ?`ISCnLC0xS12t}g8Ob|Kl^Fpb_ff6qB@)Z$RMJzB(ESW9SDKhv|=`w?`
+zV$}?Wh-$Ws2c2fcu%GCa24!NZRn;41-8OlAkQAJ4v&|4z?{_t$@l07YnpVC*`KE5R
+z7^YHN>W=<GR~mY&u4s;Jw(14<6y2^<UwllNA+T-O7N5E`7<-QrgF>Dm;dON!v!N{8
+zw%%3EwnKGEvpROwSTi{_$>lQ7kuu^q!Z0~9jdbt7ezU*(iq{soxhCSej2pNqq99`l
+zw?q_W+{Pl&9CI8W@a5gl_itsCuq@*aRycZ<K_0yehUie?!^)0PrOrg^Kev)v<8Guw
+z>$V-ENxQK+&L7>Tr97e@hdK?tSr{}7`O)149m^Zcko;>29*07D+{MSojAsy^^Qb}V
+z^y{_SKkNtNo)Y`E`O<Ko(K?s1o-Sh=hv~KQ&j-erKsG^<LY|Qi%=N)OxaBFb6K--6
+zN6E?_0LO5gd<Z9S@}T(>W&PwgqS9CR)QqqP-)79;hoEHw?th?<3GE}q%r1gGg!Uk9
+z_G$ZBw<r^^heI1)6ecK-2%YUA(nEAeXO@ly!bB@VDxx?;YEq;jM>L9rP>E=n2y(jT
+bJW4o))2@)mgg#4zb4XHc+SPyFoqXXpM^(}T
+
+diff --git out/production/IDEA project01/FileTry/fileStream.class out/production/IDEA project01/FileTry/fileStream.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..4221e59211c5ad8f42df248bb55a18b919a7c551
+GIT binary patch
+literal 743
+zc${rg%}x_h7(HJ*?JdKULJJh7A_(dL3A1t|#*LB0WUz~pCPX&3!%#1_GiA6Xu=Yh<
+z!O8_28zu1pd=7mL<9DZxVC+nCzq#k!bH1NDKYoAv4&WI!Y}j}puvEZ98yPGMtk}rm
+zk-(}Afi;200#69}7b;TvB_ZpsHwo6O_%I}td=-Un``uQU?8#P#k+L5LveT4_GW!u|
+z>G$fCFzfFq#*z!~h+{)1q3mum+m$LJ%)9UWV|gaMj*QwKvnpzDn_P56m>N<l_KXFK
+zh;8Tof^X`t&x5e1RU8>ZnY1}wWsD!8*w8Zguq%6`+U!Q$PlC|cazD3)Z5geDNjL=O
+zZgRrX&hrC<{Q7+P^XsRB?#1azXZXE!7zgJ@^pvo0S5)uoUSAKL4exS!V~TgMZt|7?
+zpA%vFwwZeCI1Droz#Tua8Ta3D8LZS}TBptLB{B%Hf(gER^JGA#PhN|>^EeX6+{OTO
+zozhdh=2K9h#H%wrfN9KdoIn|sk@zFB`~tNbWcJJ10WALpx&6%n^1D|k_?ur)xK7m-
+z%(GiI^}f&UfcX_C880zYM3tFE&S3H_^EsRI%wmqURaktYn!41mfP1NfsV&nK5Ec`Q
+HY1y?uWay#x
+
+diff --git out/production/IDEA project01/MySelf/BinaryTree.class out/production/IDEA project01/MySelf/BinaryTree.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..31574630300b9cb6eaecd42d7fc2a1a8966dfb58
+GIT binary patch
+literal 406
+zc${rd%SyvQ6g{^|lQve<HtOD8RWK`86&DJwVqK(k<7yJ8aY{OYF%|k*t^^l;fFC8^
+zjD-r7f%`Zw?tFcJd;++{Q2+-+ACZqkLZ_7TdQv?}LX_OEQ(4aA8>NL=PmPpgf_J5~
+zs;>#o=yXPKZ>=^=l$Mj#GLvR1vXYTuQsttY38R{Q1G@FIdf~PdN)wJpkI6#3intWI
+zh|}6AU5st0Fa^t^e`rFGRx6XsJJke++uJT0Z4VxN!eHleLVug}kS%0h;{+}KIzaqf
+zw0Uar!~tA8yv3FQ+Gp>eH%oW9dKPpLaP9pHuxIUE-uE}=a~q6ZqyNW9I6!E7->L>b
+Dds0oO
+
+diff --git out/production/IDEA project01/MySelf/Stack.class out/production/IDEA project01/MySelf/Stack.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..a8862b4ba4cc87396f4734c7b1ca13c5514f9e26
+GIT binary patch
+literal 180
+zc$_=+Z`VEs1_o0G9(D#Ub_Q-n29|=-;tWOx0SzDD%HY(TG<}cMqI_%3FtAKc4kH7<
+zh9-&>NFp^gn~{MlIKQ+gIn^yQCl$mgNlebx%StRuWMtrhst1b!%?63;=OpH(>-#5V
+qr6!lKF)}bRFfo7tGYcaFGXo0)1CVBAU<1?aAR4HG14uG4Z~_1VIwijV
+
+diff --git out/production/IDEA project01/META-INF/IDEA project01.kotlin_module out/production/IDEA project01/META-INF/IDEA project01.kotlin_module
+new file mode 100644
+index 0000000000000000000000000000000000000000..a49347afef10a9b5f95305e1058ba36adec7d6dd
+GIT binary patch
+literal 16
+Rc${NkU|?ooU|@t|0RRA102TlM
+
+diff --git out/production/IDEA project01/MySelf/Node.class out/production/IDEA project01/MySelf/Node.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..97d1dd1cb8be0d29c25c4d2c02b277bf3be6dcff
+GIT binary patch
+literal 1669
+zc${@rZBrXn6n<`Ac9XEs01XyYN?Tg;0;IGUT7y7DtJuJ{rp8G-qqC4D-MZ{D%Z3@g
+z`#1dJjPT8|j-}Q*olZac6Z`}I1wS~}=WezWDD}%d_ndpqJ<s!;yU8E_{`L&Od#I-{
+zfVm_TTvKs9g(%*aPFcl#igr#eAIQjpip3OCoybxTCQy;fhq7cjiI4Dc3ODeHicbX+
+zwz=uAxlL1`x4ODlGwscybjt!s&uZNd&*Hm=-KHI=J}`ETqHQ>>qQ3sX-0+#G%v+A-
+zF9<}lxw=4XIVd?*wH$M;y|r$7cZ_vAD0VjtyKZ=v^uu7xzi;iZ)Mz#ZGTD>&%PYk$
+z;njR&<C|4uJ1kTJNGu)5<~mhv-?EEUYe!;Ap9~EhZ@;(w3c~nnx$`GMEKubYN>a00
+zj^VdGR$V&L_KkI9xMf%l+h^|`Ij{Mi<+K8FiW7)Lmh2ESycRhPz9E;Hp5ZjzErG~A
+zrp7(j^><VhRm=#aYHr)xFmG6rQBqEATHc`H42Crf;Vpsw?v*Q!Z?;TN!)LguVGySU
+zdX7wA!zj*b$jJC$mt@8Bj6KOz!+BiLP{pduT+^WAmWtaNK1WT(9SvXLENAe#90GmE
+z732G}9KYUqTYNoarSKtCY+GPBdqm!4*S2|q<vQiu-T!$fjH|($&^M*pE4k_kzU5<}
+zYI{4rNj0Nxn@BR9bjvN?qTD`3H;t|GEB?pB?6fUC+rc@0V*~s?qYzR@?u67WuvDEk
+z#vO;ib%b7#R?x=tk0Bm%6T#bDl_03#9j;m@0q=&_a28?l3$}^Sel7C9AhM61eBluy
+z2e@5$j_4s`GTPZSzr#716yL{e{wb8kW2leVl##+A5(gNSr^$T`bx)HrB2OO%d?c(q
+ze@1{_B+!R6`f-t5r^xdfp)Hf$O){&K+gAiBp$~Q7h0x`0j9G#zNkY-|l@U68J4};&
+zex#KJm8VD%Lr*n;`~&(6(jG#4g5C(elwRZs`nU~HhY87U!cT$D67eWhu46=efr!WH
+zPasDgGnm98rjMYkgeViZPDtYfb}<yc6S)-PP9pLTMpaCVAsfsq$50-Ha3+7Uv21xa
+zt^A&9L}Pj*mQL!8czRfGDCu#%p{7fEBavRztD(}Xg|(??rC78S&%`sa?{Q`-6Q3?A
+zlNse#oTB{S#>K(QzkWt~lC%%e-yKJX+zi28A%d$|!Yo#3b(GM+TtF^QJWE74$w4U+
+v7fBas&vR&(Su2=vnf0g1MA92U<R!0AR9sattIEx+-~;@d9R>e(B;(S5m{v;)
+
+diff --git out/production/IDEA project01/MySelf/Hero.class out/production/IDEA project01/MySelf/Hero.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6d1638a53a6bd281336a7c113e595cfeda1bb48
+GIT binary patch
+literal 462
+zc${^Ry-ve06ot=C(uSl7Erph!4Y8y}q7xH{1u0?(Fcf8XifLV?NflBg9*dzuV&DOI
+zD8zNB1mb5o_PM_2ySCrnUtR$mW6wnmTMjIAv~+E3+t?vknV3mJJDQ3IF-S!=9t_Ju
+zW#bcqF_{x6B-Bq;rphxyC-~jhi<xqs-!i2csZ3riW{E6rM3PqAd?eCX6iWM5(JCkE
+zp5RB9k3*T>4K8Gn^EfLAHOn35i(({0rCS|+cBE%|aIx#54%@>T975w;n$Y^X*L5<L
+zqmp0-y%_ua*c$(U0n%CCk&dq_E*h*JyO6!XtJ{AD^$(XYo~j<7bsZ+F%_N<4*aO|q
+kZZy#Xs-31&#oYLld9Z}}li6UV$3*`hrk<yn?JBqV0gbOmsQ>@~
+
+diff --git out/production/IDEA project01/System2/Main.class out/production/IDEA project01/System2/Main.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d0537ba8ceb1e9318f2735b69f3ea48cf00931c9
+GIT binary patch
+literal 1735
+zc${riO>h%s7=FI|>~6MOQkteTR3L>?b{ilRX(}lqT5TImTQpcL__s}$b|Kx=bfb8~
+z1A;Rsj2s*f4kKfyGwN8unN(Y(M`yfx>(L=?x#)QCq)^{)7c7<R?DxI<{(R5-`|U6H
+z=57IKhan?^jsTv(K?zA2oj4@nNfC!-2<Q;;6jvRQA>nDhJtN})x+FZy>2nggCG<$>
+z<;E!q&vTO(B&0dt$G3hF10s$x2!~9|v=1|QRc(;L*OebJ7=mfjGWv_-!$#qlKAa;-
+zZ91RTbAx)p<otc1&mJ=;88)Od?@ijq`2KjGZd#orA1BICubxPs(%;eJIo%qKXY7J$
+zjdpS`g5^Lngj{{mHgoYzR<|spK*vQ_-NwLD1lF&QlP|wTq>Tsi2qZ(mJ&`Zk4Dx^9
+zWbGd)jBrOno>LO|^uj2G9I6l*S&!vyBgfN!kWeodkfu6g>)F$N`h=6Yh`5Ls$yFv_
+zEM$#tlNTevli$lx6>LVMh?f-fAj7ady7bMpm4%O&KA$RI`0mcRPs($jE`R&Q^5qYf
+zzn@>8zxv0`_eC62@G_`0Ju5S_E4Qwc&rK~|Jb!!s%Vc!v>eR~2HFa_<|E?A#`R$)B
+zsivhx@0>lmbYVdqDB8|<`TU#<ry6HWTjL==oCCwgM@p@r8?W$SUsW)K;|fmTHL4Kz
+zq~LYD!QkO-^g3nraaaX!qLCUzj?0&3lM3GAC&cpfmGb3}h}AKyAd3+O<>8TFs9CG_
+z!0;&}Yp)Zz4OlO7jx&VaKAHLWQL?eg($L4LA)yLlie!RwIdT|QE05k9Udoy%uHiMP
+z6&22%u#7VlZ=I@Dni*+KpB!^<4P7CcSHXC@sOKjC7lNC0r*@q1GE`tb<pi6u2-%Zz
+zE=#I%#NGj?{Ax-YL=zh5x4<6{7@soQA0sYKlo9o}&VpTc)LUp5Tp_m7uH66LhA7bh
+zL2Y*rdwSs|Em-UZJhk2ue4P4;&O;cQg_xd)G;{-jS;&36OQ`DKlk|BK{)n#x<!iz^
+zNy`UR?<9H<Y^I-R3h^Jg*CDho-X*F<e6`gjZ1@ZbZ^A!~eZ&VHzQxD+DDgE8U+?F9
+z4e=WtUJw%gu>UK<xCr<0(&E`Q(=up%7%QQ68mD>KAt&qy;U<NMP(oco<f`y`l@yUE
+zmt-Io79)WY>Zj3K0YHw(9H1%|t}0>EGz9+M`}4XJ1`lGGIs%CFf0a-}Wo<wec2GH0
+zRO1H(ag(GA2;pbc;a7yQh<f~nP57NG|Ds;r#b)Zu7A9dUtHU<dh$w496Kh5@+l3a^
+z3e9QXNyv154`DY`TNlxSowP*4sl_gmNrYBKUNr;=rv|MglL;+=7}-%w%!l11^N`Id
+z;b^>!EQY-_J3s>qVISIPAodg20p%Ywh!9rM1wq8)BHtwu2k50}gTbJ(Rrni6cB~Sf
+N$2D+AvfY`z#J^lpl3xG-
+
+diff --git out/production/IDEA project01/FileTry/fileTest02.class out/production/IDEA project01/FileTry/fileTest02.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..259b41bdb5fee4c38da85d4a8916ae978f912ae7
+GIT binary patch
+literal 1990
+zc$|$@Yfl_i7=8}y?(AjQEz3=`V2fZE*cL>4<EAZ$fD1*Jg0=NBy9~>~?hM%(s`$lA
+z+L#!Vej!>+;|HVZCu2(!YFg7D;O`LhgNgq@e9p{TKvrYIp7(an^FHtUo-_RX=YvN8
+zP9h&h15Sn!!6~_%4xt`r<Z@Ony>jW3fquCRglP^ccrl2Vq<t=g^B9uaaGYqPVT@rs
+z4uMexDL*~<aA#*n!GwZI0i|G=Y2yQ3K#WUEd*8F9f5gaBi>4N}t6G;~bxFI=+vJ4;
+z{f22cg94R__89@+kTpkdEM=Jb<Vqo<7pJw1+!s$-SuH=K6%A>ZoIYp4umx&U5^K7+
+z+BGkwZadvQOcKf)wj(3lQk~dO!Of*>*#&`$dB$Ux|4Gp|@A9ikJ6d*WLR)rIDrje<
+zpc$q>eWG+GubH{7v{N+9oQJCwbA+rZ6K0F%1%mzAe5vYi+FB`Qb*~q(UHT{FQ5DU2
+zTEzuSsdx>qt9TNPDw=Ru#S>C{N@{5tZNs!&o)u8{mO=cX-Yc_)IcL3ROSFp$W>n1L
+z4HcL0rof@|mgU$^QCptSods*ojs<Wzh$|}I!rKboQSmM=2BEQmyS0p&j-JztoXNqq
+z6LNRsh0LO!bvR?g_SkU7Od81RX3kk~O<tIYVGkQcZnTQ4a!~CDMp2h2-{?K5(yO+k
+z7YJ#sFk#(egeh)zctqC<1d8Q!=Um3N@+*!$rAZ34iS~ooVPudM=-$5d(bl)OfBov(
+z_7|W2@^Ewe<_~T5A3uG*b$yfWtvffQBRRMA{g=Oe_DP#5gg`?<ThfOtGpjkXhO<D;
+zb~MxBZ8%n@hVe4Fd2h;a=ZjgER-X6nxTJOG#(rAKeWdnqQZOfn$x>T)a~bAUYe_Gq
+z^yrRg?f?`lazH7|T3T7=Wg0V0y*QNDY+F8}n|o_0VR-juR5R!J&RV^LeFw|>w}aEG
+z%X*pZd!LSXi~8CRLJVp7eA;mIJ_SnxZU2j#K=Xg^!%=<<8~BOyAt;|2wV-@>uH=hz
+zWs@s?{37y&ay>$;i&9YfJMKf=rBXpCAmBOC!c{Hl&!CkuBwws|SVRaGpwH~sM8!JJ
+zQdDlhxArxnQoRRX$2}rb4Xv%C(F+IGZv7n&Fs$6A9$ZI~B9s!H-=U>*BKc^r@|3U6
+z*Ypi)lXbqHUVo$iM})8W#O<BmCCf^e<sf1%KLu5YBg%4PEV3HU(K>?~^rH>~Y{xJo
+zV{FGHTajTCa+C!k$m)&|E5quJ(eLN3RwU5wR&1ifZCEFNN8xX3#tyOk3L*-U{Nu}^
+zryjhm5w|hNaiY}KkJ*?C%7KT7T#BprQI+Z>{|!Vp;NL{dT`M2p5U`1A*R8m2#dXJB
+z_wF?6A^&}~BFx@L+5I-M?I+I`H|8edAiF8Uc%IcCCXFC^9uN7ny9cPLMJ>A?;$Q?j
+x&!1l=5pI$=Im^KZ*v>GIM_ExN;UtL{*fI$&pu@mC+xar>C?g~Ez2dH~{smHN-2DIm
+
+diff --git out/production/IDEA project01/System2/Hotel.class out/production/IDEA project01/System2/Hotel.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..7815c06a6058bca7cff972fcf5ba1e87d738e620
+GIT binary patch
+literal 1927
+zc$|$?-%lJ>6#nk+!0b*JSU{j<fi9I&z|xg1twnxRL6OzvR~K6=FAU413@kI7-JyoJ
+znlz>{YV^$)W75R*#TN~fq&Dq~zWCsq{s$%XsqYQ3es^YoMOI@b_ug~QJwLwhoICf|
+zzaBgSZ~-4`h@wYDT^KcZMa5YS3VOphhlGY#(HG`6DW~&c^y5Muod)E=>va$qlG3n>
+z5fzsODz4b}TAx64em<SqC_2VkG9gui0+mCiWjZ4Q!LIJB0?L@ZWC+xxP0N^CUt2T^
+zbNXVAn!2=|)pJ+%f+_dDveI%*1VoBsg~MbBXW1;u5PO*>Y{$qkRaM5(v#XPO-uG5A
+z%l1bCfs`fC*p*7J=r{F5PPc9(GETv?ZVbABEPc&Qf8><ebdE(rpI&!p*_DzGTE<>4
+zWQ}oCrqJBn=cI20^>`_QTGR<dN{b*5+Eu&}!J8OWF&4pF((pJ=MDRAoRlF0yDZI?;
+zjoP+TbP9TY(r}jTrD9DbCPGL>@GjnqAdSforsQT?hM1IuODn(t2OOpsSB$K4NaY!m
+zjV;+Uc!W(mF+;WvIUBm{SA7|^fSQ-PoFyfrP_!*JAiCdx8CON;>cbihGni!;MO?(=
+zae<~aebpGVt*q``Go58hMMt+B#yV5BJ>_~*;UXdauJZki|9R`y&Yj0QcfNe`>9@}w
+zezx=d-KUSg5b-CUe7^I|ch4SvEYMlb^{7h46<KV?>^L|xt(*3$;hT6=#`UaY7dBLU
+zK&olmUR}@g2Ba*@D2(OwV$mSKuS-+<F}x;E=+;usD0X;`gGXWfo8#O@-Y8=}pZ@11
+zIK<5lF{bBo8PhRH^18t3|AkGU?Z55N&W9w*XF_oBKj5rT=5N8dfxACYNewXDvklP`
+ziiUncAh3mCa46QZiQuEV7zhrxNHLb=rZc82)CQj}w=5_NBc8V9Cn(oj#WpH3w*%td
+zi{Ebx&OiUapg}Zp?nIcgOjAKHDw+|(8S2hM<3AH(KUH4JDm2lmN4{+Y%0H3bEqwTz
+zDFvvxj2I<JW0v|>u5BDmP+ssbprVFHyU@gQ^gd@Ifs^|j36Q~n=>t;ZKcezJ)KY4_
+zRQZgOn+P3<;Z0}{a16MQh|BOdm*MsS!!|Mi%Y2MbWRcrg;8Cs<)J@SsGK<r;o=?2T
+zC%~s;kI!@opD2`F1jH_)B+~B@iL;3wk+0}i!8H+M4|2-Vh+Ol^(nUq0ZA~^P$=H?$
+z-Q5uT*)3=iXut*9=(?X^(VGc0#+0(etuDZRFSHLvO2>VG3HcT>f^1ud+n8E<o~9)4
+zQYW>0@Ph7L8t~x_`|w8m%C;n1_sdx&%UNBb6=i_NnX;WVIfZTlxWwdpcZ5myfe!dU
+pL+Eqi1?bW3!VB{2a$|PmeXbg<GPs60o?Ya=nkTPOcgdXx{|0yFrj7sr
+
+diff --git out/production/IDEA project01/MySelf/MyStack.class out/production/IDEA project01/MySelf/MyStack.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..82cb45cc18cf221a5f3ee4ba871285e4b7b2b8bc
+GIT binary patch
+literal 1913
+zc$|$?OH&+G6#gzV&@)XZLx2!XAc7JdKp4>wA43p=BIrOOgG9vFW#$T<>FJ)D?xBjk
+zmJ6#~TQ03ixm8P{Bq__a|G*zWxzx4g>$}};!ee5&==(VLJKs6yJALm@f9?MOU;@fS
+z7sd@dZK4I^X{7OtUR~D1gn=u1e%8QqCQrsY=`v};z|}OS@M0$fW=veetUi574=;BT
+zKV#q(1M>o{TdMB)0zHLWa$Dvaf$ii9wp&r<g6#)+fppQ{bY;+}D}hT*L6e2WouYC+
+z$jy@~KSiImN!zu9DS<?GXjLFN>y_!9p^I8-R5w(8MQ%8>bQZjlbXH~E*8A9)47O}0
+z)bTGXr$Ck}q)pZu{uWQNM*`{yg6304tRdQQ7&SX|;y|eir>eAF7M@*?s&b^enJWf$
+z+ue*fZGH>H$@(Vq>1qNKFhlvm1erlNFUne6iCOd-^^%&i^~Q?p7}G2k9>#fr?q+gY
+zIEx+&3wYJSYbXe`A4=cCqBfmAstq-{=6Qi1)Maf^1zTR(&$MAFh3gh>;B_5s*+9|4
+z3f@RzRU2;_c+<ifmM!#Sz``IdrSKMs?iYD|<CZD~QRX^W9LkX8azXk$IGZgTM~BLp
+zbyfAYRRrp${wGjm*;IiBm{`Z#v5x(&tSTXJt|}{P)^kfTxM>GlT={`?17Am67;4sr
+zBbglP;h}1ZJAR<5{3X4HPCdfgUhW3L0bP`=k|=ZV=_dyt-R{@v{Cf9uCNpsCZ)+C5
+zs|guPtm&P@f2{rB?)L{D?`u+F;2o{M6d1hEWV_p5Ma6_s<#VzWc=a6vCEllk=T#at
+zwqn6`RejcxzON|9XNSv<Iimj0OSkMOe=u^)pG^8ejw?Gg)darYq|+xUW~Jj4?Lg%X
+zl=)ixuiOMK{x=Q-e6+gwj&<{cz8sv-an*u{(8@Kh62}X)Od%0sI)?WkhVP(dZ4Zg>
+zko-DC_j1&4CFqqz8~V7iB0MhQ5za#2g_vuGNR3Soe~aYEE?SS1m`I^LB<YEOF^OJ1
+zipNMJ^sS2NCc-_?uIYBs_9Kk1?h&?yN0~zzwcpF=@dr_)nox8%p-AHiWMhioC{U7f
+z@eb0|#w;YR_NKl-_704--hH}Y57yE*I5oPD)4(n=Bcr?M_^?HM`S;He_B^#X6GJ*f
+zNO<~-mM0OWGNyUhn-n{fVQ=~vdWa`u++Su=d8Rc@r3+jyQ>wnObGjdALg5mWc9<T+
+zENz;_M7Aqrh-^$BBY2W?iVx%{*#x=4e<b-QOap20JBI#%;B<kGxlp60@P61cfp@Wi
+U_n6A_p<W5RKwCZ>r^9jXAJMI^1ONa4
+
+diff --git out/production/IDEA project01/System2/Room.class out/production/IDEA project01/System2/Room.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..59543ddb64959fac92ac60b5f660862122bd3e89
+GIT binary patch
+literal 590
+zc${sJTT22#6vzLgtLv_lx6&@AX-~F9LeP`Zix3D)MTXGhYKyMyCDt|QV+Dy&&<E&4
+zMQ29IZUb}noHPIZoy+^j%Nu|b?CVHjTg8r!7|I${><UxSD6Fd3Q&D3``ctoOhYYO4
+zpx)czB=9E;IkWpXiEQt<c_mXVQl2`#6P+={8wWiGr5)Va3|Z6h?F-4cvHC7$3T7~{
+z+@2LWB3>qyXygz!^M$<*0*|1jM#mgm4_4E){9&^jg^oXLNxW})687hnLGK3BaA2Q1
+zf~*PBkx+50AwxBOb}q7Yjx;!j2A!jb5(EF<2aUU`a@il-gNUKn_^&b4X@e<RZ;USC
+zAP%u*hKUBqW+`ezArHtKb1>r-v0FArd<Nx7N^@j0h?7l{FhOw&d5ZYrCls(wUjf`$
+z0$tJxef2lcD9?~Eo}nDhkX+GAL=`PA=xG|8qe3-BmD+-|tRg%y3X>kKM~<>7Nn4+Y
+C7-#(e
+
+diff --git out/production/IDEA project01/System2/Person.class out/production/IDEA project01/System2/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cde07a26465345894ee8ca9823e3bf274226e84
+GIT binary patch
+literal 352
+zc${UA!AiqG5QhIv*T$qVt<`$>)>beecv8FwJp~maxo_f9w<H_bYy}_7LlHdq06vs-
+zHWfr<*<t?K`Tp7Y`u_L?aEVC>j!}Rf4t<P$95HY$YRNE8SK>t^mC(y1vqtIV6+{18
+zX=QI1Ce#1Vvz*}D=8528s<gaY*M&5XqNqB%rW92!jB@&?$nCRg8AfUL+FDs(BoETG
+zjiy0i)~rn_7s|B_cI9(7F@lfd2z%%=#D6g|`u)>=v67`_=uKxiPH8_*`!c#jb{Qk1
+weTo681w1-HIDZG5pKaj1k@65yjEQv=CoUjnK<Z@IjR*%ompNDG8F$=p3lk(nvj6}9
+
+diff --git out/production/IDEA project01/Frame/SimpleFrame.class out/production/IDEA project01/Frame/SimpleFrame.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d876934e731df1b8cd0bbb240786de5c72605608
+GIT binary patch
+literal 526
+zc${TWxlS8V6g}4qHfC7Hge7cdX>7~FRVok?0*oh`r18Xo3O!&14~=Kgc+6J8M^IAG
+zTLKz`5TZtW2Z40_0m^+7kRqkI_n!0KId^${yS)eS1yd;`Fp$7t3K4u(VJL}Vl}8d7
+zC3G$>mF9n#*4j^F(JB+jU~a*4>w$2Cs&E>16rcj3>*Hg2$yhF1%;JI2HY;5j%n_p5
+zT$K=8@HTBiw<%rwd!x2)`<7UDm`R)7hH$FFmkPg=v0z))3B6{?7d5+Bk+ogN4(l00
+zs^T^L4Z9@OPwm@b$WQNxJ)xls-30wVm4-27G>jv|4PTngr<>#F=J~J7v)>n|uXiUJ
+zCNRk_%HyC|-<R%I@oOj~B<glhkw;v`vxcEo>0m|;9Z1h5BpF#UP_y)9P32H@1nVn-
+z&o(o;DtC?WrJ)XtB-+6ngs6kD_7Cpliqr-idze{8lq(>UzXs)XD(HA<A)41CD-2qQ
+r<<s#N+O9&e&aoeHjzfrHm~BQdh*92q3~6SyzgFnQC(b-;sOtX%gwJjp
+
+diff --git out/production/IDEA project01/System01/Person.class out/production/IDEA project01/System01/Person.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..18746ad4c5ef7cc8d1bb9267c57dbdb870dcf476
+GIT binary patch
+literal 354
+zc${UA&q~8U5XQev*T$r=|Fqt{wH1sWJSkp;o`MRI+&6KlTapcIwt|o4K?DyzKp(0&
+zn+k%m>@eT#{Jz=QY(KvMTw)S}V;G==k&m&DLk6xzB^k!aO1y};6nYt_)+oKaV(4Bg
+zt?UiMWcvSkmJxhgKM_1gl$LkvDwpO_<YjAD7oyCBQBMC9xqVg*!zf8#8!M~xi}*pB
+zrq(nmOzX8N<U+Z=-mZM+Mn>>)6k!it8uN!^82<k1K3~bgGIXZ13@5Z9r;Qn1Lfedy
+y(>}$3)B+wIAe?`I%}?Lqy^-<|QtT58VmS2&MD$1<@46A;0BAGk>OA``H~0p%+C>%s
+
+diff --git out/production/IDEA project01/FileTry/streamWrite.class out/production/IDEA project01/FileTry/streamWrite.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6ef86b9807faef2fef76fa9ac7092d40dc7f971
+GIT binary patch
+literal 890
+zc${@p-%ry}6#nkku3IfIHbF%EfyyjwthzxYU`)h7Vlvpn7R)jpysKpvyLIXA6#pBa
+z^vMTawkSs5{X6vEFrM4Z2+3^Ib9%mW@AsW^di&$|mu~>pv980w9SwKmSke(eM#DWF
+zDokmXrCHIC)sa9>!>WcnL+p{;cEw|csJVQ=pgi?oIt)`Kx9#lrS`8<t@`gu9s^r_;
+zJK%vU;}NKcS8kVKrnKu47QC~%B5-)?dEg3Xi_$Ibwi#y4dg++I;g-kSO{*dTx82;5
+zV(f@va+q>`OLEYr=#fv9^B3T9Pjq^s5|Ya$-18VB^=+bXr2OBt&&oR|w$l-=-<I+`
+zXcAR=j5@<aMR5D|9`B4=(JOv0upOz!kUZB%UT!upfk_7Ad{GQ@yPJm+`St0;&(H4<
+zhxO&fiIB@J%KxtinZIw~0SX3+k~lr40|RSeYRqh@!hbE58^?|<Xbk4~DNmahM=UY*
+z?T|(_>)T;$dwy4b_YQ3n;b^J>w;e3v5*;adMZn|`$WBpYk!R%9l>yjkm`;+7g<u@h
+zWR2khq>v_`z-7#gHh+ggH?VPrNG%l|Kq;L;tz`#@?Zv*vYtiJBYE4OQR%>eVMRh;7
+z+J~0wBmNQbQnnBMG-S3=Al7K8o1r&Qsq*}%smKhWSyHx0vp`6Z)E{CttZR*G(y>I*
+t72-)_0du%2e-`4H$2DRsQgsWs9;$5M25yqSMURF^pdq19Vliy__8(&Ay!ZeB
+
+diff --git out/production/IDEA project01/System01/Hotel.class out/production/IDEA project01/System01/Hotel.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..731dc593d211dcecc5fe5db58853f07fd5815cc6
+GIT binary patch
+literal 1025
+zc$|$=O-~b16g{u=@unltp%kRFsGx~3CRT}V_=*V$fmrRLhNQA_Xh%A=Oi39`-1AFh
+z;Z|2B23fjr?Z#iAi7}d(kU$VUZ%RT83p>fZ_uc!>yXSt)$CG#a0Pf<d4IP&yu1JhY
+zj0>2vK^R2y0@}pnih#b*s`&z`Vi5Wdw>Q@O_9Jht$w<1`s(Q^8uN^4=G^j`QU`xO$
+zmS1c|{>H7_g{4;HH)jN_r(U?;2)t0hn3!B$T^0}lMcD?WM#4DSTaLWyvj^U0oKhmq
+zi^uhCf#HeeV#9mx6`IUcC`aueT%YM=k}7%KYq5aP+lY%hhg7Zj;X1P|DWE}`kfe6G
+zwcW1zi-9WNj;p<?-uA$NDUeX<`~K~Q{hehmtu_2=gfVEGqxv)m^^{uDE6@sB!+i_!
+zhKB?!YBLUMNK*H70I+d^Hc7wt^zkRA)M%Hi_ek8=W^?ZTOE_-MvG(lpju5Z@{M1!&
+z7uWT<ykqSm>*n;@R9>(3YhQEq{FBm7f~YSs_Otss=2ZMH*+341UN1Q_v?JsnC%enY
+zH0?e5i*Vu^T~;D7fIg&H+co4FPqCLgZ#ppp3+P9h*a6B2%-@g_8F7U4F@!jV<S}<d
+zToQvA>U1btaSg!X2n%k`DZM%Gm~6MAIdadgXj-YFQw)kpkra#K&?#5+E-*$H7_$qE
+z>;hx`A2Y4r_y9Yr=ch*XQdU1(2}eeqp&sP$hwu#-@dLv+;Eh_roz9>bO~wD&A@8yr
+mqlsTcsAcrvJ90c}eA~y>q`5S;3>)GE2SRWi#E-^5;ibQC-nA3}
+
+diff --git out/production/IDEA project01/Frame/MyFrame.class out/production/IDEA project01/Frame/MyFrame.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9241a1942f40318b867108b94e3f834b596395ff
+GIT binary patch
+literal 2009
+zc$~FWi*i~;82(N}ILYC}5J=Lhy+*1)Yfsg-UQ(l$G=`QmZ9!sNZwqW-!@1x&OJaNv
+zXM7DEC+)-;AE47`a{Tuk0#q>LI3o=I?*7;BzwGk-&%-|eT*vnY=8#L#{)zz$R}H*_
+zcNKYW8rN`LksH%^A0MQkVcEb<e5_-|Kms`(pQ!ayMLyGUOGiON{HAb)T+uL*%~dtT
+z3SNV2m@NsH-|IRx?pIjNCQhp4)tOyozEI~LGbURiP}*xgbGWs!AFj(JaF}p4EM}jS
+zcGxbnZ00ttvh;=9Tn@u9ze$GaF=9f}7E%QaMQl%670<JYM<OGr`<%OF@gqf_A84!!
+zhr5CBT+&HII_sj@A~#yG&)E_U+0rm$GpE*I83i$ORl{_J2QmasfO?sfh10S5Q8q@|
+z>-u%RCREO5FUu<`xQP_f8j`m>PX^LwoeeHqUL%-|V>O91Ew@dq;d349CW^SD<F1Jk
+zHcZ^ZrjGk29$?ADLoDeio2cLmGO12s%fy#>q~o!PC-_Rk+z2cxkOJ_773@*ftUDpo
+z#Mk)7#JBj4(tN2WgmF;m&DsvHO9Kow14-1W<bF47S8k{u54*0b+DrvV_X~Y{m%H*o
+zmv_lyLb$tLo0pj6zJ`<8aki@2$-g&}@@aCp%C}k9mVMs*QS_HvK0~VIp{_3us}1)(
+zHOi&&Zt-XiCikN550#<3A4u*{@?Mt|79y|0v+mOzN}5K_9J)XaP|ykOyhbTHtj!Ca
+zTW4}h$QJDa$y^yIP{m?y+$^WZIMtwc)X64%3)%4(<W$fvP{H;BzS-eElVM7+Y*A?#
+zq)`=th%RFGajvRk+e8y>6B(p+*lLC-*wP?C)G(_QUH}?Zw$19&^Y^Kj&fuiOqr#Ou
+zuifp?ycb=U`vsc?0jEq~3<K`@i-vxkxec2KnaFT?G_QX$tn7FAe-lO_kGIW@N(;=k
+z%R;Kj&Ws2nuu+%Sj>_}%|DSbFefUL;?&+}^=%5x|{8!jCoIPF-7w9pVgZfO+p9j5c
+zMCa*b(W=opnSToH7uuY_0?~NLjAN0g87bf-PSHAzSMgfU_$P8UN$aIUGQ%@WJVUH>
+z=>U@(mw!Wig@}G5_A92&EW{4U5C<>@A<jZ4Iz``E3Zc-=QMeRN6Sh3LSD~*(?(sTt
+z6_9f{Lw5AW5QK9$Po5UZ*99yQkkjPn4cf($hPos@h(*#-@YBB|@#rbcyZQJ5UdhJ}
+zFgt*fLX4<EP!gDddiZDhnJeB!ycrhmt<WNiolsjt3oZoJBOm%WK|m*P8E@0?Ly~^<
+E7mS<+>;M1&
+
+diff --git out/production/IDEA project01/System01/Test.class out/production/IDEA project01/System01/Test.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..78ac971d2d61be539a9bed256a7c96da1f72a733
+GIT binary patch
+literal 1066
+zc${rh+fUPA6#sP>+SPK~00D1+C>;o83SJoE1w}{(l8j)Gr;kyg*tNK|ULJkW_+*SP
+z#s_0GF}@grn1EqM-~B&e`s82W<$T?e39L=d*K>a7_B*HF_dlCo0rX>3Mm0J@P!W~T
+zDWeM~M0CptqJxVb5gG@3Wk`r|aZ<u58GYy%aazO~0TqLWWjI3u{AzSsKw#LO*9BB3
+z3`?JI({p-eip`m12`B6nGpAX`;Cj&*a2Aa$_f9^@I(oV{rcLQtCr&_`8J2(sbvCiY
+z?lR3})`FIFGKRGf=Vio6X3e{dTp|Sr*D*{jnPQfuXDD7O;xS%$PX@}*G7D5VQYJl7
+zTC^SAq|lmDU!&Yam@rRFXJ^L*R3;skx;@U8JuV{J1jtF-&7|}ZgL4aUDm^^Cf*RC{
+zIIG|s1_ZRVY=3zB<J;5iSMRo-tp0rTd~5SXe&tR6+2j1DTt4^u*O!MP;tB?FUO?5(
+z4ipUGf`HmRoE2QeC0^*Vf?-@ChS^2?o`|aoMsSUH`~QTAT8a1dxg|Zd(^POKrnXB!
+zePKw3txeK|9Ga8P(lm=m88fYBnQJDkrd}<-Jn0r0mJGhVpc?gt>Eqij)fuyv-BO)K
+zwJhNMZkB$ZI;>Np<rZ19+eW+9@3_p&?rN?uf_U^MT2Vzef<Hb8d~YPfq-k^tbOt*&
+zAbj-T2+4|q5p^V$;&(k7=nP>$8jHcJ@RJ?rTZ1p`Uq>K^;LHXp5?wbwLmbaRnps0=
+z1M)=oI`$0&ngU^E9hEQPfB$!j;{0B%!w^YI^oFQ0nW|J#yL5d?i=oBqp^xgclHP=7
+vis~S*12~9)ha92|Agmon$eS(~>8)rZCP%&QeZSElA}FH0nb2b%$K(G1;Z^u9
+
+diff --git out/production/IDEA project01/System01/Room.class out/production/IDEA project01/System01/Room.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c836e3658a2de00348592d9fb17ec3a6b9a636d
+GIT binary patch
+literal 255
+zc$_=+Z`VEs1_o0G0WJn+23~dsK6VCvMg}&U%)HDJJ4Oa(4b3n{1{UZ1lvG9rexJ;|
+zRKL>Pq|~C2#H1Xch>%Zya$-(cVo@fD4;5r7$;d1QsSd6zE=kQbFw_sq&(F1HWZ(+U
+zFD*(=b;|^);sgomWhIs+@-VP4urf06q9|u%5CF;P=OpH(>-#5Vr6!j!C^9es9SH)A
+yKnT<XB-wyGeK4PafmLfe1LH;@gNcD1NV0(inHe~MBo9OZ11AF)SUWdZ6%PO{0x;76
+

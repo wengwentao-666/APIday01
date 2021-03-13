@@ -1,0 +1,241 @@
+Index: writeDataByStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- writeDataByStream.java	(date 1615031862345)
++++ writeDataByStream.java	(date 1615031862345)
+@@ -0,0 +1,23 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class writeDataByStream {
++    public static void main(String[] args) {
++     try{
++         File f = new File("F:\\java学习\\test\\Stream.txt");
++         File dir = f.getParentFile();  //获取文件所在目录
++         if(!dir.exists()){
++             dir.mkdirs();  //将不存在的目录创建
++         }
++        byte[] data = {60,89,101};
++         FileOutputStream fos = new FileOutputStream(f); //输出字节流文件
++         fos.write(data);
++         fos.close();
++        } catch (IOException e){
++         e.printStackTrace();
++       }
++    }
++}
+Index: encodeFile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- encodeFile.java	(date 1615100276094)
++++ encodeFile.java	(date 1615100276094)
+@@ -0,0 +1,53 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.io.IOException;
++// 简单的数据加密
++public class encodeFile {
++
++    public static void encodeFiles(File encodingFile, File encodedFile){
++        try{
++            //将要转换的文件encodingFIle转换为字节流，引用对象为fis
++            FileInputStream fis = new FileInputStream(encodingFile);
++            //创建一个byte类型的数组，长度为文件长度
++            byte[] all = new byte[(int)encodingFile.length()];
++            //以字节流的形式读取所有内容
++            fis.read(all);
++            //遍历所有的数据
++            for(int i = 0; i < encodingFile.length(); i++){
++                if(all[i] >= 48 && all[i]<=57){
++                    if(all[i] == 57){
++                        all[i] = 48;
++                    }else{
++                        all[i]++;
++                    }
++                }else if(all[i] >= 65 && all[i] <= 90){
++                    if(all[i] == 90){
++                        all[i] = 65;
++                    }else{
++                        all[i]++;
++                    }
++                }else{
++                    all[i] = all[i];
++                }
++
++            }
++           //将加密数据写入新的文件当中
++            FileOutputStream fos = new FileOutputStream(encodedFile);
++            fos.write(all);
++            fis.close();
++            fos.close();
++
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++
++    }
++    public static void main(String[] args) {
++             File f = new File("F:\\java学习\\Stream.txt");
++             File f01 = new File("F:\\java学习\\Stream01.txt");
++             encodeFiles(f,f01);
++    }
++}
+Index: fileStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- fileStream.java	(date 1615018980036)
++++ fileStream.java	(date 1615018980036)
+@@ -0,0 +1,18 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class fileStream {
++    public static void main(String[] args) {
++        try{
++            File f = new File("F:\\java学习\\mysql学习.docx");
++            FileOutputStream fis = new FileOutputStream(f);
++
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++    }
++}
++
+Index: streamWrite.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- streamWrite.java	(date 1615029360762)
++++ streamWrite.java	(date 1615029360762)
+@@ -0,0 +1,23 @@
++package FileTry;
++
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class streamWrite{
++    public static void main(String[] args) {
++        try {
++            File f = new File("F:\\java学习\\Stream.txt");
++            FileOutputStream fos = new FileOutputStream(f);
++            //创建一个ASCII，字节码的数组
++            byte[] all = {65,58,96};
++            //写入ASCII码文件
++            fos.write(all);
++            //关闭输出流
++            fos.close();
++        }catch (IOException e){
++            e.printStackTrace();
++        }
++    }
++}
+Index: FileTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- FileTest.java	(date 1615000176896)
++++ FileTest.java	(date 1615000176896)
+@@ -0,0 +1,34 @@
++package FileTry;
++
++import java.io.File;
++
++public class FileTest {
++    public static void main(String[] args) {
++
++        File f = new File("C:\\Windows");
++        File[] fs = f.listFiles();
++        if(fs == null){
++            return;
++        }
++        long maxSize = 0;
++        long minSize = Integer.MAX_VALUE;
++        File minFile = null;
++        File maxFile = null;
++       for (File file:fs)  {
++           if(file.isDirectory())
++               continue;
++           if(file.length()>maxSize){
++               maxSize = file.length();
++               maxFile = file;
++           }
++           if(file.length()!=0 && file.length()<minSize){
++               minSize = file.length();
++               minFile = file;
++           }
++       }
++        System.out.printf("最大的文件是%s，其大小是%,d字节%n",maxFile.getAbsoluteFile(),maxFile.length());
++        System.out.printf("最小的文件是%s，其大小是%,d字节%n",minFile.getAbsoluteFile(),minFile.length());
++
++
++    }
++}
+Index: fileTest02.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- fileTest02.java	(date 1615016955439)
++++ fileTest02.java	(date 1615016955439)
+@@ -0,0 +1,41 @@
++package FileTry;
++
++import java.io.File;
++
++public class fileTest02 {
++    static long minSize = Integer.MAX_VALUE;
++    static long maxSize = 0;
++    static File minFile = null;
++    static File maxFile = null;
++   //遍历文件夹的方法
++    public static void listFiles(File file){
++        if(file.isFile()){
++            if(file.length()>maxSize){
++                maxSize = file.length();
++                maxFile = file;
++            }
++            if(file.length() != 0 && file.length() < minSize){
++              minSize = file.length();
++              minFile = file;
++            }
++            return;
++        }
++
++        if(file.isDirectory()){
++            File[] fs = file.listFiles();
++            if( null != fs){
++                for(File each : fs){
++                    listFiles(each);
++                }
++            }
++        }
++
++    }
++   //主方法
++    public static void main(String[] args) {
++        File f = new File("C:\\Windows");
++        listFiles(f);
++        System.out.println("最大的文件是%s，其大小是%,d字节%n"+maxFile.getAbsolutePath()+maxFile.length());
++        System.out.println("最小的文件是%s,其大小是%d字节%n"+minFile.getAbsolutePath()+minFile.length());
++    }
++}
+\ No newline at end of file
